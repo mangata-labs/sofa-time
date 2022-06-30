@@ -12,6 +12,7 @@ object Route {
     const val TV_EPISODES = "tv_episodes"
     const val TV_UPCOMING = "tv_upcoming"
     const val USER_PROFILE = "user_profile"
+    const val WEB_VIEW = "web_view"
 }
 
 
@@ -37,5 +38,12 @@ sealed class Screen(val route: String, val args: List<NamedNavArgument>) {
     object Profile : Screen(
         route = Route.USER_PROFILE,
         args = emptyList()
+    )
+
+    object WebView : Screen(
+        route = Route.WEB_VIEW + "/{webUrl}",
+        args = listOf(navArgument("webUrl") {
+            type = NavType.StringType
+        })
     )
 }

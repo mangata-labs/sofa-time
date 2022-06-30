@@ -2,6 +2,7 @@ apply(from = "$rootDir/library-build.gradle")
 apply (plugin = "org.jetbrains.kotlin.plugin.serialization")
 
 dependencies {
+    "implementation" (project(Modules.core))
     "implementation" (project(Modules.tvShowDomain))
 
     "implementation" (KotlinX.coroutinesCore)

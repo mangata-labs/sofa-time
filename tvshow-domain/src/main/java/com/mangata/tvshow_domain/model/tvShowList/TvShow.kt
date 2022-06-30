@@ -1,9 +1,9 @@
-package com.mangata.tvshow_domain.model
+package com.mangata.tvshow_domain.model.tvShowList
 
 data class TvShow(
     val id: Int,
     val name: String,
     val description: String,
     val posterPath: String?,
-    val backdropPath: String?,
+    val backdropPath: String,
 )

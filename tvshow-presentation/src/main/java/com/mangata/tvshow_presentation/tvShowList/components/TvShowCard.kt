@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.mangata.tvshow_domain.model.TvShow
+import com.mangata.tvshow_domain.model.tvShowList.TvShow
 import com.mangata.tvshow_presentation.R
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -35,7 +35,7 @@ fun TvShowCard(
         Column {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(tvShow.backdropPath ?: R.drawable.image_placeholder)
+                    .data(tvShow.backdropPath)
                     .placeholder(R.drawable.image_placeholder)
                     .crossfade(true)
                     .build(),

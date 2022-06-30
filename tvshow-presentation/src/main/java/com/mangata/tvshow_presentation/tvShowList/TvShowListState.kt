@@ -1,6 +1,6 @@
 package com.mangata.tvshow_presentation.tvShowList
 
-import com.mangata.tvshow_domain.model.TvShow
+import com.mangata.tvshow_domain.model.tvShowList.TvShow
 
 data class TvShowListState(
     val tvShows: List<TvShow> = emptyList(),

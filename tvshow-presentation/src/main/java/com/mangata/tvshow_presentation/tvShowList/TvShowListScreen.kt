@@ -21,7 +21,7 @@ import org.koin.androidx.compose.getViewModel
 fun TvShowListScreen(
     modifier: Modifier = Modifier,
     scaffoldState: ScaffoldState,
-    viewModel: TvShowListViewModel = getViewModel(),
+    viewModel: TvShowListViewModel,
     imageLoader: ImageLoader,
     onTvDetailClick: (Int) -> Unit,
 ) {
@@ -38,8 +38,8 @@ fun TvShowListScreen(
         snapshotFlow { loadMore }
             .filter { it }
             .collect {
-                println("here: loading more Tv Shows")
-                viewModel.loadNextTvShows() }
+                viewModel.loadNextTvShows()
+            }
     }
 
     LazyColumn(

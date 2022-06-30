@@ -1,7 +1,7 @@
 package com.mangata.tvshow_data.di
 
-import com.mangata.tvshow_data.remote.TmdbService
-import com.mangata.tvshow_data.remote.TmdbServiceImpl
+import com.mangata.tvshow_data.remote.service.TmdbService
+import com.mangata.tvshow_data.remote.service.TmdbServiceImpl
 import com.mangata.tvshow_data.repository.TvShowRepositoryImpl
 import com.mangata.tvshow_data.util.BuildConfigHelper
 import com.mangata.tvshow_domain.repository.TvShowRepository
@@ -19,13 +19,16 @@ val remoteModule = module {
         HttpClient(Android) {
             install(ContentNegotiation) {
                 json(Json {
-                    prettyPrint = true
                     isLenient = true
                     ignoreUnknownKeys = true
+                    encodeDefaults = true
                 })
             }
             if (BuildConfigHelper.isInDebug()) {
-                install(Logging)
+                install(Logging) {
+                    logger = Logger.DEFAULT
+                    level = LogLevel.ALL
+                }
             }
         }
     }

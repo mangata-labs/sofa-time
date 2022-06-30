@@ -18,8 +18,10 @@ object Compose {
     private const val activityComposeVersion = "1.4.0"
     const val activityCompose = "androidx.activity:activity-compose:$activityComposeVersion"
 
-    private const val pagingComposeVersion = "1.0.0-alpha14"
-    const val pagingCompose = "androidx.paging:paging-compose:$pagingComposeVersion"
+    //Google Accompanist
+    private const val accompanistVersion = "0.24.12-rc"
+    const val webViewCompose = "com.google.accompanist:accompanist-webview:$accompanistVersion"
+    const val pagerCompose = "com.google.accompanist:accompanist-pager:$accompanistVersion"
 }
 
 object ComposeTest {

@@ -4,7 +4,7 @@ import java.lang.reflect.Field
 
 private const val appPackageName = "com.mangata.sofatime"
 
-object BuildConfigHelper {
+internal object BuildConfigHelper {
 
     fun isInDebug(): Boolean {
         val isDebug: Any? = getBuildConfigValue("DEBUG")

@@ -18,7 +18,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import coil.ImageLoader
-import com.mangata.core_ui.profile_presentation.ProfileScreen
+import com.mangata.core_ui.screens.ProfileScreen
+import com.mangata.core_ui.screens.WebViewScreen
 import com.mangata.sofatime.navigation.Route
 import com.mangata.sofatime.navigation.bottomNavigation.BottomNavItem.Companion.bottomNavItems
 import com.mangata.sofatime.navigation.bottomNavigation.BottomBar
@@ -28,6 +29,10 @@ import com.mangata.tvshow_presentation.tvShowUpcoming.TvShowUpcomingScreen
 import com.mangata.tvshow_presentation.tvShowDetail.TvShowDetailScreen
 import com.mangata.tvshow_presentation.tvShowList.TvShowListScreen
 import org.koin.android.ext.android.inject
+import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 class MainActivity : ComponentActivity() {
 
@@ -43,7 +48,7 @@ class MainActivity : ComponentActivity() {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
 
                 when (navBackStackEntry?.destination?.route) {
-                    Screen.TvAbout.route -> {
+                    Screen.TvAbout.route, Screen.WebView.route -> {
                         bottomBarState.value = false
                     }
                     else -> bottomBarState.value = true
@@ -76,6 +81,7 @@ class MainActivity : ComponentActivity() {
                                 scaffoldState = scaffoldState,
                                 modifier = Modifier.padding(padding),
                                 imageLoader = imageLoader,
+                                viewModel = getViewModel(),
                                 onTvDetailClick = { tvShowID ->
                                     navController.navigate("${Route.TV_ABOUT}/$tvShowID")
                                 }
@@ -88,8 +94,13 @@ class MainActivity : ComponentActivity() {
                         ) {
                             val tvShowID = it.arguments?.getInt("tvShowID")!!
                             TvShowDetailScreen(
-                                tvShowID = tvShowID,
+                                imageLoader = imageLoader,
                                 modifier = Modifier.padding(padding),
+                                viewModel = getViewModel(parameters = { parametersOf(tvShowID) }),
+                                onNavigateToWebView = { webUrl ->
+                                    val encodedUrl = URLEncoder.encode(webUrl, StandardCharsets.UTF_8.toString())
+                                    navController.navigate("${Route.WEB_VIEW}/$encodedUrl")
+                                }
                             )
                         }
 
@@ -111,6 +122,16 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
+                        composable(
+                            route = Screen.WebView.route,
+                            arguments = Screen.WebView.args
+                        ) {
+                            val webUrl = it.arguments?.getString("webUrl")!!
+                            WebViewScreen(
+                                modifier = Modifier.padding(padding),
+                                webUrl = webUrl
+                            )
+                        }
                     }
                 }
             }
