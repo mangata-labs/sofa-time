@@ -2,10 +2,10 @@ package com.mangata.tvshow_presentation.util
 
 import com.mangata.core.extensions.toYear
 import com.mangata.tvshow_domain.model.tvShowDetail.TvShowDetails
-import com.mangata.tvshow_presentation.tvShowDetail.DetailHeaderModel
+import com.mangata.tvshow_presentation.tvShowDetail.components.headerSection.TvDetailsHeaderModel
 
-fun TvShowDetails.toDetailHeaderModel(): DetailHeaderModel {
-    return DetailHeaderModel(
+fun TvShowDetails.toDetailHeaderModel(): TvDetailsHeaderModel {
+    return TvDetailsHeaderModel(
         title = name,
         genres = genres,
         runTime = episode_run_time.firstOrNull(),

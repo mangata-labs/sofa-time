@@ -1,9 +1,10 @@
 package com.mangata.tvshow_presentation.tvShowDetail
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -13,14 +14,12 @@ import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.mangata.core.util.UiEvent
+import com.mangata.core_ui.components.ErrorMessage
 import com.mangata.tvshow_presentation.R
-import com.mangata.tvshow_presentation.tvShowDetail.components.HeaderSection
-import com.mangata.tvshow_presentation.tvShowDetail.components.NetworkSection
-import com.mangata.tvshow_presentation.tvShowDetail.components.StorySection
-import com.mangata.tvshow_presentation.tvShowDetail.components.VideoAndImageSection
-import org.koin.androidx.compose.getViewModel
-import org.koin.core.parameter.parametersOf
+import com.mangata.tvshow_presentation.tvShowDetail.components.headerSection.HeaderSection
+import com.mangata.tvshow_presentation.tvShowDetail.components.networkSection.NetworkSection
+import com.mangata.tvshow_presentation.tvShowDetail.components.storySection.StorySection
+import com.mangata.tvshow_presentation.tvShowDetail.components.videoAndImageSection.VideoAndImageSection
 
 @Composable
 fun TvShowDetailScreen(
@@ -29,55 +28,66 @@ fun TvShowDetailScreen(
     viewModel: TvShowDetailViewModel,
     onNavigateToWebView: (String) -> Unit,
 ) {
-    val state by viewModel.state
+    val state by viewModel.tvShowDetailState
 
-    if (state.error.isNotEmpty()) {
-        Text(
-            modifier = modifier.wrapContentSize(Alignment.Center),
-            text = "Error when loading content!")
+    if (viewModel.errorState.value.isNotEmpty()) {
+        ErrorMessage()
     }
 
-    state.tvShowDetails?.let {
-        Column(
-            modifier = modifier.fillMaxSize()
+    if (viewModel.isLoading.value) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
         ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(state.tvShowDetails?.backdrop_path)
-                    .placeholder(R.drawable.image_placeholder)
-                    .crossfade(true)
-                    .build(),
-                imageLoader = imageLoader,
-                contentDescription = null,
-                contentScale = ContentScale.FillWidth,
-                modifier = Modifier.fillMaxWidth()
-            )
-            Column(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp, vertical = 10.dp),
-                verticalArrangement = Arrangement.spacedBy(24.dp)
-            ) {
-                HeaderSection(
-                    modifier = modifier,
-                    headerModel = state.headerModel
+            CircularProgressIndicator()
+        }
+    }
+
+    state?.let {
+        LazyColumn(
+            modifier = modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            item {
+                AsyncImage(
+                    modifier = modifier.fillMaxWidth(),
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(it.backdrop_path)
+                        .placeholder(R.drawable.image_placeholder)
+                        .crossfade(true)
+                        .build(),
+                    imageLoader = imageLoader,
+                    contentDescription = null,
+                    contentScale = ContentScale.FillWidth,
                 )
+            }
+            item {
+                HeaderSection(
+                    modifier = Modifier.padding(horizontal = 20.dp),
+                    headerModel = viewModel.headerState.value
+                )
+            }
+            item {
                 NetworkSection(
-                    modifier = modifier,
+                    modifier = Modifier.padding(start = 20.dp),
                     imageLoader = imageLoader,
                     networks = it.networks
                 )
+            }
+            item {
                 VideoAndImageSection(
-                    modifier = modifier,
+                    modifier = Modifier.padding(start = 20.dp),
                     imageLoader = imageLoader,
-                    videoModel = state.videoModel,
-                    posterModel = state.imageModel,
+                    video = viewModel.videoState.value,
+                    posters = viewModel.posterState.value,
                     onPlayVideoClick = { videoUrl ->
                         onNavigateToWebView(videoUrl)
                     }
                 )
+            }
+            item {
                 StorySection(
-                    modifier = modifier,
+                    modifier = Modifier.padding(horizontal = 20.dp),
                     story = it.overview
                 )
             }

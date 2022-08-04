@@ -1,5 +1,5 @@
 object Koin {
-    private const val koinVersion = "3.2.0-beta-1"
+    private const val koinVersion = "3.2.0"
     const val koinCore = "io.insert-koin:koin-core:$koinVersion"
     const val koinAndroid = "io.insert-koin:koin-android:$koinVersion"
     const val koinNavigation = "io.insert-koin:koin-androidx-navigation:$koinVersion"

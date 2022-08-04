@@ -78,7 +78,6 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable(route = Screen.Home.route) {
                             TvShowListScreen(
-                                scaffoldState = scaffoldState,
                                 modifier = Modifier.padding(padding),
                                 imageLoader = imageLoader,
                                 viewModel = getViewModel(),

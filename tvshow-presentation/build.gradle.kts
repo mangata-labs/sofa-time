@@ -10,6 +10,6 @@ dependencies {
     "implementation" (Koin.koinAndroid)
     "implementation" (Koin.koinCompose)
 
-    "implementation" (Compose.materialIcons)
+    "implementation" (Compose.materialIconsExtended)
     "implementation" (Compose.pagerCompose)
 }

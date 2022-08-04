@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvShowDetail.components
+package com.mangata.tvshow_presentation.tvShowDetail.components.videoAndImageSection
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,20 +28,20 @@ import com.mangata.tvshow_presentation.R
 fun VideoAndImageSection(
     modifier: Modifier = Modifier,
     imageLoader: ImageLoader,
-    videoModel: Video?,
-    posterModel: List<Poster>,
+    video: Video?,
+    posters: List<Poster>,
     onPlayVideoClick: (String) -> Unit
 ) {
     LazyRow(
-        modifier = modifier,
+        modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        videoModel?.let { video ->
+        video?.let { video ->
             item {
                 VideoItem(video, onPlayVideoClick)
             }
         }
-        itemsIndexed(posterModel) { index, poster ->
+        itemsIndexed(posters) { index, poster ->
             ImageItem(
                 imageLoader = imageLoader,
                 poster = poster,

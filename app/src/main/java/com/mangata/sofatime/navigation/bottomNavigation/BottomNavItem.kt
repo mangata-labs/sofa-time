@@ -10,12 +10,8 @@ import com.mangata.sofatime.navigation.Route
 
 sealed class BottomNavItem(val title: Int, val icon: ImageVector, val route: String) {
     object Home : BottomNavItem(R.string.title_home, Icons.Default.Home, Route.HOME)
-    object Upcoming : BottomNavItem(R.string.title_upcoming, Icons.Default.CalendarToday,
-        Route.TV_UPCOMING
-    )
-    object Profile : BottomNavItem(R.string.title_profile, Icons.Default.PersonOutline,
-        Route.USER_PROFILE
-    )
+    object Upcoming : BottomNavItem(R.string.title_upcoming, Icons.Default.CalendarToday, Route.TV_UPCOMING)
+    object Profile : BottomNavItem(R.string.title_profile, Icons.Default.PersonOutline, Route.USER_PROFILE)
 
     companion object {
         val bottomNavItems = listOf(Home, Upcoming, Profile)

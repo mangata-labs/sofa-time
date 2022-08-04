@@ -53,7 +53,6 @@ android {
 }
 
 dependencies {
-
     implementation(project(Modules.core))
     implementation(project(Modules.coreUI))
     implementation(project(Modules.tvShowData))
@@ -65,7 +64,7 @@ dependencies {
 
     implementation(Compose.ui)
     implementation(Compose.material)
-    implementation(Compose.materialIcons)
+    implementation(Compose.materialIconsExtended)
     implementation(Compose.uiTooling)
     implementation(Compose.uiToolingPreview)
     implementation(Compose.viewModelCompose)

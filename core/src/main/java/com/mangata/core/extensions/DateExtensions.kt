@@ -1,7 +1,6 @@
 package com.mangata.core.extensions
 
 import java.text.SimpleDateFormat
-import java.time.ZoneId
 import java.util.*
 
 fun String.toDate(): Date? {

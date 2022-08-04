@@ -4,7 +4,4 @@ object AndroidX {
 
     private const val lifecycleVmKtxVersion = "2.4.1"
     const val lifecycleKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVmKtxVersion"
-
-    private const val pagingVersion = "3.1.1"
-    const val paging = "androidx.paging:paging-runtime:$pagingVersion"
 }
