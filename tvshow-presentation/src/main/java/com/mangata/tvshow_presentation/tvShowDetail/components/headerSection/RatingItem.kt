@@ -25,7 +25,7 @@ import com.mangata.core_ui.theme.textPrimaryDim
 
 @Composable
 fun RatingItem(
-    score: Double
+    score: String
 ) {
     Box(
         modifier = Modifier
@@ -38,7 +38,7 @@ fun RatingItem(
     ) {
         TextWithIcon(
             color = MaterialTheme.colors.textPrimary,
-            text = "$score",
+            text = score,
             icon = Icons.Filled.Star,
             size = 14.sp,
             fontWeight = FontWeight.Medium

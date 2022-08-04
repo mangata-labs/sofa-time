@@ -14,6 +14,7 @@ fun WebViewScreen(
     val state = rememberWebViewState(url = webUrl)
     WebView(
         modifier = modifier.fillMaxSize(),
-        state = state
+        state = state,
+        onCreated = { it.settings.javaScriptEnabled = true }
     )
 }
