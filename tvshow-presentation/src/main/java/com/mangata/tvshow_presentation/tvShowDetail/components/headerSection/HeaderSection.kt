@@ -22,82 +22,84 @@ import com.mangata.core_ui.theme.textPrimaryDim
 @Composable
 fun HeaderSection(
     modifier: Modifier = Modifier,
-    headerModel: TvDetailsHeaderModel?,
+    headerModel: TvDetailsHeaderModel,
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        headerModel?.let {
-            HeaderRow(headerModel = it) {
-                Text(
-                    modifier = Modifier.fillMaxWidth(0.80f),
-                    color = MaterialTheme.colors.textPrimary,
-                    fontSize = 28.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    text = it.title
-                )
-                IconButton(
-                    modifier = Modifier.offset(x = (5.dp)),
-                    onClick = { println("Not Implemented") }) {
-                    Icon(
-                        tint = MaterialTheme.colors.textPrimary,
-                        modifier = Modifier.size(36.dp),
-                        imageVector = Icons.Outlined.CheckCircle,
-                        contentDescription = "Add to WatchList"
-                    )
-                }
-            }
-            HeaderRow(headerModel = it) {
-                Text(
-                    text = buildAnnotatedString {
-                        withStyle(style = SpanStyle(
-                            color = MaterialTheme.colors.textPrimary)
-                        ) { append(it.displayDate()) }
-                        withStyle(style = SpanStyle(
-                            color = MaterialTheme.colors.textPrimaryDim)
-                        ) { append("  ●  ${it.numberOfSeasons} Seasons") }
-                    },
-                    fontSize = 16.sp
-                )
-                RatingItem(score = it.score.round(1))
-            }
-            HeaderRow(headerModel = it) {
-                Text(
-                    color = MaterialTheme.colors.textPrimary,
-                    fontSize = 16.sp,
-                    text = it.displayGenres()
+        HeaderRow(headerModel = headerModel) {
+            Text(
+                modifier = Modifier.fillMaxWidth(0.80f),
+                color = MaterialTheme.colors.textPrimary,
+                fontSize = 28.sp,
+                fontWeight = FontWeight.SemiBold,
+                text = it.title
+            )
+            IconButton(
+                modifier = Modifier.offset(x = (5.dp)),
+                onClick = { println("Not Implemented") }) {
+                Icon(
+                    tint = MaterialTheme.colors.textPrimary,
+                    modifier = Modifier.size(36.dp),
+                    imageVector = Icons.Outlined.CheckCircle,
+                    contentDescription = "Add to WatchList"
                 )
             }
-            HeaderRow(headerModel = it) {
-                val inlineContent = mapOf(
-                    Pair("inlineIcon",
-                        InlineTextContent(
-                            Placeholder(
-                                width = 16.sp,
-                                height = 16.sp,
-                                placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter
-                            )
-                        ) {
-                            Icon(
-                                Icons.Outlined.Timer,
-                                "Stopwatch",
-                                tint = MaterialTheme.colors.textPrimaryDim
-                            )
-                        }
-                    )
+        }
+        HeaderRow(headerModel = headerModel) {
+            Text(
+                text = buildAnnotatedString {
+                    withStyle(
+                        style = SpanStyle(
+                            color = MaterialTheme.colors.textPrimary
+                        )
+                    ) { append(it.displayDate()) }
+                    withStyle(
+                        style = SpanStyle(
+                            color = MaterialTheme.colors.textPrimaryDim
+                        )
+                    ) { append("  ●  ${it.numberOfSeasons} Seasons") }
+                },
+                fontSize = 16.sp
+            )
+            RatingItem(score = it.score.round(1))
+        }
+        HeaderRow(headerModel = headerModel) {
+            Text(
+                color = MaterialTheme.colors.textPrimary,
+                fontSize = 16.sp,
+                text = it.displayGenres()
+            )
+        }
+        HeaderRow(headerModel = headerModel) {
+            val inlineContent = mapOf(
+                Pair("inlineIcon",
+                    InlineTextContent(
+                        Placeholder(
+                            width = 16.sp,
+                            height = 16.sp,
+                            placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter
+                        )
+                    ) {
+                        Icon(
+                            Icons.Outlined.Timer,
+                            "Stopwatch",
+                            tint = MaterialTheme.colors.textPrimaryDim
+                        )
+                    }
                 )
-                Text(
-                    color = MaterialTheme.colors.textPrimaryDim,
-                    fontSize = 16.sp,
-                    text = buildAnnotatedString {
-                        append("${it.runTime} min")
-                        append(" ")
-                        appendInlineContent("inlineIcon", "[icon]")
-                    },
-                    inlineContent = inlineContent
-                )
-            }
+            )
+            Text(
+                color = MaterialTheme.colors.textPrimaryDim,
+                fontSize = 16.sp,
+                text = buildAnnotatedString {
+                    append("${it.runTime ?: "-"} min")
+                    append(" ")
+                    appendInlineContent("inlineIcon", "[icon]")
+                },
+                inlineContent = inlineContent
+            )
         }
     }
 }

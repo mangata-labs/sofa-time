@@ -56,14 +56,14 @@ private fun VideoItem(
     onPlayVideoClick: (String) -> Unit
 ) {
     Box(modifier = Modifier
-        .width(170.dp)
-        .height(100.dp)
+        .width(180.dp)
+        .height(115.dp)
         .clip(RoundedCornerShape(5.dp))
         .background(Color.LightGray)
-        .wrapContentSize(Alignment.Center)
         .clickable {
             video.createUrl()?.let { onPlayVideoClick(it) }
-        }
+        },
+        contentAlignment = Alignment.Center
     ) {
         Icon(
             modifier = Modifier.size(60.dp),
@@ -80,7 +80,7 @@ private fun ImageItem(
 ) {
     AsyncImage(
         modifier = Modifier
-            .size(100.dp)
+            .size(115.dp)
             .clip(RoundedCornerShape(5.dp)),
         model = ImageRequest.Builder(LocalContext.current)
             .data(poster.filePath ?: R.drawable.image_placeholder)

@@ -3,14 +3,13 @@ package com.mangata.tvshow_presentation.tvShowDetail
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mangata.core.util.awaitAll
 import com.mangata.tvshow_domain.model.image.Poster
 import com.mangata.tvshow_domain.model.tvShowDetail.TvShowDetails
 import com.mangata.tvshow_domain.model.video.Video
 import com.mangata.tvshow_domain.repository.TvShowRepository
 import com.mangata.tvshow_presentation.tvShowDetail.components.headerSection.TvDetailsHeaderModel
-import com.mangata.tvshow_presentation.util.toDetailHeaderModel
-import kotlinx.coroutines.launch
+import com.mangata.tvshow_presentation.tvShowDetail.components.headerSection.toDetailHeaderModel
+import kotlinx.coroutines.*
 
 class TvShowDetailViewModel(
     private val repository: TvShowRepository,
@@ -39,42 +38,39 @@ class TvShowDetailViewModel(
         getData()
     }
 
-    private fun getData() = viewModelScope.launch {
+    private fun getData() = try {
         isLoading.value = true
-        try {
-            awaitAll(
-                launch { getTvShowDetails() },
-                launch { getTvShowTrailer() },
-                launch { getTvShowImages() },
-            )
-        } catch (e: Exception) {
-            errorState.value = e.localizedMessage ?: ""
+        viewModelScope.launch {
+            val tvShowDeferred = async(Dispatchers.IO) { repository.getTvShowDetails(tvShowId) }
+            val videoDeferred = async(Dispatchers.IO) { repository.getVideoForTvShow(tvShowId) }
+            val posterDeferred = async(Dispatchers.IO) { repository.getImagesForTvShow(tvShowId) }
+
+            val tvShowDetailResult = tvShowDeferred.await()
+            val videoResult = videoDeferred.await()
+            val posterResult = posterDeferred.await()
+
+            tvShowDetailResult.onSuccess { processTvShow(it) }
+            videoResult.onSuccess { processVideo(it) }
+            posterResult.onSuccess { processPosters(it) }
             isLoading.value = false
         }
+    } catch (e: Exception) {
+        errorState.value = e.localizedMessage ?: ""
         isLoading.value = false
     }
 
-    private suspend fun getTvShowTrailer() {
-        val result = repository.getVideoForTvShow(tvShowId)
-        result.onSuccess { video ->
-            videoState.value = video
-        }
+    private fun processVideo(video: Video?) {
+        videoState.value = video
     }
 
-    private suspend fun getTvShowImages() {
-        val result = repository.getImagesForTvShow(tvShowId)
-        result.onSuccess { posters ->
-            posterState.value = posters
-        }
+    private fun processPosters(posters: List<Poster>) {
+        posterState.value = posters
     }
 
-    private suspend fun getTvShowDetails() {
-        val result = repository.getTvShowDetails(tvShowId)
-        result.onSuccess { tvDetails ->
-            tvDetails?.let {
-                tvShowDetailState.value = it
-                headerState.value = it.toDetailHeaderModel()
-            }
+    private fun processTvShow(tvShowDetails: TvShowDetails?) {
+        tvShowDetails?.let {
+            tvShowDetailState.value = it
+            headerState.value = it.toDetailHeaderModel()
         }
     }
 }

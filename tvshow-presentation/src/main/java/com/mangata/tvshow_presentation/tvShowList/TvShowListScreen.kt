@@ -36,7 +36,7 @@ fun TvShowListScreen(
     }
 
     Column(
-        modifier = modifier.fillMaxSize().padding(top = 16.dp),
+        modifier = modifier.fillMaxSize().padding(top = 10.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
