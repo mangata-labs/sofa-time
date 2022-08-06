@@ -83,7 +83,7 @@ private fun ImageItem(
             .size(115.dp)
             .clip(RoundedCornerShape(5.dp)),
         model = ImageRequest.Builder(LocalContext.current)
-            .data(poster.filePath ?: R.drawable.image_placeholder)
+            .data(poster.filePath)
             .placeholder(R.drawable.image_placeholder)
             .crossfade(true)
             .build(),

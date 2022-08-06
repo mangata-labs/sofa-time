@@ -47,47 +47,45 @@ fun TvShowDetailScreen(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        item {
-            AsyncImage(
-                modifier = modifier.fillMaxWidth(),
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(viewModel.tvShowDetailState.value?.backdrop_path)
-                    .placeholder(R.drawable.image_placeholder)
-                    .crossfade(true)
-                    .build(),
-                imageLoader = imageLoader,
-                contentDescription = null,
-                contentScale = ContentScale.FillWidth,
-            )
-        }
-        item {
-            HeaderSection(
-                modifier = Modifier.padding(horizontal = 20.dp),
-                headerModel = viewModel.headerState.value
-            )
-        }
-        item {
-            tvShowState?.let {
+        tvShowState?.let {
+            item {
+                AsyncImage(
+                    modifier = modifier.fillMaxWidth(),
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(it.backdrop_path)
+                        .placeholder(R.drawable.image_placeholder)
+                        .crossfade(true)
+                        .build(),
+                    imageLoader = imageLoader,
+                    contentDescription = null,
+                    contentScale = ContentScale.FillWidth,
+                )
+            }
+            item {
+                HeaderSection(
+                    modifier = Modifier.padding(horizontal = 20.dp),
+                    headerModel = viewModel.headerState.value
+                )
+            }
+            item {
                 NetworkSection(
                     modifier = Modifier.padding(start = 20.dp),
                     imageLoader = imageLoader,
                     networks = it.networks
                 )
             }
-        }
-        item {
-            VideoAndImageSection(
-                modifier = Modifier.padding(start = 20.dp),
-                imageLoader = imageLoader,
-                video = viewModel.videoState.value,
-                posters = viewModel.posterState.value,
-                onPlayVideoClick = { videoUrl ->
-                    onNavigateToWebView(videoUrl)
-                }
-            )
-        }
-        item {
-            tvShowState?.let {
+            item {
+                VideoAndImageSection(
+                    modifier = Modifier.padding(start = 20.dp),
+                    imageLoader = imageLoader,
+                    video = viewModel.videoState.value,
+                    posters = viewModel.posterState.value,
+                    onPlayVideoClick = { videoUrl ->
+                        onNavigateToWebView(videoUrl)
+                    }
+                )
+            }
+            item {
                 StorySection(
                     modifier = Modifier.padding(horizontal = 20.dp),
                     story = it.overview
