@@ -54,7 +54,7 @@ fun TvShowCard(
                     .padding(vertical = 5.dp, horizontal = 10.dp),
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colors.textPrimary,
-                fontWeight = FontWeight.SemiBold,
+                style = MaterialTheme.typography.body1,
                 text = tvShow.name,
             )
         }

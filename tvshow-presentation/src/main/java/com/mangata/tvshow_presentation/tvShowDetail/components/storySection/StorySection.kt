@@ -24,13 +24,12 @@ fun StorySection(
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(
                 text = "The Story",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Medium,
+                style = MaterialTheme.typography.h2,
                 color = MaterialTheme.colors.textPrimary
             )
             Text(
                 text = story,
-                fontSize = 14.sp,
+                style = MaterialTheme.typography.body2,
                 color = MaterialTheme.colors.textPrimaryDim,
             )
         }

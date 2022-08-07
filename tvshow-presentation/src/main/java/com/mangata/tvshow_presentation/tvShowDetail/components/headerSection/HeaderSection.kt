@@ -32,8 +32,7 @@ fun HeaderSection(
             Text(
                 modifier = Modifier.fillMaxWidth(0.80f),
                 color = MaterialTheme.colors.textPrimary,
-                fontSize = 28.sp,
-                fontWeight = FontWeight.SemiBold,
+                style = MaterialTheme.typography.h1,
                 text = it.title
             )
             IconButton(
@@ -61,14 +60,14 @@ fun HeaderSection(
                         )
                     ) { append("  ●  ${it.numberOfSeasons} Seasons") }
                 },
-                fontSize = 16.sp
+                style = MaterialTheme.typography.body1
             )
             RatingItem(score = it.score.round(1))
         }
         HeaderRow(headerModel = headerModel) {
             Text(
                 color = MaterialTheme.colors.textPrimary,
-                fontSize = 16.sp,
+                style = MaterialTheme.typography.body1,
                 text = it.displayGenres()
             )
         }
@@ -92,7 +91,7 @@ fun HeaderSection(
             )
             Text(
                 color = MaterialTheme.colors.textPrimaryDim,
-                fontSize = 16.sp,
+                style = MaterialTheme.typography.body1,
                 text = buildAnnotatedString {
                     append("${it.runTime ?: "-"} min")
                     append(" ")
