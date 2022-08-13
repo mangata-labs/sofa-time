@@ -31,8 +31,11 @@ fun TvShowCard(
     imageLoader: ImageLoader
 ) {
     Card(
-        modifier = Modifier.clickable {  onTvDetailClick(tvShow.id) },
-        shape = MaterialTheme.shapes.small,
+        modifier = Modifier
+            .background(MaterialTheme.colors.surface)
+            .clickable { onTvDetailClick(tvShow.id) },
+        shape = MaterialTheme.shapes.medium,
+        elevation = 2.dp
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
@@ -50,7 +53,6 @@ fun TvShowCard(
             )
             Text(
                 modifier = Modifier.fillMaxWidth()
-                    .background(MaterialTheme.colors.componentBackground)
                     .padding(vertical = 5.dp, horizontal = 10.dp),
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colors.textPrimary,

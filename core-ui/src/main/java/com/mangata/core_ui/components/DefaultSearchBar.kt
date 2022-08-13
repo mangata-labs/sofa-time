@@ -28,10 +28,10 @@ fun DefaultSearchBar(
 ) {
     val focusManager = LocalFocusManager.current
 
-    Surface(modifier = modifier
-        .height(56.dp),
-        color = MaterialTheme.colors.componentBackground,
-        shape = RoundedCornerShape(percent = 10)
+    Surface(modifier = modifier.height(56.dp),
+        color = MaterialTheme.colors.surface,
+        shape = MaterialTheme.shapes.medium,
+        elevation = 2.dp
     ) {
         TextField(
             modifier = Modifier.fillMaxWidth(),

@@ -15,7 +15,7 @@ private val DarkColorPalette = darkColors(
     secondary = StarYellow,
     onSecondary = SnowWhite,
 
-    background = DarkGray,
+    background = SemiBlack,
     surface = SemiDarkGray,
 )
 

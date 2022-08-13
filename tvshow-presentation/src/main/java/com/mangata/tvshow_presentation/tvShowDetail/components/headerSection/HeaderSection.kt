@@ -1,19 +1,25 @@
 package com.mangata.tvshow_presentation.tvShowDetail.components.headerSection
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.*
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mangata.core.extensions.round
+import com.mangata.core_ui.components.TextWithIcon
+import com.mangata.core_ui.theme.componentBackground
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.core_ui.theme.textPrimaryDim
 
@@ -115,5 +121,27 @@ private fun HeaderRow(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         rowElement(headerModel)
+    }
+}
+
+@Composable
+private fun RatingItem(
+    score: String,
+) {
+    Box(
+        modifier = Modifier
+            .clip(MaterialTheme.shapes.small)
+            .background(MaterialTheme.colors.componentBackground)
+            .padding(vertical = 5.dp, horizontal = 10.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        TextWithIcon(
+            color = MaterialTheme.colors.textPrimary,
+            text = score,
+            icon = Icons.Filled.Star,
+            iconColor = MaterialTheme.colors.secondary,
+            size = 14.sp,
+            fontWeight = FontWeight.SemiBold
+        )
     }
 }

@@ -7,7 +7,6 @@ import androidx.navigation.navArgument
 object Route {
     const val HOME = "home"
     const val TV_ABOUT = "tv_about"
-    const val TV_UPCOMING = "tv_upcoming"
     const val TV_SEARCH = "tv_search"
     const val USER_PROFILE = "user_profile"
     const val WEB_VIEW = "web_view"
@@ -26,11 +25,6 @@ sealed class Screen(val route: String, val args: List<NamedNavArgument>) {
         args = listOf(navArgument("tvShowID") {
             type = NavType.IntType
         })
-    )
-
-    object TvUpcoming : Screen(
-        route = Route.TV_UPCOMING,
-        args = emptyList()
     )
 
     object TVSearch: Screen(

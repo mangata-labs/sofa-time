@@ -18,6 +18,7 @@ import com.mangata.core_ui.components.ErrorMessage
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.tvshow_domain.model.tvShowList.TvShow
 import com.mangata.tvshow_presentation.tvShowHome.components.SearchTvShowCard
+import com.mangata.tvshow_presentation.tvShowHome.components.TrendingSection
 import com.mangata.tvshow_presentation.tvShowHome.components.TvShowCarouselCard
 
 
@@ -40,58 +41,21 @@ fun TvShowHomeScreen(
         }
     }
 
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(10.dp),
-        horizontalAlignment = (Alignment.CenterHorizontally)
-    ) {
-        TrendingSection(
-            modifier = Modifier.fillMaxWidth(0.9f),
-            items = viewModel.tvShowsState.value,
-            imageLoader = imageLoader,
-            onTvShowClick = onTvShowClick
-        )
-        SearchTvShowCard(
-            modifier = Modifier.fillMaxWidth(0.9f)
-        )
-    }
-}
-
-@OptIn(ExperimentalPagerApi::class)
-@Composable
-fun TrendingSection(
-    modifier: Modifier = Modifier,
-    items: List<TvShow>,
-    imageLoader: ImageLoader,
-    onTvShowClick: (Int) -> Unit,
-) {
-    val pagerState = rememberPagerState()
-
-    Column(
-        modifier = modifier
-    ) {
-        Text(
-            text = "Trending Now",
-            style = MaterialTheme.typography.h1,
-            color = MaterialTheme.colors.textPrimary
-        )
-        Spacer(modifier = Modifier.height(15.dp))
-        HorizontalPager(
-            modifier = Modifier
-                .height(200.dp)
-                .clip(shape = MaterialTheme.shapes.medium),
-            count = items.size,
-            itemSpacing = 8.dp,
-            state = pagerState
-        ) { page ->
-            TvShowCarouselCard(items[page], imageLoader, onTvShowClick)
+    if(viewModel.tvShowsState.value.isNotEmpty()) {
+        Column(
+            modifier = Modifier.fillMaxSize().padding(top = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            horizontalAlignment = (Alignment.CenterHorizontally)
+        ) {
+            TrendingSection(
+                modifier = Modifier.fillMaxWidth(0.9f),
+                items = viewModel.tvShowsState.value,
+                imageLoader = imageLoader,
+                onTvShowClick = onTvShowClick
+            )
+            SearchTvShowCard(
+                modifier = Modifier.fillMaxWidth(0.9f)
+            )
         }
-
-        HorizontalPagerIndicator(
-            pagerState = pagerState,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(16.dp),
-        )
     }
 }

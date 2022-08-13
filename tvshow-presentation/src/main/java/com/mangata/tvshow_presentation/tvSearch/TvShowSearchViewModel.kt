@@ -38,7 +38,8 @@ class TvShowSearchViewModel(private val tvShowRepository: TvShowRepository) : Vi
         onSuccess = { items, newKey ->
             tvShowsState.value = tvShowsState.value.copy(
                 tvShows = tvShowsState.value.tvShows + items,
-                page = newKey
+                page = newKey,
+                endReached = items.isEmpty()
             )
         }
     )
@@ -64,9 +65,6 @@ class TvShowSearchViewModel(private val tvShowRepository: TvShowRepository) : Vi
 
     fun loadNextTvShows() {
         viewModelScope.launch {
-            if (tvShowsState.value.tvShows.isEmpty()) {
-                tvShowsState.value = tvShowsState.value.copy(endReached = true)
-            }
             pager.loadNext()
         }
     }

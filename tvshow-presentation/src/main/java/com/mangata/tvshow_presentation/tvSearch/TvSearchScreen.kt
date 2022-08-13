@@ -5,9 +5,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import com.mangata.core_ui.components.DefaultSearchBar
@@ -69,17 +72,32 @@ fun TvShowSearchScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             state = scrollState
         ) {
-            items(state.tvShows) { tvShow ->
-                TvShowCard(
-                    tvShow = tvShow,
-                    onTvDetailClick = onTvDetailClick,
-                    imageLoader = imageLoader
-                )
+            if (state.tvShows.isNotEmpty()) {
+                items(state.tvShows) { tvShow ->
+                    TvShowCard(
+                        tvShow = tvShow,
+                        onTvDetailClick = onTvDetailClick,
+                        imageLoader = imageLoader
+                    )
+                }
             }
-            item {
-                if (state.isLoading) {
+            if (state.isLoading) {
+                item {
                     Row {
                         CircularProgressIndicator()
+                    }
+                }
+            }
+            if (state.tvShows.isEmpty() && !state.isLoading) {
+                item {
+                    Box(
+                        modifier = Modifier.fillParentMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            textAlign = TextAlign.Center,
+                            text = "No TV Show Found! ☹️"
+                        )
                     }
                 }
             }

@@ -110,14 +110,6 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(
-                            route = Screen.TvUpcoming.route,
-                            arguments = Screen.TvUpcoming.args
-                        ) {
-                            TvShowUpcomingScreen(
-                            )
-                        }
-
-                        composable(
                             route = Screen.TVSearch.route,
                             arguments = Screen.TVSearch.args
                         ) {

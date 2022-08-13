@@ -16,15 +16,15 @@ import androidx.compose.ui.unit.TextUnit
 
 @Composable
 fun TextWithIcon(
-    modifier: Modifier = Modifier,
     color: Color,
     text: String,
     size: TextUnit,
     fontWeight: FontWeight = FontWeight.Normal,
-    icon: ImageVector
+    icon: ImageVector,
+    iconColor: Color
 ) {
     Text(
-        modifier = modifier,
+        modifier = Modifier,
         color = color,
         fontSize = size,
         fontWeight = fontWeight,
@@ -33,12 +33,16 @@ fun TextWithIcon(
             append(" ")
             appendInlineContent(myId, "[myBox]")
         },
-        inlineContent = inlineContent(icon, size)
+        inlineContent = inlineContent(icon, iconColor, size)
     )
 }
 
 private const val myId = "inlineContent"
-private fun inlineContent(icon: ImageVector, size: TextUnit) = mapOf(
+private fun inlineContent(
+    icon: ImageVector,
+    iconColor: Color,
+    size: TextUnit
+) = mapOf(
     Pair(
         myId,
         InlineTextContent(
@@ -50,6 +54,7 @@ private fun inlineContent(icon: ImageVector, size: TextUnit) = mapOf(
         ) {
             Icon(
                 imageVector = icon,
+                tint = iconColor,
                 contentDescription = null
             )
         }

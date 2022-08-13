@@ -72,7 +72,6 @@ internal class TvShowRepositoryImpl(private val tmdbService: TmdbService) : TvSh
     override suspend fun getTrendingTvShows(): Result<List<TvShow>> {
         return try {
             val result = tmdbService.getTrendingTvShows().results
-            print("here trending count: ${result.size}")
             Result.success(result.mapNotNull { it.toTvShow() }.take(10))
         } catch (e: Exception) {
             println("here ${e.message}")

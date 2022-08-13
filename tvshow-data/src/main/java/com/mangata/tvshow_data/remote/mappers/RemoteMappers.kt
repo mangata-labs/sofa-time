@@ -25,7 +25,10 @@ internal fun TvShowDto.toTvShow() : TvShow? {
         name = name,
         description = overview,
         posterPath = ImageUrlManager.getPosterUrl(poster_path) ?: return null,
-        backdropPath = ImageUrlManager.getBackdropUrl(backdrop_path) ?: return null
+        backdropPath = ImageUrlManager.getBackdropUrl(backdrop_path) ?: return null,
+        popularity = popularity,
+        genreIDs = genre_ids,
+        voteAverage = vote_average
     )
 }
 
