@@ -45,7 +45,7 @@ fun TvShowCarouselCard(
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
@@ -73,38 +73,23 @@ private fun CardDescription(
 ) {
     Row(
         modifier = modifier
-            .background(MaterialTheme.colors.surface)
             .wrapContentSize(Alignment.Center),
-        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            modifier = Modifier.align(Alignment.Top),
             text = tvShow.name,
             color = MaterialTheme.colors.textPrimary,
             style = MaterialTheme.typography.h3
         )
-        RatingItem(
-            modifier = Modifier.align(Alignment.Bottom),
-            score = tvShow.voteAverage.round(1)
-        )
-    }
-}
-
-@Composable
-private fun RatingItem(
-    modifier: Modifier = Modifier,
-    score: String,
-) {
-    Box(
-        modifier = modifier
-            .clip(MaterialTheme.shapes.small)
-            .background(MaterialTheme.colors.componentBackground)
-            .padding(horizontal = 5.dp, vertical = 1.dp),
-        contentAlignment = Alignment.Center
-    ) {
         TextWithIcon(
+            modifier = Modifier
+                .clip(MaterialTheme.shapes.small)
+                .background(MaterialTheme.colors.componentBackground)
+                .align(Alignment.Bottom)
+                .padding(start = 4.dp, end = 4.dp, bottom = 2.dp),
             color = MaterialTheme.colors.textPrimary,
-            text = score,
+            text = tvShow.voteAverage.round(1),
             icon = Icons.Filled.Star,
             iconColor = MaterialTheme.colors.secondary,
             size = 14.sp,

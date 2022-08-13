@@ -12,10 +12,12 @@ import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 
 @Composable
 fun TextWithIcon(
+    modifier: Modifier = Modifier,
     color: Color,
     text: String,
     size: TextUnit,
@@ -24,7 +26,7 @@ fun TextWithIcon(
     iconColor: Color
 ) {
     Text(
-        modifier = Modifier,
+        modifier = modifier,
         color = color,
         fontSize = size,
         fontWeight = fontWeight,
