@@ -25,10 +25,6 @@ data class TvDetailsHeaderModel(
         return if (genreNames.size == 1) {
             genreNames.first()
         } else {
-            val numberOfGenres = genreNames.size
-            if (numberOfGenres == 1)
-                return genreNames.first()
-
             var displayString = ""
             for (i in genreNames.indices) {
                 displayString +=

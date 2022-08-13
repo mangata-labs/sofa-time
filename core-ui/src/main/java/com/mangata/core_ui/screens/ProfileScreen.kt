@@ -9,10 +9,10 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun ProfileScreen(
-    modifier: Modifier = Modifier
+
 ) {
     Box(
-        modifier = modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center) {
         Text(text = "Profile Screen")
     }

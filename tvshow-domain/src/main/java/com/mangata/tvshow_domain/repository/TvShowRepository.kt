@@ -10,4 +10,6 @@ interface TvShowRepository {
     suspend fun getTvShowDetails(id: Int) : Result<TvShowDetails?>
     suspend fun getVideoForTvShow(id: Int) : Result<Video?>
     suspend fun getImagesForTvShow(id: Int) : Result<List<Poster>>
+    suspend fun searchTvShows(query: String, pageNumber: Int) : Result<List<TvShow>>
+    suspend fun getTrendingTvShows() : Result<List<TvShow>>
 }

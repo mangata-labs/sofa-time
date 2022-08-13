@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvShowList.components
+package com.mangata.tvshow_presentation.tvSearch.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

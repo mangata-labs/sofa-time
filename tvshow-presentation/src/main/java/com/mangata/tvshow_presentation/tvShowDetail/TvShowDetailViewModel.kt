@@ -41,9 +41,9 @@ class TvShowDetailViewModel(
     private fun getData() = try {
         isLoading.value = true
         viewModelScope.launch {
-            val tvShowDeferred = async(Dispatchers.IO) { repository.getTvShowDetails(tvShowId) }
-            val videoDeferred = async(Dispatchers.IO) { repository.getVideoForTvShow(tvShowId) }
-            val posterDeferred = async(Dispatchers.IO) { repository.getImagesForTvShow(tvShowId) }
+            val tvShowDeferred = async { repository.getTvShowDetails(tvShowId) }
+            val videoDeferred = async { repository.getVideoForTvShow(tvShowId) }
+            val posterDeferred = async{ repository.getImagesForTvShow(tvShowId) }
 
             val tvShowDetailResult = tvShowDeferred.await()
             val videoResult = videoDeferred.await()

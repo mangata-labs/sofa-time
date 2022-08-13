@@ -34,4 +34,19 @@ internal class TmdbServiceImpl(private val client: HttpClient) : TmdbService {
             parameter("api_key", BuildConfigHelper.getTmdbApiKey())
         }.body()
     }
+
+    override suspend fun searchTvShows(query: String, pageNumber: Int): TvShowResponseDto {
+        return client.get(Endpoint.searchTvShows()) {
+            parameter("api_key", BuildConfigHelper.getTmdbApiKey())
+            parameter("include_adult", false)
+            parameter("query", query)
+            parameter("page", pageNumber)
+        }.body()
+    }
+
+    override suspend fun getTrendingTvShows(): TvShowResponseDto {
+        return client.get(Endpoint.trendingTvShows()) {
+            parameter("api_key", BuildConfigHelper.getTmdbApiKey())
+        }.body()
+    }
 }

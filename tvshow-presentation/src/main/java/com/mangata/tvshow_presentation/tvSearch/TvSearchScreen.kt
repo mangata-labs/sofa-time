@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvShowList
+package com.mangata.tvshow_presentation.tvSearch
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,18 +12,20 @@ import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import com.mangata.core_ui.components.DefaultSearchBar
 import com.mangata.core_ui.util.loadMore
-import com.mangata.tvshow_presentation.tvShowList.components.TvShowCard
-import kotlinx.coroutines.flow.filter
+import com.mangata.tvshow_presentation.tvSearch.components.TvShowCard
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.*
 
 
+@OptIn(FlowPreview::class)
 @Composable
-fun TvShowListScreen(
-    modifier: Modifier = Modifier,
-    viewModel: TvShowListViewModel,
+fun TvShowSearchScreen(
+    viewModel: TvShowSearchViewModel,
     imageLoader: ImageLoader,
     onTvDetailClick: (Int) -> Unit,
 ) {
     val state = viewModel.tvShowsState.value
+    val searchText = viewModel.searchState.collectAsState(initial = "")
     val scrollState = rememberLazyListState()
     val loadMore by remember { derivedStateOf { scrollState.loadMore() } }
 
@@ -35,16 +37,28 @@ fun TvShowListScreen(
             }
     }
 
+    LaunchedEffect(true) {
+        viewModel.searchState
+            .drop(1)
+            .debounce(500)
+            .distinctUntilChanged()
+            .collectLatest {
+                viewModel.onEvent(TvShowSearchEvent.FinishedSearch)
+            }
+    }
+
     Column(
-        modifier = modifier.fillMaxSize().padding(top = 10.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = 10.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         DefaultSearchBar(
-            text = viewModel.searchState.value,
+            text = searchText.value,
             placeholderText = "Search tv shows...",
             onTextChange = {
-                viewModel.onEvent(TvShowListEvent.EnteredSearchText(it))
+                viewModel.onEvent(TvShowSearchEvent.EnteredSearchText(it))
             },
             modifier = Modifier.fillMaxWidth(0.9f)
         )

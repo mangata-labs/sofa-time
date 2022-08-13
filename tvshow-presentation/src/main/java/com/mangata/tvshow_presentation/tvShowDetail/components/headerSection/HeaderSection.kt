@@ -1,6 +1,5 @@
 package com.mangata.tvshow_presentation.tvShowDetail.components.headerSection
 
-import android.widget.Space
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
@@ -12,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.*
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mangata.core.extensions.round
@@ -64,12 +62,14 @@ fun HeaderSection(
             )
             RatingItem(score = it.score.round(1))
         }
-        HeaderRow(headerModel = headerModel) {
-            Text(
-                color = MaterialTheme.colors.textPrimary,
-                style = MaterialTheme.typography.body1,
-                text = it.displayGenres()
-            )
+        if(headerModel.genres.isNotEmpty()) {
+            HeaderRow(headerModel = headerModel) {
+                Text(
+                    color = MaterialTheme.colors.textPrimary,
+                    style = MaterialTheme.typography.body1,
+                    text = it.displayGenres()
+                )
+            }
         }
         HeaderRow(headerModel = headerModel) {
             val inlineContent = mapOf(
@@ -93,8 +93,8 @@ fun HeaderSection(
                 color = MaterialTheme.colors.textPrimaryDim,
                 style = MaterialTheme.typography.body1,
                 text = buildAnnotatedString {
-                    append("${it.runTime ?: "-"} min")
-                    append(" ")
+                    if (it.runTime != null) { append("${it.runTime} min ") }
+                    else { append(" - ") }
                     appendInlineContent("inlineIcon", "[icon]")
                 },
                 inlineContent = inlineContent

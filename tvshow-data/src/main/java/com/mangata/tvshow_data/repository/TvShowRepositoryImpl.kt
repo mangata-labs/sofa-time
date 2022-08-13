@@ -52,7 +52,28 @@ internal class TvShowRepositoryImpl(private val tmdbService: TmdbService) : TvSh
         return try {
             val result = tmdbService.getImagesForTvShow(id)
             val numberOfImages: Int = if (result.posters.size >= 10) 10 else result.posters.size
-            Result.success(result.toImage().shuffled().take(numberOfImages))
+            Result.success(result.toImage().take(numberOfImages))
+        } catch (e: Exception) {
+            println("here ${e.message}")
+            return  Result.failure(e)
+        }
+    }
+
+    override suspend fun searchTvShows(query: String, pageNumber: Int): Result<List<TvShow>> {
+        return try {
+            val result = tmdbService.searchTvShows(query, pageNumber).results
+            Result.success(result.mapNotNull { it.toTvShow() })
+        } catch (e: Exception) {
+            println("here ${e.message}")
+            return  Result.failure(e)
+        }
+    }
+
+    override suspend fun getTrendingTvShows(): Result<List<TvShow>> {
+        return try {
+            val result = tmdbService.getTrendingTvShows().results
+            print("here trending count: ${result.size}")
+            Result.success(result.mapNotNull { it.toTvShow() }.take(10))
         } catch (e: Exception) {
             println("here ${e.message}")
             return  Result.failure(e)

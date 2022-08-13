@@ -30,7 +30,8 @@ import com.mangata.core_ui.theme.SofaTimeTheme
 import com.mangata.sofatime.util.setLightStatusBars
 import com.mangata.tvshow_presentation.tvShowUpcoming.TvShowUpcomingScreen
 import com.mangata.tvshow_presentation.tvShowDetail.TvShowDetailScreen
-import com.mangata.tvshow_presentation.tvShowList.TvShowListScreen
+import com.mangata.tvshow_presentation.tvSearch.TvShowSearchScreen
+import com.mangata.tvshow_presentation.tvShowHome.TvShowHomeScreen
 import org.koin.android.ext.android.inject
 import org.koin.androidx.compose.getViewModel
 import org.koin.core.parameter.parametersOf
@@ -80,17 +81,17 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = Screen.Home.route
+                        startDestination = Screen.Home.route,
+                        Modifier.padding(padding)
                     ) {
                         composable(route = Screen.Home.route) {
-                            TvShowListScreen(
-                                modifier = Modifier.padding(padding),
-                                imageLoader = imageLoader,
-                                viewModel = getViewModel(),
-                                onTvDetailClick = { tvShowID ->
-                                    navController.navigate("${Route.TV_ABOUT}/$tvShowID")
-                                }
-                            )
+                          TvShowHomeScreen(
+                              viewModel = getViewModel(),
+                              imageLoader = imageLoader,
+                              onTvShowClick = { tvShowID ->
+                                  navController.navigate("${Route.TV_ABOUT}/$tvShowID")
+                              }
+                          )
                         }
 
                         composable(
@@ -100,7 +101,6 @@ class MainActivity : ComponentActivity() {
                             val tvShowID = it.arguments?.getInt("tvShowID")!!
                             TvShowDetailScreen(
                                 imageLoader = imageLoader,
-                                modifier = Modifier.padding(padding),
                                 viewModel = getViewModel(parameters = { parametersOf(tvShowID) }),
                                 onNavigateToWebView = { webUrl ->
                                     val encodedUrl = URLEncoder.encode(webUrl, StandardCharsets.UTF_8.toString())
@@ -114,7 +114,19 @@ class MainActivity : ComponentActivity() {
                             arguments = Screen.TvUpcoming.args
                         ) {
                             TvShowUpcomingScreen(
-                                modifier = Modifier.padding(padding)
+                            )
+                        }
+
+                        composable(
+                            route = Screen.TVSearch.route,
+                            arguments = Screen.TVSearch.args
+                        ) {
+                            TvShowSearchScreen(
+                                imageLoader = imageLoader,
+                                viewModel = getViewModel(),
+                                onTvDetailClick = { tvShowID ->
+                                    navController.navigate("${Route.TV_ABOUT}/$tvShowID")
+                                }
                             )
                         }
 
@@ -122,9 +134,7 @@ class MainActivity : ComponentActivity() {
                             route = Screen.Profile.route,
                             arguments = Screen.Profile.args
                         ) {
-                            ProfileScreen(
-                                modifier = Modifier.padding(padding)
-                            )
+                            ProfileScreen()
                         }
 
                         composable(
@@ -133,7 +143,6 @@ class MainActivity : ComponentActivity() {
                         ) {
                             val webUrl = it.arguments?.getString("webUrl")!!
                             WebViewScreen(
-                                modifier = Modifier.padding(padding),
                                 webUrl = webUrl
                             )
                         }

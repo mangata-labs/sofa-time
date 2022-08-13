@@ -17,9 +17,9 @@ data class Video(
     }
 }
 
-sealed class SourceSite(val site: String) {
-    class YouTube(name: String) : SourceSite(name)
-    class Unknown(name: String) : SourceSite(name)
+sealed class SourceSite {
+    class YouTube(name: String) : SourceSite()
+    class Unknown(name: String) : SourceSite()
 
     companion object {
         fun fromString(input: String) : SourceSite {

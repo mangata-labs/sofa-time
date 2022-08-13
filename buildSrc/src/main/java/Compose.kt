@@ -21,6 +21,7 @@ object Compose {
     private const val accompanistVersion = "0.25.0"
     const val webViewCompose = "com.google.accompanist:accompanist-webview:$accompanistVersion"
     const val pagerCompose = "com.google.accompanist:accompanist-pager:$accompanistVersion"
+    const val pagerIndicatorCompose = "com.google.accompanist:accompanist-pager-indicators:$accompanistVersion"
 }
 
 object ComposeTest {

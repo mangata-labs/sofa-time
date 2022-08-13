@@ -3,7 +3,6 @@ package com.mangata.tvshow_presentation.tvShowDetail
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -23,7 +22,6 @@ import com.mangata.tvshow_presentation.tvShowDetail.components.videoAndImageSect
 
 @Composable
 fun TvShowDetailScreen(
-    modifier: Modifier = Modifier,
     imageLoader: ImageLoader,
     viewModel: TvShowDetailViewModel,
     onNavigateToWebView: (String) -> Unit,
@@ -44,13 +42,13 @@ fun TvShowDetailScreen(
     }
 
     LazyColumn(
-        modifier = modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         tvShowState?.let {
             item {
                 AsyncImage(
-                    modifier = modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     model = ImageRequest.Builder(LocalContext.current)
                         .data(it.backdrop_path)
                         .placeholder(R.drawable.image_placeholder)
@@ -86,10 +84,12 @@ fun TvShowDetailScreen(
                 )
             }
             item {
-                StorySection(
-                    modifier = Modifier.padding(horizontal = 20.dp),
-                    story = it.overview
-                )
+                if (it.overview.isNotEmpty()) {
+                    StorySection(
+                        modifier = Modifier.padding(horizontal = 20.dp),
+                        story = it.overview
+                    )
+                }
             }
         }
     }

@@ -12,4 +12,5 @@ dependencies {
 
     "implementation" (Compose.materialIconsExtended)
     "implementation" (Compose.pagerCompose)
+    "implementation" (Compose.pagerIndicatorCompose)
 }

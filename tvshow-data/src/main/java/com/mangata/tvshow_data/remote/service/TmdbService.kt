@@ -10,4 +10,6 @@ internal interface TmdbService {
     suspend fun getTvShowDetails(id: Int) : TvShowDetailDto
     suspend fun getVideoForTvShow(id: Int) : TrailerDto
     suspend fun getImagesForTvShow(id: Int) : ImagesDto
+    suspend fun searchTvShows(query: String, pageNumber: Int) : TvShowResponseDto
+    suspend fun getTrendingTvShows() : TvShowResponseDto
 }

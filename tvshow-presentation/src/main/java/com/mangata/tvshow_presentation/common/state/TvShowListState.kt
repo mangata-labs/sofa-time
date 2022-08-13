@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvShowList
+package com.mangata.tvshow_presentation.common.state
 
 import com.mangata.tvshow_domain.model.tvShowList.TvShow
 
