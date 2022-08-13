@@ -15,7 +15,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
-import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -29,9 +28,8 @@ import com.mangata.sofatime.navigation.bottomNavigation.BottomBar
 import com.mangata.sofatime.navigation.Screen
 import com.mangata.core_ui.theme.SofaTimeTheme
 import com.mangata.sofatime.util.setLightStatusBars
-import com.mangata.tvshow_presentation.tvShowUpcoming.TvShowUpcomingScreen
 import com.mangata.tvshow_presentation.tvShowDetail.TvShowDetailScreen
-import com.mangata.tvshow_presentation.tvSearch.TvShowSearchScreen
+import com.mangata.tvshow_presentation.tvShowSearch.TvShowSearchScreen
 import com.mangata.tvshow_presentation.tvShowHome.TvShowHomeScreen
 import org.koin.android.ext.android.inject
 import org.koin.androidx.compose.getViewModel

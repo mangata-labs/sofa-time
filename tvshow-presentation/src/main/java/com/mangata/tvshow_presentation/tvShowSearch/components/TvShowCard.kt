@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvSearch.components
+package com.mangata.tvshow_presentation.tvShowSearch.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -13,13 +13,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.mangata.core_ui.theme.componentBackground
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.tvshow_domain.model.tvShowList.TvShow
 import com.mangata.tvshow_presentation.R

@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvSearch
+package com.mangata.tvshow_presentation.tvShowSearch
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,13 +9,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import com.mangata.core_ui.components.DefaultSearchBar
 import com.mangata.core_ui.util.loadMore
-import com.mangata.tvshow_presentation.tvSearch.components.TvShowCard
+import com.mangata.tvshow_presentation.tvShowSearch.components.TvShowCard
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 
@@ -32,7 +31,7 @@ fun TvShowSearchScreen(
     val scrollState = rememberLazyListState()
     val loadMore by remember { derivedStateOf { scrollState.loadMore() } }
 
-    LaunchedEffect(loadMore && !state.isLoading && !state.endReached) {
+    LaunchedEffect(loadMore && !state.isLoading && !state.endReached && state.error.isEmpty()) {
         snapshotFlow { loadMore }
             .filter { it }
             .collect {

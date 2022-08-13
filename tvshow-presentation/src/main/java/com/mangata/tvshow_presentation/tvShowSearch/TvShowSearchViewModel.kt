@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvSearch
+package com.mangata.tvshow_presentation.tvShowSearch
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
