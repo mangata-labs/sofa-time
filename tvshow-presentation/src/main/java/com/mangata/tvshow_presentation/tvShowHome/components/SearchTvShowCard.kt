@@ -1,6 +1,7 @@
 package com.mangata.tvshow_presentation.tvShowHome.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -20,13 +21,15 @@ import com.mangata.core_ui.theme.textPrimaryDim
 
 @Composable
 fun SearchTvShowCard(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onSearchCardLick: () -> Unit,
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
             .shadow(2.dp, shape = MaterialTheme.shapes.medium)
             .background(MaterialTheme.colors.surface)
+            .clickable { onSearchCardLick() }
     ) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(14.dp),

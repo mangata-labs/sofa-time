@@ -15,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -90,6 +91,14 @@ class MainActivity : ComponentActivity() {
                               imageLoader = imageLoader,
                               onTvShowClick = { tvShowID ->
                                   navController.navigate("${Route.TV_ABOUT}/$tvShowID")
+                              },
+                              onSearchCardLick = {
+                                  navController.navigate(Route.TV_SEARCH) {
+                                      popUpTo(navController.graph.startDestinationId) {
+                                          saveState = true
+                                      }
+                                      restoreState = true
+                                  }
                               }
                           )
                         }

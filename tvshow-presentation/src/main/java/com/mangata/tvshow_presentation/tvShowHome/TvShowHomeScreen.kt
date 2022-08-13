@@ -27,6 +27,7 @@ fun TvShowHomeScreen(
     viewModel: TvShowHomeViewModel,
     imageLoader: ImageLoader,
     onTvShowClick: (Int) -> Unit,
+    onSearchCardLick: () -> Unit,
 ) {
     if (viewModel.errorState.value.isNotEmpty()) {
         ErrorMessage()
@@ -54,7 +55,8 @@ fun TvShowHomeScreen(
                 onTvShowClick = onTvShowClick
             )
             SearchTvShowCard(
-                modifier = Modifier.fillMaxWidth(0.9f)
+                modifier = Modifier.fillMaxWidth(0.9f),
+                onSearchCardLick = onSearchCardLick
             )
         }
     }

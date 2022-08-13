@@ -26,9 +26,8 @@ internal fun TvShowDto.toTvShow() : TvShow? {
         description = overview,
         posterPath = ImageUrlManager.getPosterUrl(poster_path) ?: return null,
         backdropPath = ImageUrlManager.getBackdropUrl(backdrop_path) ?: return null,
-        popularity = popularity,
+        voteAverage = vote_average ?: return null,
         genreIDs = genre_ids,
-        voteAverage = vote_average
     )
 }
 
@@ -37,18 +36,18 @@ internal fun TvShowDetailDto.toTvShowDetails() : TvShowDetails? {
         id = id,
         name = name,
         backdrop_path = ImageUrlManager.getBackdropUrl(backdrop_path) ?: return null,
+        poster_path = ImageUrlManager.getPosterUrl(poster_path) ?: return null,
         genres = genres.map { it.toGenre() },
+        seasons = seasons.mapNotNull { it.toSeason() },
+        networks = networks.mapNotNull { it.toNetwork() },
         number_of_episodes = number_of_episodes,
         number_of_seasons = number_of_seasons,
         overview = overview,
         first_air_date = first_air_date.toDate(),
         last_air_date = last_air_date.toDate(),
-        poster_path = ImageUrlManager.getPosterUrl(poster_path) ?: return null,
-        seasons = seasons.mapNotNull { it.toSeason() },
         episode_run_time = episode_run_time,
         homepage = homepage,
         in_production = in_production,
-        networks = networks.mapNotNull { it.toNetwork() },
         vote_average = vote_average,
         vote_count = vote_count,
         status = status
@@ -64,12 +63,12 @@ internal fun GenreDto.toGenre() : Genre {
 
 internal fun SeasonDto.toSeason() : Season? {
     return Season(
+        poster_path = ImageUrlManager.getPosterUrl(poster_path) ?: return null,
         air_date = air_date,
         episode_count = episode_count,
         id = id,
         name = name,
         overview = overview,
-        poster_path = ImageUrlManager.getPosterUrl(poster_path) ?: return null,
         season_number = season_number,
     )
 }

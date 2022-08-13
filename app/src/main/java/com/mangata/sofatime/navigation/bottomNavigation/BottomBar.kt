@@ -40,7 +40,7 @@ fun BottomBar(
         elevation = 4.dp
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentDestination = navBackStackEntry?.destination
+        val currentDestination = navBackStackEntry?.destination?.route
 
         navItems.forEach { screen ->
             AddItem(
@@ -55,7 +55,7 @@ fun BottomBar(
 @Composable
 fun RowScope.AddItem(
     screen: BottomNavItem,
-    currentDestination: NavDestination?,
+    currentDestination: String?,
     navController: NavHostController
 ) {
     BottomNavigationItem(
@@ -67,12 +67,10 @@ fun RowScope.AddItem(
         icon = {
             Icon(imageVector = screen.icon, contentDescription = "Navigation icon")
         },
-        selected = currentDestination?.hierarchy?.any {
-            it.route == screen.route
-        } == true,
+        selected = currentDestination == screen.route,
         onClick = {
             navController.navigate(screen.route) {
-                popUpTo(navController.graph.findStartDestination().id) {
+                popUpTo(navController.graph.startDestinationId) {
                     saveState = true
                 }
                 launchSingleTop = true
