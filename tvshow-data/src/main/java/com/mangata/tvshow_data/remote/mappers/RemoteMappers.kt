@@ -27,7 +27,6 @@ internal fun TvShowDto.toTvShow() : TvShow? {
         posterPath = ImageUrlManager.getPosterUrl(poster_path) ?: return null,
         backdropPath = ImageUrlManager.getBackdropUrl(backdrop_path) ?: return null,
         voteAverage = vote_average ?: return null,
-        genreIDs = genre_ids,
     )
 }
 

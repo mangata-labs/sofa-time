@@ -10,6 +10,7 @@
       <module name="Sofa_Time.buildSrc.main" target="11" />
       <module name="Sofa_Time.buildSrc.test" target="11" />
       <module name="Sofa_Time.core-ui" target="11" />
+      <module name="Sofa_Time.tvshow-data" target="11" />
       <module name="Sofa_Time.tvshow-presentation" target="11" />
     </bytecodeTargetLevel>
   </component>

@@ -1,5 +1,6 @@
-apply(from = "$rootDir/library-build.gradle")
+apply(from = "$rootDir/android-library-build.gradle")
 apply (plugin = "org.jetbrains.kotlin.plugin.serialization")
+apply(plugin = "kotlin-kapt")
 
 dependencies {
     "implementation" (project(Modules.core))
@@ -14,5 +15,9 @@ dependencies {
     "implementation" (Ktor.ktorSerialization)
     "implementation" (Ktor.ktorLogging)
 
-    "implementation" (Koin.koinCore)
+    "implementation" (Room.roomRuntime)
+    "kapt" (Room.roomCompiler)
+    "implementation" (Room.roomKtx)
+
+    "implementation" (Koin.koinAndroid)
 }

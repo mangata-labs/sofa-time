@@ -87,7 +87,7 @@ private fun CardDescription(
                 .clip(MaterialTheme.shapes.small)
                 .background(MaterialTheme.colors.componentBackground)
                 .align(Alignment.Bottom)
-                .padding(start = 4.dp, end = 4.dp, bottom = 2.dp),
+                .padding(start = 4.dp, end = 2.dp, bottom = 2.dp),
             color = MaterialTheme.colors.textPrimary,
             text = tvShow.voteAverage.round(1),
             icon = Icons.Filled.Star,
