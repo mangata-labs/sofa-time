@@ -32,7 +32,7 @@ val Typography = Typography(
     h1 = TextStyle(
         fontFamily = quickSand,
         fontWeight = FontWeight.Bold,
-        fontSize = 28.sp
+        fontSize = 27.sp
     ),
 
     h2 = TextStyle(
@@ -44,7 +44,7 @@ val Typography = Typography(
     h3 = TextStyle(
         fontFamily = quickSand,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 19.sp
+        fontSize = 18.sp
     )
 
     /* Other default text styles to override

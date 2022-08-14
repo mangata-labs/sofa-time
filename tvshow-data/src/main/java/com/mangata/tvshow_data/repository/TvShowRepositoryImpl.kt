@@ -1,6 +1,7 @@
 package com.mangata.tvshow_data.repository
 
 import com.mangata.tvshow_data.local.dao.tvShow.TvShowDao
+import com.mangata.tvshow_data.local.mappers.toTrackedTvShow
 import com.mangata.tvshow_data.local.mappers.toTvShow
 import com.mangata.tvshow_data.remote.mappers.toImage
 import com.mangata.tvshow_data.remote.mappers.toTvShow
@@ -85,13 +86,16 @@ internal class TvShowRepositoryImpl(
         }
     }
 
-    override suspend fun getTrackedTvShows(): Result<List<TvShow>> {
-        return try {
-            val result = localStorage.getAllTrackedTvShows()
-            Result.success(result.map { it.toTvShow() })
-        } catch (e: Exception) {
-            println("here error: ${e.message}")
-            return Result.failure(e)
-        }
+    override suspend fun addTvShowToWatchList(tvShow: TvShow) {
+        val trackedTvShow = tvShow.toTrackedTvShow()
+        localStorage.addToWatchList(trackedTvShow)
+    }
+
+    override suspend fun removeTvShowFromWatchList(id: Int) {
+        localStorage.deleteTrackedTvShow(id)
+    }
+
+    override suspend fun getTrackedTvShows(): List<TvShow> {
+        return localStorage.getAllTrackedTvShows().map { it.toTvShow() }
     }
 }

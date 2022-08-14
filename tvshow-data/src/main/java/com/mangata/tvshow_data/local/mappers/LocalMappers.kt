@@ -7,7 +7,18 @@ internal fun TrackedTvShow.toTvShow() : TvShow {
     return TvShow(
         id = id,
         name = name,
-        description = description,
+        overview = description,
+        posterPath = posterPath,
+        backdropPath = backdropPath,
+        voteAverage = voteAverage
+    )
+}
+
+internal fun TvShow.toTrackedTvShow() : TrackedTvShow {
+    return TrackedTvShow(
+        id = id,
+        name = name,
+        description = overview,
         posterPath = posterPath,
         backdropPath = backdropPath,
         voteAverage = voteAverage

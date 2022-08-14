@@ -8,11 +8,13 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.CheckCircle
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Timer
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -22,12 +24,20 @@ import com.mangata.core_ui.components.TextWithIcon
 import com.mangata.core_ui.theme.componentBackground
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.core_ui.theme.textPrimaryDim
+import com.mangata.tvshow_domain.model.tvShowList.TvShow
+import com.mangata.tvshow_presentation.R
+import com.mangata.tvshow_presentation.tvShowDetail.TvShowDetailEvent
+import com.mangata.tvshow_presentation.tvShowDetail.TvShowDetailViewModel
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun HeaderSection(
     modifier: Modifier = Modifier,
-    headerModel: TvDetailsHeaderModel,
+    viewModel: TvShowDetailViewModel
 ) {
+    val headerModel by viewModel.headerState
+    val isAdded by viewModel.isAddedToWatchList
+
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(10.dp)
@@ -40,12 +50,21 @@ fun HeaderSection(
                 text = it.title
             )
             IconButton(
-                modifier = Modifier.offset(x = (5.dp)),
-                onClick = { println("Not Implemented") }) {
+                modifier = Modifier.offset(x = ((-3).dp)),
+                onClick = {
+                    if (isAdded) viewModel.onEvent(TvShowDetailEvent.RemoveFromWatchlist)
+                    else viewModel.onEvent(TvShowDetailEvent.AddedToWatchList)
+                }
+            ) {
                 Icon(
-                    tint = MaterialTheme.colors.textPrimary,
-                    modifier = Modifier.size(36.dp),
-                    imageVector = Icons.Outlined.CheckCircle,
+                    tint = if (isAdded) MaterialTheme.colors.primary
+                           else MaterialTheme.colors.textPrimary,
+                    painter = painterResource(
+                        id =
+                        if (isAdded) R.drawable.ic_circle_filled_add
+                        else R.drawable.ic_circle_outlined_add
+                    ),
+                    modifier = Modifier.size(40.dp),
                     contentDescription = "Add to WatchList"
                 )
             }
@@ -68,7 +87,7 @@ fun HeaderSection(
             )
             RatingItem(score = it.score.round(1))
         }
-        if(headerModel.genres.isNotEmpty()) {
+        if (headerModel.genres.isNotEmpty()) {
             HeaderRow(headerModel = headerModel) {
                 Text(
                     color = MaterialTheme.colors.textPrimary,
@@ -99,8 +118,11 @@ fun HeaderSection(
                 color = MaterialTheme.colors.textPrimaryDim,
                 style = MaterialTheme.typography.body1,
                 text = buildAnnotatedString {
-                    if (it.runTime != null) { append("${it.runTime} min ") }
-                    else { append(" - ") }
+                    if (it.runTime != null) {
+                        append("${it.runTime} min ")
+                    } else {
+                        append(" - ")
+                    }
                     appendInlineContent("inlineIcon", "[icon]")
                 },
                 inlineContent = inlineContent

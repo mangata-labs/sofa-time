@@ -5,6 +5,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -13,7 +14,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import com.mangata.core_ui.components.DefaultSearchBar
+import com.mangata.core_ui.theme.textPrimary
 import com.mangata.core_ui.util.loadMore
+import com.mangata.tvshow_presentation.common.components.EmptySearchMessage
 import com.mangata.tvshow_presentation.tvShowSearch.components.TvShowCard
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
@@ -93,10 +96,7 @@ fun TvShowSearchScreen(
                         modifier = Modifier.fillParentMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(
-                            textAlign = TextAlign.Center,
-                            text = "No TV Show Found! ☹️"
-                        )
+                        EmptySearchMessage(message = "No TV Show found for ${viewModel.searchState.value}")
                     }
                 }
             }

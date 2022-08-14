@@ -20,7 +20,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import coil.ImageLoader
-import com.mangata.core_ui.screens.ProfileScreen
 import com.mangata.core_ui.screens.WebViewScreen
 import com.mangata.sofatime.navigation.Route
 import com.mangata.sofatime.navigation.bottomNavigation.BottomNavItem.Companion.bottomNavItems
@@ -31,6 +30,7 @@ import com.mangata.sofatime.util.setLightStatusBars
 import com.mangata.tvshow_presentation.tvShowDetail.TvShowDetailScreen
 import com.mangata.tvshow_presentation.tvShowSearch.TvShowSearchScreen
 import com.mangata.tvshow_presentation.tvShowHome.TvShowHomeScreen
+import com.mangata.tvshow_presentation.tvShowTracked.TvShowTrackedScreen
 import org.koin.android.ext.android.inject
 import org.koin.androidx.compose.getViewModel
 import org.koin.core.parameter.parametersOf
@@ -109,6 +109,7 @@ class MainActivity : ComponentActivity() {
                             TvShowDetailScreen(
                                 imageLoader = imageLoader,
                                 viewModel = getViewModel(parameters = { parametersOf(tvShowID) }),
+                                scaffoldState = scaffoldState,
                                 onNavigateToWebView = { webUrl ->
                                     val encodedUrl = URLEncoder.encode(webUrl, StandardCharsets.UTF_8.toString())
                                     navController.navigate("${Route.WEB_VIEW}/$encodedUrl")
@@ -133,7 +134,13 @@ class MainActivity : ComponentActivity() {
                             route = Screen.Profile.route,
                             arguments = Screen.Profile.args
                         ) {
-                            ProfileScreen()
+                            TvShowTrackedScreen(
+                                imageLoader = imageLoader,
+                                viewModel = getViewModel(),
+                                onTvDetailClick = { tvShowID ->
+                                    navController.navigate("${Route.TV_ABOUT}/$tvShowID")
+                                }
+                            )
                         }
 
                         composable(
