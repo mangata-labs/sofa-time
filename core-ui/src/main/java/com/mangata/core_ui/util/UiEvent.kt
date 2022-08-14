@@ -8,6 +8,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 sealed class UiEvent {
@@ -22,7 +23,7 @@ inline fun <reified T> Flow<T>.observeWithLifecycle(
 ) {
     LaunchedEffect(key1 = Unit) {
         lifecycleOwner.lifecycleScope.launch {
-            flowWithLifecycle(lifecycleOwner.lifecycle, minActiveState).collect(action)
+            flowWithLifecycle(lifecycleOwner.lifecycle, minActiveState).collectLatest(action)
         }
     }
 }
