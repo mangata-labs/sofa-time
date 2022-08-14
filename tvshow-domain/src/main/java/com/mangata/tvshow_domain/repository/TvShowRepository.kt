@@ -15,4 +15,5 @@ interface TvShowRepository {
     suspend fun getTrackedTvShows() : List<TvShow>
     suspend fun addTvShowToWatchList(tvShow: TvShow)
     suspend fun removeTvShowFromWatchList(id: Int)
+    suspend fun getSimilarTvShows(id: Int) : Result<List<TvShow>>
 }

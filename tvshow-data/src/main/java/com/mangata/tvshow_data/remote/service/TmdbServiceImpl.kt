@@ -49,4 +49,10 @@ internal class TmdbServiceImpl(private val client: HttpClient) : TmdbService {
             parameter("api_key", BuildConfigHelper.getTmdbApiKey())
         }.body()
     }
+
+    override suspend fun getSimilarTvShows(id: Int): TvShowResponseDto {
+        return client.get(Endpoint.similarTvShows(id)) {
+            parameter("api_key", BuildConfigHelper.getTmdbApiKey())
+        }.body()
+    }
 }

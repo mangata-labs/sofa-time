@@ -95,6 +95,16 @@ internal class TvShowRepositoryImpl(
         localStorage.deleteTrackedTvShow(id)
     }
 
+    override suspend fun getSimilarTvShows(id: Int): Result<List<TvShow>> {
+        return try {
+            val result = tmdbService.getSimilarTvShows(id).results
+            Result.success(result.mapNotNull { it.toTvShow() })
+        } catch (e: Exception) {
+            println("here error: ${e.message}")
+            return Result.failure(e)
+        }
+    }
+
     override suspend fun getTrackedTvShows(): List<TvShow> {
         return localStorage.getAllTrackedTvShows().map { it.toTvShow() }
     }

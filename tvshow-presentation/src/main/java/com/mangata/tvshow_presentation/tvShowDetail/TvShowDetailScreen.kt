@@ -4,10 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ScaffoldState
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -22,9 +19,9 @@ import com.mangata.core_ui.util.observeWithLifecycle
 import com.mangata.tvshow_presentation.R
 import com.mangata.tvshow_presentation.tvShowDetail.components.headerSection.HeaderSection
 import com.mangata.tvshow_presentation.tvShowDetail.components.networkSection.NetworkSection
+import com.mangata.tvshow_presentation.tvShowDetail.components.similarTvSection.SimilarTvShowSection
 import com.mangata.tvshow_presentation.tvShowDetail.components.storySection.StorySection
 import com.mangata.tvshow_presentation.tvShowDetail.components.videoAndImageSection.VideoAndImageSection
-import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun TvShowDetailScreen(
@@ -32,6 +29,7 @@ fun TvShowDetailScreen(
     viewModel: TvShowDetailViewModel,
     scaffoldState: ScaffoldState,
     onNavigateToWebView: (String) -> Unit,
+    onTvDetailClick: (Int) -> Unit
 ) {
     viewModel.eventsFlow.observeWithLifecycle {
         when(it) {
@@ -57,6 +55,7 @@ fun TvShowDetailScreen(
     if (viewModel.didAllLoad.value) {
         LazyColumn(
             modifier = Modifier.fillMaxWidth(),
+            contentPadding = PaddingValues(bottom = 40.dp) ,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             item {
@@ -103,6 +102,14 @@ fun TvShowDetailScreen(
                         story = tvShowState.overview
                     )
                 }
+            }
+            item {
+                SimilarTvShowSection(
+                    modifier = Modifier.padding(start = 20.dp),
+                    imageLoader = imageLoader,
+                    tvShows = viewModel.similarTvShowState.value,
+                    onTvDetailClick = onTvDetailClick
+                )
             }
         }
     }

@@ -84,21 +84,21 @@ class MainActivity : ComponentActivity() {
                         Modifier.padding(padding)
                     ) {
                         composable(route = Screen.Home.route) {
-                          TvShowHomeScreen(
-                              viewModel = getViewModel(),
-                              imageLoader = imageLoader,
-                              onTvShowClick = { tvShowID ->
-                                  navController.navigate("${Route.TV_ABOUT}/$tvShowID")
-                              },
-                              onSearchCardLick = {
-                                  navController.navigate(Route.TV_SEARCH) {
-                                      popUpTo(navController.graph.startDestinationId) {
-                                          saveState = true
-                                      }
-                                      restoreState = true
-                                  }
-                              }
-                          )
+                            TvShowHomeScreen(
+                                viewModel = getViewModel(),
+                                imageLoader = imageLoader,
+                                onTvShowClick = { tvShowID ->
+                                    navController.navigate("${Route.TV_ABOUT}/$tvShowID")
+                                },
+                                onSearchCardLick = {
+                                    navController.navigate(Route.TV_SEARCH) {
+                                        popUpTo(navController.graph.startDestinationId) {
+                                            saveState = true
+                                        }
+                                        restoreState = true
+                                    }
+                                }
+                            )
                         }
 
                         composable(
@@ -111,8 +111,12 @@ class MainActivity : ComponentActivity() {
                                 viewModel = getViewModel(parameters = { parametersOf(tvShowID) }),
                                 scaffoldState = scaffoldState,
                                 onNavigateToWebView = { webUrl ->
-                                    val encodedUrl = URLEncoder.encode(webUrl, StandardCharsets.UTF_8.toString())
+                                    val encodedUrl =
+                                        URLEncoder.encode(webUrl, StandardCharsets.UTF_8.toString())
                                     navController.navigate("${Route.WEB_VIEW}/$encodedUrl")
+                                },
+                                onTvDetailClick = { id ->
+                                    navController.navigate("${Route.TV_ABOUT}/$id")
                                 }
                             )
                         }

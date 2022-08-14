@@ -35,6 +35,9 @@ class TvShowDetailViewModel(
     var posterState = mutableStateOf<List<Poster>>(emptyList())
         private set
 
+    var similarTvShowState = mutableStateOf<List<TvShow>>(emptyList())
+        private set
+
     var errorState = mutableStateOf("")
         private set
 
@@ -88,15 +91,18 @@ class TvShowDetailViewModel(
             val tvShowDeferred = async { repository.getTvShowDetails(tvShowId) }
             val videoDeferred = async { repository.getVideoForTvShow(tvShowId) }
             val posterDeferred = async { repository.getImagesForTvShow(tvShowId) }
+            val similarTvShowsDeferred = async { repository.getSimilarTvShows(tvShowId) }
             val watchlistDeferred = async { repository.getTrackedTvShows() }
 
             val tvShowDetailResult = tvShowDeferred.await()
             val videoResult = videoDeferred.await()
             val posterResult = posterDeferred.await()
             val watchList = watchlistDeferred.await()
+            val similarTvShows = similarTvShowsDeferred.await()
 
             videoResult.onSuccess { processVideo(it) }
             posterResult.onSuccess { processPosters(it) }
+            similarTvShows.onSuccess { processSimilarTvShows(it) }
             tvShowDetailResult.onSuccess { tvShow ->
                 processTvShow(tvShow)
                 isAddedToWatchList.value = handleWatchlistSelector(watchList, tvShow)
@@ -107,6 +113,10 @@ class TvShowDetailViewModel(
     } catch (e: Exception) {
         errorState.value = e.localizedMessage ?: ""
         isLoading.value = false
+    }
+
+    private fun processSimilarTvShows(tvShows: List<TvShow>) {
+        similarTvShowState.value = tvShows
     }
 
     private fun processVideo(video: Video?) {

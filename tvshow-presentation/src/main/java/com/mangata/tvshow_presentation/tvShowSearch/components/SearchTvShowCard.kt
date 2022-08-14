@@ -23,7 +23,7 @@ import com.mangata.tvshow_domain.model.tvShowList.TvShow
 import com.mangata.tvshow_presentation.R
 
 @Composable
-fun TvShowCard(
+fun SearchTvShowCard(
     tvShow: TvShow,
     onTvDetailClick: (Int) -> Unit,
     imageLoader: ImageLoader

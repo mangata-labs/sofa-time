@@ -19,7 +19,8 @@ fun StorySection(
     modifier: Modifier = Modifier,
     story: String,
 ) {
-    Box(modifier = modifier.fillMaxWidth()
+    Box(
+        modifier = modifier.fillMaxWidth()
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(
