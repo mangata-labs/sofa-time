@@ -53,7 +53,7 @@ fun BottomBar(
 }
 
 @Composable
-fun RowScope.AddItem(
+private fun RowScope.AddItem(
     screen: BottomNavItem,
     currentDestination: String?,
     navController: NavHostController

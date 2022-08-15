@@ -92,7 +92,7 @@ fun TvShowSearchScreen(
                         modifier = Modifier.fillParentMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-                        EmptySearchMessage(message = "No TV Show found for ${viewModel.searchState.value}")
+                        EmptySearchMessage(message = "Couldn't find any Tv Show")
                     }
                 }
             }
