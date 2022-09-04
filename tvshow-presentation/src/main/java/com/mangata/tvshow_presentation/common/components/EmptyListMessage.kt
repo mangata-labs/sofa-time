@@ -15,7 +15,7 @@ import com.mangata.core_ui.theme.textPrimary
 import com.mangata.tvshow_presentation.R
 
 @Composable
-fun EmptySearchMessage(
+fun EmptyListMessage(
     message: String
 ) {
     Box(

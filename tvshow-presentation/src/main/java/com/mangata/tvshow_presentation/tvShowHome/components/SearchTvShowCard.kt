@@ -37,13 +37,12 @@ fun SearchTvShowCard(
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             Icon(
-                modifier = Modifier.weight(1f).size(50.dp),
+                modifier = Modifier.size(50.dp),
                 imageVector = Icons.Default.Search,
                 tint = MaterialTheme.colors.primary,
                 contentDescription = "Search"
             )
             Column(
-                modifier = Modifier.weight(4f),
                 verticalArrangement = Arrangement.spacedBy(5.dp)
             ) {
                 Text(

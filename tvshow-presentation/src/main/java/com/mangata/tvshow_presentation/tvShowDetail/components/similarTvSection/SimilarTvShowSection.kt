@@ -41,7 +41,7 @@ fun SimilarTvShowSection(
                     imageLoader = imageLoader,
                     tvShow = tvShow,
                     imageHeight = 150.dp,
-                    imageWidth = 120.dp,
+                    imageWidth = 125.dp,
                     onTvDetailClick = onTvDetailClick
                 )
             }

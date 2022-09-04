@@ -1,14 +1,11 @@
 package com.mangata.tvshow_presentation.tvShowHome.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -22,7 +19,6 @@ import com.mangata.tvshow_domain.model.tvShowList.TvShow
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TrendingSection(
-    modifier: Modifier = Modifier,
     items: List<TvShow>,
     imageLoader: ImageLoader,
     onTvShowClick: (Int) -> Unit,
@@ -30,7 +26,7 @@ fun TrendingSection(
     val pagerState = rememberPagerState()
 
     Column(
-        modifier = modifier
+        modifier = Modifier.fillMaxWidth()
     ) {
         Text(
             text = "Trending Now",
@@ -53,7 +49,7 @@ fun TrendingSection(
             inactiveColor = MaterialTheme.colors.componentBackground,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .padding(16.dp),
+                .padding(20.dp),
         )
     }
 }

@@ -28,6 +28,7 @@ fun SearchTvShowCard(
     onTvDetailClick: (Int) -> Unit,
     imageLoader: ImageLoader
 ) {
+
     Card(
         modifier = Modifier
             .background(MaterialTheme.colors.surface)

@@ -17,6 +17,31 @@ val quickSand = FontFamily(
 )
 
 val Typography = Typography(
+
+    h1 = TextStyle(
+        fontFamily = quickSand,
+        fontWeight = FontWeight.Bold,
+        fontSize = 28.sp
+    ),
+
+    h2 = TextStyle(
+        fontFamily = quickSand,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 23.sp
+    ),
+
+    h3 = TextStyle(
+        fontFamily = quickSand,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp
+    ),
+
+    h4 = TextStyle(
+        fontFamily = quickSand,
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp
+    ),
+
     body1 = TextStyle(
         fontFamily = quickSand,
         fontWeight = FontWeight.Medium,
@@ -29,34 +54,5 @@ val Typography = Typography(
         fontSize = 15.sp
     ),
 
-    h1 = TextStyle(
-        fontFamily = quickSand,
-        fontWeight = FontWeight.Bold,
-        fontSize = 27.sp
-    ),
 
-    h2 = TextStyle(
-        fontFamily = quickSand,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 22.sp
-    ),
-
-    h3 = TextStyle(
-        fontFamily = quickSand,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 18.sp
-    )
-
-    /* Other default text styles to override
-    button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
-    ),
-    caption = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
-    )
-    */
 )

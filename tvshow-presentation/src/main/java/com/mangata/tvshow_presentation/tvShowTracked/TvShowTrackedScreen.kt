@@ -22,7 +22,7 @@ import coil.request.ImageRequest
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.tvshow_domain.model.tvShowList.TvShow
 import com.mangata.tvshow_presentation.R
-import com.mangata.tvshow_presentation.common.components.EmptySearchMessage
+import com.mangata.tvshow_presentation.common.components.EmptyListMessage
 
 @Composable
 fun TvShowTrackedScreen(
@@ -37,7 +37,7 @@ fun TvShowTrackedScreen(
     }
 
     if (state.isEmpty()) {
-        EmptySearchMessage(message = "Couldn't find any Tv Show")
+        EmptyListMessage(message = "Couldn't find any Tv Show")
     }
 
     Box(

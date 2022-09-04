@@ -53,6 +53,7 @@ fun DefaultTvShowCard(
         Text(
             modifier = Modifier.width(imageWidth),
             text = tvShow.name,
+            textAlign = TextAlign.Center,
             color = MaterialTheme.colors.textPrimary,
             style = MaterialTheme.typography.body2,
             maxLines = 1,

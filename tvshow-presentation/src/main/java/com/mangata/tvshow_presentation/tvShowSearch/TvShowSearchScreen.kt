@@ -12,11 +12,10 @@ import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import com.mangata.core_ui.components.DefaultSearchBar
 import com.mangata.core_ui.util.loadMore
-import com.mangata.tvshow_presentation.common.components.EmptySearchMessage
+import com.mangata.tvshow_presentation.common.components.EmptyListMessage
 import com.mangata.tvshow_presentation.tvShowSearch.components.SearchTvShowCard
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
-
 
 @OptIn(FlowPreview::class)
 @Composable
@@ -92,7 +91,7 @@ fun TvShowSearchScreen(
                         modifier = Modifier.fillParentMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-                        EmptySearchMessage(message = "Couldn't find any Tv Show")
+                        EmptyListMessage(message = "Couldn't find any Tv Show")
                     }
                 }
             }

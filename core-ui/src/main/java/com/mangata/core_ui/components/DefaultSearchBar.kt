@@ -18,6 +18,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.mangata.core_ui.theme.componentBackground
 import com.mangata.core_ui.theme.textPrimary
+import com.mangata.core_ui.theme.textPrimaryDim
 
 @Composable
 fun DefaultSearchBar(
@@ -28,7 +29,8 @@ fun DefaultSearchBar(
 ) {
     val focusManager = LocalFocusManager.current
 
-    Surface(modifier = modifier.height(56.dp),
+    Surface(
+        modifier = modifier.height(56.dp),
         color = MaterialTheme.colors.surface,
         shape = MaterialTheme.shapes.medium,
         elevation = 2.dp
@@ -47,21 +49,23 @@ fun DefaultSearchBar(
             onValueChange = { onTextChange(it) },
             placeholder = {
                 Text(
-                    color = MaterialTheme.colors.textPrimary.copy(alpha = ContentAlpha.medium),
-                    text = placeholderText)
+                    color = MaterialTheme.colors.textPrimaryDim,
+                    text = placeholderText
+                )
             },
             leadingIcon = {
-                  Icon(
-                      imageVector = Icons.Outlined.Search,
-                      contentDescription = "Search Icon",
-                      tint = MaterialTheme.colors.textPrimary
-                  )
+                Icon(
+                    imageVector = Icons.Outlined.Search,
+                    contentDescription = "Search Icon",
+                    tint = MaterialTheme.colors.textPrimaryDim
+                )
             },
             trailingIcon = {
                 if (text.isNotEmpty()) {
                     Icon(
                         modifier = Modifier.clickable { onTextChange("") },
                         imageVector = Icons.Filled.Cancel,
+                        tint = MaterialTheme.colors.textPrimaryDim,
                         contentDescription = "Delete Search",
                     )
                 }

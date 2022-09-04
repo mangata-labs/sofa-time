@@ -42,22 +42,27 @@ fun TvShowHomeScreen(
         }
     }
 
-    if(viewModel.tvShowsState.value.isNotEmpty()) {
-        Column(
-            modifier = Modifier.fillMaxSize().padding(top = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-            horizontalAlignment = (Alignment.CenterHorizontally)
+    if (viewModel.tvShowsState.value.isNotEmpty()) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(vertical = 20.dp),
+            contentAlignment = Alignment.TopCenter
         ) {
-            TrendingSection(
+            Column(
                 modifier = Modifier.fillMaxWidth(0.9f),
-                items = viewModel.tvShowsState.value,
-                imageLoader = imageLoader,
-                onTvShowClick = onTvShowClick
-            )
-            SearchTvShowCard(
-                modifier = Modifier.fillMaxWidth(0.9f),
-                onSearchCardLick = onSearchCardLick
-            )
+                horizontalAlignment = (Alignment.CenterHorizontally)
+            ) {
+                TrendingSection(
+                    items = viewModel.tvShowsState.value,
+                    imageLoader = imageLoader,
+                    onTvShowClick = onTvShowClick
+                )
+                SearchTvShowCard(
+                    modifier = Modifier.fillMaxWidth(),
+                    onSearchCardLick = onSearchCardLick
+                )
+            }
         }
     }
 }

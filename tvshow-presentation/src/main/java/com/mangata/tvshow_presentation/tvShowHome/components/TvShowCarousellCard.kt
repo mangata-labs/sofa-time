@@ -3,6 +3,7 @@ package com.mangata.tvshow_presentation.tvShowHome.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -13,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -35,17 +37,15 @@ fun TvShowCarouselCard(
     imageLoader: ImageLoader,
     onTvShowClick: (Int) -> Unit,
 ) {
-    Box(
+    Card(
         modifier = Modifier
             .fillMaxWidth()
-            .shadow(2.dp, shape = MaterialTheme.shapes.medium)
-            .clickable { onTvShowClick(tvShow.id) }
-            .background(MaterialTheme.colors.surface)
-            .padding(all = 12.dp)
+            .clickable { onTvShowClick(tvShow.id) },
+        shape = MaterialTheme.shapes.medium,
+        elevation = 2.dp
     ) {
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+        Box(
+            modifier = Modifier.height(220.dp)
         ) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
@@ -55,45 +55,53 @@ fun TvShowCarouselCard(
                     .build(),
                 imageLoader = imageLoader,
                 contentDescription = null,
-                contentScale = ContentScale.FillWidth,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(MaterialTheme.shapes.small)
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxWidth()
             )
-            CardDescription(tvShow = tvShow, modifier = Modifier.fillMaxWidth())
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                Color.Transparent,
+                                Color.Black
+                            ),
+                            startY = 300f
+                        )
+                    )
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(15.dp),
+                contentAlignment = Alignment.BottomCenter
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.Bottom
+                ) {
+                    Text(
+                        modifier = Modifier.fillMaxWidth(0.75f),
+                        text = tvShow.name,
+                        style = MaterialTheme.typography.h4,
+                        color = Color.White
+                    )
+                    TextWithIcon(
+                        modifier = Modifier
+                            .clip(MaterialTheme.shapes.small)
+                            .background(SemiDarkGray)
+                            .padding(vertical = 4.dp, horizontal = 8.dp),
+                        color = Color.White,
+                        text = tvShow.voteAverage.round(1),
+                        icon = Icons.Filled.Star,
+                        iconColor = MaterialTheme.colors.secondary,
+                        size = 14.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
+            }
         }
-    }
-}
-
-
-@Composable
-private fun CardDescription(
-    modifier: Modifier = Modifier,
-    tvShow: TvShow
-) {
-    Row(
-        modifier = modifier
-            .wrapContentSize(Alignment.Center),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = tvShow.name,
-            color = MaterialTheme.colors.textPrimary,
-            style = MaterialTheme.typography.h3
-        )
-        TextWithIcon(
-            modifier = Modifier
-                .clip(MaterialTheme.shapes.small)
-                .background(MaterialTheme.colors.componentBackground)
-                .align(Alignment.Bottom)
-                .padding(start = 4.dp, end = 2.dp, bottom = 2.dp),
-            color = MaterialTheme.colors.textPrimary,
-            text = tvShow.voteAverage.round(1),
-            icon = Icons.Filled.Star,
-            iconColor = MaterialTheme.colors.secondary,
-            size = 14.sp,
-            fontWeight = FontWeight.SemiBold
-        )
     }
 }
