@@ -12,7 +12,6 @@ object Route {
     const val WEB_VIEW = "web_view"
 }
 
-
 sealed class Screen(val route: String, val args: List<NamedNavArgument>) {
 
     object Home : Screen(
@@ -27,7 +26,7 @@ sealed class Screen(val route: String, val args: List<NamedNavArgument>) {
         })
     )
 
-    object TVSearch: Screen(
+    object TVSearch : Screen(
         route = Route.TV_SEARCH,
         args = emptyList()
     )
