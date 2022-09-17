@@ -1,5 +1,6 @@
 package com.mangata.tvshow_presentation.tvShowDetail
 
-sealed class TvShowDetailEvent {
-    data class PlayVideoClicked(val videoUrl: String) : TvShowDetailEvent()
+sealed class TvShowDetailEvent() {
+    object AddedToWatchList : TvShowDetailEvent()
+    object RemoveFromWatchlist : TvShowDetailEvent()
 }

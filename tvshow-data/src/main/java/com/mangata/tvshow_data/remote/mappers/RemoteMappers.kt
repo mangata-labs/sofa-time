@@ -23,9 +23,10 @@ internal fun TvShowDto.toTvShow() : TvShow? {
     return TvShow(
         id = id,
         name = name,
-        description = overview,
+        overview = overview,
         posterPath = ImageUrlManager.getPosterUrl(poster_path) ?: return null,
-        backdropPath = ImageUrlManager.getBackdropUrl(backdrop_path) ?: return null
+        backdropPath = ImageUrlManager.getBackdropUrl(backdrop_path) ?: return null,
+        voteAverage = vote_average ?: return null,
     )
 }
 
@@ -33,21 +34,21 @@ internal fun TvShowDetailDto.toTvShowDetails() : TvShowDetails? {
     return  TvShowDetails(
         id = id,
         name = name,
-        backdrop_path = ImageUrlManager.getBackdropUrl(backdrop_path) ?: return null,
+        backdropPath = ImageUrlManager.getBackdropUrl(backdrop_path) ?: return null,
+        posterPath = ImageUrlManager.getPosterUrl(poster_path) ?: return null,
         genres = genres.map { it.toGenre() },
+        seasons = seasons.mapNotNull { it.toSeason() },
+        networks = networks.mapNotNull { it.toNetwork() },
         number_of_episodes = number_of_episodes,
         number_of_seasons = number_of_seasons,
         overview = overview,
-        first_air_date = first_air_date.toDate(),
-        last_air_date = last_air_date.toDate(),
-        poster_path = ImageUrlManager.getPosterUrl(poster_path) ?: return null,
-        seasons = seasons.mapNotNull { it.toSeason() },
+        firstAirDate = first_air_date.toDate(),
+        lastAiredDate = last_air_date.toDate(),
         episode_run_time = episode_run_time,
         homepage = homepage,
-        in_production = in_production,
-        networks = networks.mapNotNull { it.toNetwork() },
-        vote_average = vote_average,
-        vote_count = vote_count,
+        inProduction = in_production,
+        voteAverage = vote_average,
+        voteCount = vote_count,
         status = status
     )
 }
@@ -61,12 +62,12 @@ internal fun GenreDto.toGenre() : Genre {
 
 internal fun SeasonDto.toSeason() : Season? {
     return Season(
+        poster_path = ImageUrlManager.getPosterUrl(poster_path) ?: return null,
         air_date = air_date,
         episode_count = episode_count,
         id = id,
         name = name,
         overview = overview,
-        poster_path = ImageUrlManager.getPosterUrl(poster_path) ?: return null,
         season_number = season_number,
     )
 }

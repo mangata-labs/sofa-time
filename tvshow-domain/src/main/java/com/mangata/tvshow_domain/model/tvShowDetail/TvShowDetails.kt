@@ -1,5 +1,6 @@
 package com.mangata.tvshow_domain.model.tvShowDetail
 
+import com.mangata.tvshow_domain.model.tvShowList.TvShow
 import java.util.*
 
 data class TvShowDetails(
@@ -9,18 +10,28 @@ data class TvShowDetails(
     val number_of_episodes: Int,
     val number_of_seasons: Int,
     val overview: String,
-    val backdrop_path: String,
-    val poster_path: String,
-    val last_air_date: Date?,
-    val first_air_date: Date?,
+    val backdropPath: String,
+    val posterPath: String,
+    val lastAiredDate: Date?,
+    val firstAirDate: Date?,
     val seasons: List<Season>,
     val episode_run_time: List<Int>,
     val homepage: String,
-    val in_production: Boolean,
+    val inProduction: Boolean,
     val networks: List<Network>,
-    val vote_average: Double,
-    val vote_count: Int,
+    val voteAverage: Double,
+    val voteCount: Int,
     val status: String,
 )
 
+fun TvShowDetails.toTvShow() : TvShow {
+    return TvShow(
+        id = id,
+        name = name,
+        overview = overview,
+        posterPath = posterPath,
+        backdropPath = backdropPath,
+        voteAverage = voteAverage
+    )
+}
 

@@ -8,12 +8,12 @@ import com.google.accompanist.web.rememberWebViewState
 
 @Composable
 fun WebViewScreen(
-    modifier: Modifier = Modifier,
     webUrl: String
 ) {
     val state = rememberWebViewState(url = webUrl)
     WebView(
-        modifier = modifier.fillMaxSize(),
-        state = state
+        modifier = Modifier.fillMaxSize(),
+        state = state,
+        onCreated = { it.settings.javaScriptEnabled = true }
     )
 }

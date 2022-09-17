@@ -5,16 +5,12 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 
 object Route {
-    const val ON_BOARDING = "on_boarding"
     const val HOME = "home"
-    const val TV_EXPLORE = "tv_explore"
     const val TV_ABOUT = "tv_about"
-    const val TV_EPISODES = "tv_episodes"
-    const val TV_UPCOMING = "tv_upcoming"
+    const val TV_SEARCH = "tv_search"
     const val USER_PROFILE = "user_profile"
     const val WEB_VIEW = "web_view"
 }
-
 
 sealed class Screen(val route: String, val args: List<NamedNavArgument>) {
 
@@ -30,8 +26,8 @@ sealed class Screen(val route: String, val args: List<NamedNavArgument>) {
         })
     )
 
-    object TvUpcoming : Screen(
-        route = Route.TV_UPCOMING,
+    object TVSearch : Screen(
+        route = Route.TV_SEARCH,
         args = emptyList()
     )
 

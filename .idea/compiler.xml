@@ -2,11 +2,15 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
+      <module name="sofa-time.buildSrc" target="11" />
+      <module name="sofa-time.buildSrc.main" target="11" />
+      <module name="sofa-time.buildSrc.test" target="11" />
       <module name="Sofa_Time.app" target="11" />
       <module name="Sofa_Time.buildSrc" target="11" />
       <module name="Sofa_Time.buildSrc.main" target="11" />
       <module name="Sofa_Time.buildSrc.test" target="11" />
       <module name="Sofa_Time.core-ui" target="11" />
+      <module name="Sofa_Time.tvshow-data" target="11" />
       <module name="Sofa_Time.tvshow-presentation" target="11" />
     </bytecodeTargetLevel>
   </component>

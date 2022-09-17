@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
@@ -13,21 +14,23 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import coil.ImageLoader
-import com.mangata.core_ui.screens.ProfileScreen
 import com.mangata.core_ui.screens.WebViewScreen
 import com.mangata.sofatime.navigation.Route
 import com.mangata.sofatime.navigation.bottomNavigation.BottomNavItem.Companion.bottomNavItems
 import com.mangata.sofatime.navigation.bottomNavigation.BottomBar
 import com.mangata.sofatime.navigation.Screen
 import com.mangata.core_ui.theme.SofaTimeTheme
-import com.mangata.tvshow_presentation.tvShowUpcoming.TvShowUpcomingScreen
+import com.mangata.sofatime.util.setLightStatusBars
 import com.mangata.tvshow_presentation.tvShowDetail.TvShowDetailScreen
-import com.mangata.tvshow_presentation.tvShowList.TvShowListScreen
+import com.mangata.tvshow_presentation.tvShowSearch.TvShowSearchScreen
+import com.mangata.tvshow_presentation.tvShowHome.TvShowHomeScreen
+import com.mangata.tvshow_presentation.tvShowTracked.TvShowTrackedScreen
 import org.koin.android.ext.android.inject
 import org.koin.androidx.compose.getViewModel
 import org.koin.core.parameter.parametersOf
@@ -42,6 +45,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SofaTimeTheme {
+                window.statusBarColor = MaterialTheme.colors.background.toArgb()
+                window.setLightStatusBars(!isSystemInDarkTheme())
+
                 val navController = rememberNavController()
                 val scaffoldState = rememberScaffoldState()
                 val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
@@ -74,16 +80,23 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = Screen.Home.route
+                        startDestination = Screen.Home.route,
+                        Modifier.padding(padding)
                     ) {
                         composable(route = Screen.Home.route) {
-                            TvShowListScreen(
-                                scaffoldState = scaffoldState,
-                                modifier = Modifier.padding(padding),
-                                imageLoader = imageLoader,
+                            TvShowHomeScreen(
                                 viewModel = getViewModel(),
-                                onTvDetailClick = { tvShowID ->
+                                imageLoader = imageLoader,
+                                onTvShowClick = { tvShowID ->
                                     navController.navigate("${Route.TV_ABOUT}/$tvShowID")
+                                },
+                                onSearchCardClick = {
+                                    navController.navigate(Route.TV_SEARCH) {
+                                        popUpTo(navController.graph.startDestinationId) {
+                                            saveState = true
+                                        }
+                                        restoreState = true
+                                    }
                                 }
                             )
                         }
@@ -95,21 +108,29 @@ class MainActivity : ComponentActivity() {
                             val tvShowID = it.arguments?.getInt("tvShowID")!!
                             TvShowDetailScreen(
                                 imageLoader = imageLoader,
-                                modifier = Modifier.padding(padding),
                                 viewModel = getViewModel(parameters = { parametersOf(tvShowID) }),
+                                scaffoldState = scaffoldState,
                                 onNavigateToWebView = { webUrl ->
-                                    val encodedUrl = URLEncoder.encode(webUrl, StandardCharsets.UTF_8.toString())
+                                    val encodedUrl =
+                                        URLEncoder.encode(webUrl, StandardCharsets.UTF_8.toString())
                                     navController.navigate("${Route.WEB_VIEW}/$encodedUrl")
+                                },
+                                onTvDetailClick = { id ->
+                                    navController.navigate("${Route.TV_ABOUT}/$id")
                                 }
                             )
                         }
 
                         composable(
-                            route = Screen.TvUpcoming.route,
-                            arguments = Screen.TvUpcoming.args
+                            route = Screen.TVSearch.route,
+                            arguments = Screen.TVSearch.args
                         ) {
-                            TvShowUpcomingScreen(
-                                modifier = Modifier.padding(padding)
+                            TvShowSearchScreen(
+                                imageLoader = imageLoader,
+                                viewModel = getViewModel(),
+                                onTvDetailClick = { tvShowID ->
+                                    navController.navigate("${Route.TV_ABOUT}/$tvShowID")
+                                }
                             )
                         }
 
@@ -117,8 +138,12 @@ class MainActivity : ComponentActivity() {
                             route = Screen.Profile.route,
                             arguments = Screen.Profile.args
                         ) {
-                            ProfileScreen(
-                                modifier = Modifier.padding(padding)
+                            TvShowTrackedScreen(
+                                imageLoader = imageLoader,
+                                viewModel = getViewModel(),
+                                onTvDetailClick = { tvShowID ->
+                                    navController.navigate("${Route.TV_ABOUT}/$tvShowID")
+                                }
                             )
                         }
 
@@ -128,7 +153,6 @@ class MainActivity : ComponentActivity() {
                         ) {
                             val webUrl = it.arguments?.getString("webUrl")!!
                             WebViewScreen(
-                                modifier = Modifier.padding(padding),
                                 webUrl = webUrl
                             )
                         }

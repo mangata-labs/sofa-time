@@ -17,15 +17,15 @@ data class Video(
     }
 }
 
-sealed class SourceSite(val site: String) {
-    class YouTube(name: String) : SourceSite(name)
-    class Unknown(name: String) : SourceSite(name)
+sealed class SourceSite {
+    object YouTube : SourceSite()
+    object Unknown : SourceSite()
 
     companion object {
         fun fromString(input: String) : SourceSite {
             return when(input) {
-                "YouTube" -> YouTube(input)
-                else -> Unknown("Unknown")
+                "YouTube" -> YouTube
+                else -> Unknown
             }
         }
     }
@@ -33,8 +33,8 @@ sealed class SourceSite(val site: String) {
 
 sealed class VideoType(val type: String) {
     object Trailer : VideoType("Trailer")
-    object Behind_The_Scenes : VideoType("Behind the Scenes")
-    object Featurette : VideoType("Featurette")
+    object BehindTheScenes : VideoType("Behind the Scenes")
+    object Featured : VideoType("Featurette")
     object Teaser : VideoType("Teaser")
     object Unknown : VideoType("Unknown")
 
@@ -42,8 +42,8 @@ sealed class VideoType(val type: String) {
         fun fromString(input: String) : VideoType {
             return when(input) {
                 "Trailer" -> Trailer
-                "Behind the Scenes" -> Behind_The_Scenes
-                "Featurette" -> Featurette
+                "Behind the Scenes" -> BehindTheScenes
+                "Featurette" -> Featured
                 "Teaser" -> Teaser
                 else -> Unknown
             }
