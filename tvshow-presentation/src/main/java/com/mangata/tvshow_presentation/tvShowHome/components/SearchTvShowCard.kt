@@ -22,17 +22,19 @@ import com.mangata.core_ui.theme.textPrimaryDim
 @Composable
 fun SearchTvShowCard(
     modifier: Modifier = Modifier,
-    onSearchCardLick: () -> Unit,
+    onSearchCardClick: () -> Unit,
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
             .shadow(2.dp, shape = MaterialTheme.shapes.medium)
             .background(MaterialTheme.colors.surface)
-            .clickable { onSearchCardLick() }
+            .clickable { onSearchCardClick() }
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth().padding(14.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(14.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {

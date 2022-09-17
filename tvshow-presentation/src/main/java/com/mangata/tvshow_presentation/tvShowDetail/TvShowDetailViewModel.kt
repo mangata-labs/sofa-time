@@ -1,6 +1,8 @@
 package com.mangata.tvshow_presentation.tvShowDetail
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mangata.core_ui.util.UiEvent
@@ -14,8 +16,6 @@ import com.mangata.tvshow_presentation.tvShowDetail.components.headerSection.TvD
 import com.mangata.tvshow_presentation.tvShowDetail.components.headerSection.toDetailHeaderModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 
 class TvShowDetailViewModel(
@@ -23,34 +23,31 @@ class TvShowDetailViewModel(
     private val tvShowId: Int
 ) : ViewModel() {
 
-    var tvShowDetailState = mutableStateOf<TvShowDetails?>(null)
+    var tvShowDetailState by mutableStateOf<TvShowDetails?>(null)
         private set
 
-    var headerState = mutableStateOf(TvDetailsHeaderModel())
+    var headerState by mutableStateOf(TvDetailsHeaderModel())
         private set
 
-    var videoState = mutableStateOf<Video?>(null)
+    var videoState by mutableStateOf<Video?>(null)
         private set
 
-    var posterState = mutableStateOf<List<Poster>>(emptyList())
+    var posterState by mutableStateOf<List<Poster>>(emptyList())
         private set
 
-    var similarTvShowState = mutableStateOf<List<TvShow>>(emptyList())
+    var similarTvShowState by mutableStateOf<List<TvShow>>(emptyList())
         private set
 
-    var errorState = mutableStateOf("")
+    var errorState by mutableStateOf("")
         private set
 
-    var isLoading = mutableStateOf(false)
+    var isLoadingState by mutableStateOf(false)
         private set
 
-    var didAllLoad = mutableStateOf(false)
+    var isAddedToWatchList by mutableStateOf(false)
         private set
 
-    var isAddedToWatchList = mutableStateOf(false)
-        private set
-
-    private val eventChannel = Channel<UiEvent>(Channel.BUFFERED)
+    private val eventChannel = Channel<UiEvent>(Channel.UNLIMITED)
     val eventsFlow = eventChannel.receiveAsFlow()
 
     init {
@@ -66,28 +63,27 @@ class TvShowDetailViewModel(
 
     private fun addToWatchList() {
         viewModelScope.launch {
-            tvShowDetailState.value?.let {
+            tvShowDetailState?.let {
                 launch(Dispatchers.IO) { repository.addTvShowToWatchList(it.toTvShow()) }
                 eventChannel.send(UiEvent.SnackbarEvent(uiText = "Added to Watchlist"))
-                isAddedToWatchList.value = true
+                isAddedToWatchList = true
             }
         }
     }
 
     private fun deleteFromWatchlist() {
         viewModelScope.launch {
-            tvShowDetailState.value?.let {
+            tvShowDetailState?.let {
                 launch(Dispatchers.IO) { repository.removeTvShowFromWatchList(it.id) }
                 eventChannel.send(UiEvent.SnackbarEvent(uiText = "Deleted from Watchlist"))
-                isAddedToWatchList.value = false
+                isAddedToWatchList = false
             }
         }
     }
 
     private fun getData() = try {
+        isLoadingState = true
         viewModelScope.launch {
-            isLoading.value = true
-            didAllLoad.value = false
             val tvShowDeferred = async { repository.getTvShowDetails(tvShowId) }
             val videoDeferred = async { repository.getVideoForTvShow(tvShowId) }
             val posterDeferred = async { repository.getImagesForTvShow(tvShowId) }
@@ -105,39 +101,41 @@ class TvShowDetailViewModel(
             similarTvShows.onSuccess { processSimilarTvShows(it) }
             tvShowDetailResult.onSuccess { tvShow ->
                 processTvShow(tvShow)
-                isAddedToWatchList.value = handleWatchlistSelector(watchList, tvShow)
+                isAddedToWatchList = handleWatchlistSelector(watchList, tvShow)
             }
-            isLoading.value = false
-            didAllLoad.value = true
+            isLoadingState = false
         }
     } catch (e: Exception) {
-        errorState.value = e.localizedMessage ?: ""
-        isLoading.value = false
+        errorState = e.localizedMessage ?: ""
+        isLoadingState = false
     }
 
     private fun processSimilarTvShows(tvShows: List<TvShow>) {
-        similarTvShowState.value = tvShows
+        similarTvShowState = tvShows
     }
 
     private fun processVideo(video: Video?) {
-        videoState.value = video
+        videoState = video
     }
 
     private fun processPosters(posters: List<Poster>) {
-        posterState.value = posters
+        posterState = posters
     }
 
-    private fun handleWatchlistSelector(watchList: List<TvShow>, remoteTvShow: TvShowDetails?) : Boolean {
+    private fun handleWatchlistSelector(
+        watchList: List<TvShow>,
+        remoteTvShow: TvShowDetails?
+    ): Boolean {
         if (remoteTvShow == null) return false
         return watchList.find { it.id == remoteTvShow.id } != null
     }
 
     private fun processTvShow(tvShowDetails: TvShowDetails?) {
         if (tvShowDetails == null) {
-            errorState.value = "Failed loading Tv Show"
+            errorState = "Failed loading Tv Show"
             return
         }
-        tvShowDetailState.value = tvShowDetails
-        headerState.value = tvShowDetails.toDetailHeaderModel()
+        tvShowDetailState = tvShowDetails
+        headerState = tvShowDetails.toDetailHeaderModel()
     }
 }

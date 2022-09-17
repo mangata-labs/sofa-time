@@ -10,7 +10,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -30,14 +29,15 @@ fun TvShowTrackedScreen(
     viewModel: TvShowTrackedViewModel,
     onTvDetailClick: (Int) -> Unit,
 ) {
-    val state by viewModel.state
+    val trackedTvShows = viewModel.trackedTvShowsState
+    val isLoading = viewModel.isLoadingState
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(Unit) {
         viewModel.getTrackedTvShow()
     }
 
-    if (state.isEmpty()) {
-        EmptyListMessage(message = "Couldn't find any Tv Show")
+    if (trackedTvShows.isEmpty() && !isLoading) {
+        EmptyListMessage(message = "You are not tracking any Tv Show at the moment")
     }
 
     Box(
@@ -63,7 +63,7 @@ fun TvShowTrackedScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(state) { tvShow ->
+                items(trackedTvShows) { tvShow ->
                     TvShowCell(
                         tvShow = tvShow,
                         imageLoader = imageLoader,

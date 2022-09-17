@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.PlayCircle
 import androidx.compose.runtime.Composable
@@ -55,21 +56,25 @@ private fun VideoItem(
     video: Video,
     onPlayVideoClick: (String) -> Unit
 ) {
-    Box(modifier = Modifier
-        .width(180.dp)
-        .height(115.dp)
-        .clip(RoundedCornerShape(5.dp))
-        .background(Color.LightGray)
-        .clickable {
-            video.createUrl()?.let { onPlayVideoClick(it) }
-        },
+    Box(
+        modifier = Modifier
+            .width(180.dp)
+            .height(115.dp)
+            .clip(MaterialTheme.shapes.small)
+            .background(Color.LightGray)
+            .clickable {
+                video
+                    .createUrl()
+                    ?.let { onPlayVideoClick(it) }
+            },
         contentAlignment = Alignment.Center
     ) {
         Icon(
             modifier = Modifier.size(60.dp),
             tint = Color.White,
             imageVector = Icons.Outlined.PlayCircle,
-            contentDescription ="Play Video")
+            contentDescription = "Play Video"
+        )
     }
 }
 
@@ -81,7 +86,7 @@ private fun ImageItem(
     AsyncImage(
         modifier = Modifier
             .size(115.dp)
-            .clip(RoundedCornerShape(5.dp)),
+            .clip(MaterialTheme.shapes.small),
         model = ImageRequest.Builder(LocalContext.current)
             .data(poster.filePath)
             .placeholder(R.drawable.image_placeholder)

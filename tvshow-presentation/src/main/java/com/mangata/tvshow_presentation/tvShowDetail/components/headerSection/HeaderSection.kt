@@ -35,8 +35,8 @@ fun HeaderSection(
     modifier: Modifier = Modifier,
     viewModel: TvShowDetailViewModel
 ) {
-    val headerModel by viewModel.headerState
-    val isAdded by viewModel.isAddedToWatchList
+    val headerModel = viewModel.headerState
+    val isAdded = viewModel.isAddedToWatchList
 
     Column(
         modifier = modifier.fillMaxWidth(),

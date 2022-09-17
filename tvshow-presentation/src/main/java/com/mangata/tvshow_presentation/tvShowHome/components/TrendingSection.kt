@@ -42,7 +42,6 @@ fun TrendingSection(
         ) { page ->
             TvShowCarouselCard(items[page], imageLoader, onTvShowClick)
         }
-
         HorizontalPagerIndicator(
             pagerState = pagerState,
             activeColor = MaterialTheme.colors.primary,

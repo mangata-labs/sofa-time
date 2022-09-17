@@ -14,6 +14,7 @@ import com.mangata.core_ui.components.DefaultSearchBar
 import com.mangata.core_ui.util.loadMore
 import com.mangata.tvshow_presentation.common.components.EmptyListMessage
 import com.mangata.tvshow_presentation.tvShowSearch.components.SearchTvShowCard
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 
@@ -24,8 +25,11 @@ fun TvShowSearchScreen(
     imageLoader: ImageLoader,
     onTvDetailClick: (Int) -> Unit,
 ) {
-    val state = viewModel.tvShowsState.value
-    val searchText = viewModel.searchState.collectAsState(initial = "")
+    val state = viewModel.tvShowsState
+    val searchText by viewModel.searchState.collectAsState(
+        initial = "",
+        context = Dispatchers.Main.immediate
+    )
     val scrollState = rememberLazyListState()
     val loadMore by remember { derivedStateOf { scrollState.loadMore() } }
 
@@ -37,7 +41,7 @@ fun TvShowSearchScreen(
             }
     }
 
-    LaunchedEffect(true) {
+    LaunchedEffect(Unit) {
         viewModel.searchState
             .drop(1)
             .debounce(500)
@@ -55,7 +59,7 @@ fun TvShowSearchScreen(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         DefaultSearchBar(
-            text = searchText.value,
+            text = searchText,
             placeholderText = "Search tv shows...",
             onTextChange = {
                 viewModel.onEvent(TvShowSearchEvent.EnteredSearchText(it))

@@ -1,43 +1,46 @@
 package com.mangata.tvshow_presentation.tvShowSearch
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mangata.core_ui.pager.DefaultPager
 import com.mangata.tvshow_domain.repository.TvShowRepository
-import com.mangata.tvshow_presentation.common.state.TvShowListState
+import com.mangata.tvshow_presentation.tvShowSearch.state.TvShowListState
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class TvShowSearchViewModel(private val tvShowRepository: TvShowRepository) : ViewModel() {
 
-    var tvShowsState = mutableStateOf(TvShowListState())
+    var tvShowsState by mutableStateOf(TvShowListState())
         private set
 
-    var searchState = MutableStateFlow("")
-        private set
+    private var _searchState = MutableStateFlow("")
+    val searchState = _searchState.asStateFlow()
 
     private val pager = DefaultPager(
-        initialKey = tvShowsState.value.page,
+        initialKey = tvShowsState.page,
         onLoadUpdated = {
-            tvShowsState.value = tvShowsState.value.copy(isLoading = it)
+            tvShowsState = tvShowsState.copy(isLoading = it)
         },
         onRequest = { nextPage ->
-            if (searchState.value.isNotEmpty()) {
-                tvShowRepository.searchTvShows(searchState.value, nextPage)
+            if (_searchState.value.isNotEmpty()) {
+                tvShowRepository.searchTvShows(_searchState.value, nextPage)
             } else {
                 tvShowRepository.getPopularTvShows(nextPage)
             }
         },
         getNextKey = {
-            tvShowsState.value.page + 1
+            tvShowsState.page + 1
         },
         onError = {
-            tvShowsState.value = tvShowsState.value.copy(error = it?.localizedMessage ?: "")
+            tvShowsState = tvShowsState.copy(error = it?.localizedMessage ?: "")
         },
         onSuccess = { items, newKey ->
-            tvShowsState.value = tvShowsState.value.copy(
-                tvShows = tvShowsState.value.tvShows + items,
+            tvShowsState = tvShowsState.copy(
+                tvShows = tvShowsState.tvShows + items,
                 page = newKey,
                 endReached = items.isEmpty()
             )
@@ -50,7 +53,7 @@ class TvShowSearchViewModel(private val tvShowRepository: TvShowRepository) : Vi
 
     fun onEvent(event: TvShowSearchEvent) {
         when (event) {
-            is TvShowSearchEvent.EnteredSearchText -> searchState.value = event.value
+            is TvShowSearchEvent.EnteredSearchText -> _searchState.value = event.value
             is TvShowSearchEvent.FinishedSearch -> searchTvShows()
         }
     }
@@ -58,7 +61,7 @@ class TvShowSearchViewModel(private val tvShowRepository: TvShowRepository) : Vi
     private fun searchTvShows() {
         viewModelScope.launch {
             pager.reset()
-            tvShowsState.value = TvShowListState()
+            tvShowsState = TvShowListState()
             pager.loadNext()
         }
     }

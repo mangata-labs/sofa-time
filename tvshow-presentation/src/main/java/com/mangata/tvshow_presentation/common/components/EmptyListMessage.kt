@@ -19,7 +19,9 @@ fun EmptyListMessage(
     message: String
 ) {
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 25.dp),
         contentAlignment = Alignment.Center
     ) {
         Column(

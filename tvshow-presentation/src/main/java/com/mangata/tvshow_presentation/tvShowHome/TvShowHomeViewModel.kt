@@ -1,6 +1,8 @@
 package com.mangata.tvshow_presentation.tvShowHome
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mangata.tvshow_domain.model.tvShowList.TvShow
@@ -9,13 +11,13 @@ import kotlinx.coroutines.launch
 
 class TvShowHomeViewModel(private val tvShowRepository: TvShowRepository) : ViewModel() {
 
-    var tvShowsState = mutableStateOf<List<TvShow>>(emptyList())
+    var tvShowsState by mutableStateOf<List<TvShow>>(emptyList())
         private set
 
-    var errorState = mutableStateOf("")
+    var errorState by mutableStateOf("")
         private set
 
-    var isLoading = mutableStateOf(false)
+    var isLoading by mutableStateOf(false)
         private set
 
     init {
@@ -23,16 +25,16 @@ class TvShowHomeViewModel(private val tvShowRepository: TvShowRepository) : View
     }
 
     private fun loadTrendingTvShows() {
+        isLoading = true
         viewModelScope.launch {
-            isLoading.value = true
             val result = tvShowRepository.getTrendingTvShows()
             result.onSuccess {
-                tvShowsState.value = it
-                isLoading.value = false
+                tvShowsState = it
+                isLoading = false
             }
             result.onFailure {
-                errorState.value = it.localizedMessage ?: ""
-                isLoading.value = false
+                errorState = it.localizedMessage ?: ""
+                isLoading = false
             }
         }
     }

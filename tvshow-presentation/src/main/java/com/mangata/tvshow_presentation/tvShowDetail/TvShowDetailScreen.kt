@@ -31,17 +31,20 @@ fun TvShowDetailScreen(
     onNavigateToWebView: (String) -> Unit,
     onTvDetailClick: (Int) -> Unit
 ) {
+    val isLoading = viewModel.isLoadingState
+    val error = viewModel.errorState
+
     viewModel.eventsFlow.observeWithLifecycle {
-        when(it) {
+        when (it) {
             is UiEvent.SnackbarEvent -> scaffoldState.snackbarHostState.showSnackbar(it.uiText)
         }
     }
 
-    if (viewModel.errorState.value.isNotEmpty()) {
+    if (error.isNotEmpty()) {
         ErrorMessage()
     }
 
-    if (viewModel.isLoading.value) {
+    if (isLoading) {
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
@@ -50,68 +53,67 @@ fun TvShowDetailScreen(
         }
     }
 
-    val tvShowState = viewModel.tvShowDetailState.value ?: return
+    val tvShowState = viewModel.tvShowDetailState ?: return
 
-    if (viewModel.didAllLoad.value) {
-        LazyColumn(
-            modifier = Modifier.fillMaxWidth(),
-            contentPadding = PaddingValues(bottom = 40.dp) ,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            item {
-                AsyncImage(
-                    modifier = Modifier.fillMaxWidth(),
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(tvShowState.backdropPath)
-                        .placeholder(R.drawable.image_placeholder)
-                        .crossfade(true)
-                        .build(),
-                    imageLoader = imageLoader,
-                    contentDescription = null,
-                    contentScale = ContentScale.FillWidth,
-                )
-            }
-            item {
-                HeaderSection(
-                    modifier = Modifier.padding(horizontal = 20.dp),
-                    viewModel = viewModel
-                )
-            }
-            item {
-                NetworkSection(
-                    modifier = Modifier.padding(start = 20.dp),
-                    imageLoader = imageLoader,
-                    networks = tvShowState.networks
-                )
-            }
-            item {
-                VideoAndImageSection(
-                    modifier = Modifier.padding(start = 20.dp),
-                    imageLoader = imageLoader,
-                    video = viewModel.videoState.value,
-                    posters = viewModel.posterState.value,
-                    onPlayVideoClick = { videoUrl ->
-                        onNavigateToWebView(videoUrl)
-                    }
-                )
-            }
-            if (tvShowState.overview.isNotEmpty()) {
-                item {
-                    StorySection(
-                        modifier = Modifier.padding(horizontal = 20.dp),
-                        story = tvShowState.overview
-                    )
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(bottom = 40.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        item {
+            AsyncImage(
+                modifier = Modifier.fillMaxWidth(),
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(tvShowState.backdropPath)
+                    .placeholder(R.drawable.image_placeholder)
+                    .crossfade(true)
+                    .build(),
+                imageLoader = imageLoader,
+                contentDescription = null,
+                contentScale = ContentScale.FillWidth,
+            )
+        }
+        item {
+            HeaderSection(
+                modifier = Modifier.padding(horizontal = 20.dp),
+                viewModel = viewModel
+            )
+        }
+        item {
+            NetworkSection(
+                modifier = Modifier.padding(start = 20.dp),
+                imageLoader = imageLoader,
+                networks = tvShowState.networks
+            )
+        }
+        item {
+            VideoAndImageSection(
+                modifier = Modifier.padding(start = 20.dp),
+                imageLoader = imageLoader,
+                video = viewModel.videoState,
+                posters = viewModel.posterState,
+                onPlayVideoClick = { videoUrl ->
+                    onNavigateToWebView(videoUrl)
                 }
-            }
+            )
+        }
+        if (tvShowState.overview.isNotEmpty()) {
             item {
-                SimilarTvShowSection(
-                    modifier = Modifier.padding(start = 20.dp),
-                    imageLoader = imageLoader,
-                    tvShows = viewModel.similarTvShowState.value,
-                    onTvDetailClick = onTvDetailClick
+                StorySection(
+                    modifier = Modifier.padding(horizontal = 20.dp),
+                    story = tvShowState.overview
                 )
             }
         }
+        item {
+            SimilarTvShowSection(
+                modifier = Modifier.padding(start = 20.dp),
+                imageLoader = imageLoader,
+                tvShows = viewModel.similarTvShowState,
+                onTvDetailClick = onTvDetailClick
+            )
+        }
     }
 }
+
 

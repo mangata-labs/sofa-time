@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.Crossfade
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -91,7 +90,7 @@ class MainActivity : ComponentActivity() {
                                 onTvShowClick = { tvShowID ->
                                     navController.navigate("${Route.TV_ABOUT}/$tvShowID")
                                 },
-                                onSearchCardLick = {
+                                onSearchCardClick = {
                                     navController.navigate(Route.TV_SEARCH) {
                                         popUpTo(navController.graph.startDestinationId) {
                                             saveState = true
