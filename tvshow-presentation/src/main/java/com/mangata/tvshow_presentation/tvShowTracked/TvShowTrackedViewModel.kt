@@ -16,7 +16,7 @@ class TvShowTrackedViewModel(
     var trackedTvShowsState by mutableStateOf<List<TvShow>>(emptyList())
         private set
 
-    var isLoadingState by mutableStateOf<Boolean>(false)
+    var isLoadingState by mutableStateOf(false)
         private set
 
     fun getTrackedTvShow() {

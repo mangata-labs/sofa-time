@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="tvshow-presentation/src/main/res/drawable-hdpi/ic_circle_filled_add.xml" value="0.1755" />
         <entry key="tvshow-presentation/src/main/res/drawable/image_placeholder.xml" value="0.165" />
       </map>
     </option>
