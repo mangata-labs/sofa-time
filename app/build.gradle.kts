@@ -44,7 +44,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Compose.composeVersion
+        kotlinCompilerExtensionVersion = Compose.composeCompilerVersion
     }
     packagingOptions {
         exclude("META-INF/AL2.0")
@@ -73,13 +73,11 @@ dependencies {
     implementation(Compose.runtime)
     implementation(Compose.compiler)
 
+    // 3rd Party
     implementation(Coil.coilCompose)
-
-    implementation(Koin.koinAndroid)
-    implementation(Koin.koinNavigation)
     implementation(Koin.koinCompose)
 
-    //test
+    // test
     testImplementation(Junit.junit)
     androidTestImplementation(Junit.junitCore)
     androidTestImplementation(Junit.junitCompose)
