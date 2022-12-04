@@ -43,10 +43,11 @@ private fun NetworkChip(imageLoader: ImageLoader, url: String?) {
                 border = BorderStroke(1.dp, MaterialTheme.colors.componentBackground),
                 shape = MaterialTheme.shapes.medium
             )
-            .padding(vertical = 8.dp, horizontal = 16.dp)
     ) {
         AsyncImage(
-            modifier = Modifier.size(width = 50.dp, height = 25.dp),
+            modifier = Modifier
+                .size(width = 90.dp, height = 45.dp)
+                .padding(vertical = 8.dp, horizontal = 16.dp),
             model = ImageRequest.Builder(LocalContext.current)
                 .data(url)
                 .build(),

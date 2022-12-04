@@ -42,12 +42,16 @@ fun HeaderSection(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        HeaderRow(headerModel = headerModel) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Top,
+        ) {
             Text(
                 modifier = Modifier.fillMaxWidth(0.80f),
                 color = MaterialTheme.colors.textPrimary,
                 style = MaterialTheme.typography.h1,
-                text = it.title
+                text = headerModel.title
             )
             IconButton(
                 modifier = Modifier.offset(x = ((-3).dp)),
@@ -58,7 +62,7 @@ fun HeaderSection(
             ) {
                 Icon(
                     tint = if (isAdded) MaterialTheme.colors.primary
-                           else MaterialTheme.colors.textPrimary,
+                    else MaterialTheme.colors.textPrimary,
                     painter = painterResource(
                         id =
                         if (isAdded) R.drawable.ic_circle_filled_add
