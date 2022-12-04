@@ -78,4 +78,10 @@ dependencies {
     implementation(Koin.koinAndroid)
     implementation(Koin.koinNavigation)
     implementation(Koin.koinCompose)
+
+    //test
+    testImplementation(Junit.junit)
+    androidTestImplementation(Junit.junitCore)
+    androidTestImplementation(Junit.junitCompose)
+
 }

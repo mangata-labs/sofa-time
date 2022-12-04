@@ -23,7 +23,3 @@ object Compose {
     const val pagerCompose = "com.google.accompanist:accompanist-pager:$accompanistVersion"
     const val pagerIndicatorCompose = "com.google.accompanist:accompanist-pager-indicators:$accompanistVersion"
 }
-
-object ComposeTest {
-    const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4:${Compose.composeVersion}"
-}

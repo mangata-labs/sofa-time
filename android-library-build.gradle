@@ -26,8 +26,6 @@ android {
         }
     }
     compileOptions {
-        coreLibraryDesugaringEnabled true
-
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -48,4 +46,9 @@ dependencies {
 
     implementation AndroidX.coreKtx
     implementation AndroidX.lifecycleKtx
+
+    //test
+    testImplementation Junit.junit
+    androidTestImplementation Junit.junitCore
+    androidTestImplementation Junit.junitCompose
 }
