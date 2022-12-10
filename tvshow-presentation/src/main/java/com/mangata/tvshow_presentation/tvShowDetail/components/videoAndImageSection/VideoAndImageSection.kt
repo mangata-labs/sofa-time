@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
@@ -23,7 +22,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.mangata.tvshow_domain.model.image.Poster
 import com.mangata.tvshow_domain.model.video.Video
-import com.mangata.tvshow_presentation.R
+import com.mangata.core_ui.R as CoreUI
 
 @Composable
 fun VideoAndImageSection(
@@ -43,7 +42,7 @@ fun VideoAndImageSection(
             }
         }
         itemsIndexed(posters) { index, poster ->
-            ImageItem(
+            PosterItem(
                 imageLoader = imageLoader,
                 poster = poster,
             )
@@ -79,7 +78,7 @@ private fun VideoItem(
 }
 
 @Composable
-private fun ImageItem(
+private fun PosterItem(
     imageLoader: ImageLoader,
     poster: Poster
 ) {
@@ -89,7 +88,7 @@ private fun ImageItem(
             .clip(MaterialTheme.shapes.small),
         model = ImageRequest.Builder(LocalContext.current)
             .data(poster.filePath)
-            .placeholder(R.drawable.image_placeholder)
+            .placeholder(CoreUI.drawable.image_placeholder)
             .crossfade(true)
             .build(),
         imageLoader = imageLoader,

@@ -1,11 +1,11 @@
 package com.mangata.tvshow_domain.model.tvShowDetail
 
 data class Season(
-    val air_date: String?,
-    val episode_count: Int,
     val id: Int,
+    val airDate: String?,
+    val episodeCount: Int,
     val name: String,
     val overview: String,
-    val poster_path: String?,
-    val season_number: Int
+    val posterPath: String?,
+    val seasonNumber: Int
 )

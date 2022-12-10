@@ -43,11 +43,9 @@ internal class TvShowRepositoryImpl(
 
     override suspend fun getVideoForTvShow(id: Int): Result<Video?> {
         return try {
-            val trailers = tmdbService.getVideoForTvShow(id).toVideo()
+            val trailers = tmdbService.getVideoForTvShow(id).results.mapNotNull { it.toVideo() }
             Result.success(trailers.firstOrNull {
-                it.official &&
-                        (it.sourceSite is SourceSite.YouTube) &&
-                        (it.videoType is VideoType.Trailer || it.videoType is VideoType.Teaser)
+                (it.sourceSite is SourceSite.YouTube) && (it.videoType is VideoType.Trailer || it.videoType is VideoType.Teaser)
             })
         } catch (e: Exception) {
             println("here error: ${e.message}")

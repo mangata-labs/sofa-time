@@ -1,11 +1,11 @@
 package com.mangata.tvshow_domain.model.video
 
 data class Video(
-    val id: Int,
+    val id: String,
     val title: String,
     val sourceSite: SourceSite,
-    val official: Boolean,
-    val videoQuality: Int,
+    val official: Boolean?,
+    val videoQuality: Int?,
     val key: String,
     val videoType: VideoType,
 ) {

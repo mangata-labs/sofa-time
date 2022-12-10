@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ImagesDto(
-    val backdrops: List<BackdropDto>,
-    val id: Int,
-    val posters: List<PosterDto>
+    val backdrops: List<BackdropDto> = emptyList(),
+    val id: Int? = null,
+    val posters: List<PosterDto> = emptyList()
 )

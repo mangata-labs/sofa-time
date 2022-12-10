@@ -2,6 +2,11 @@ package com.mangata.core_ui.util
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -21,5 +26,18 @@ inline fun <reified T> Flow<T>.observeWithLifecycle(
         lifecycleOwner.lifecycleScope.launch {
             flowWithLifecycle(lifecycleOwner.lifecycle, minActiveState).collectLatest(action)
         }
+    }
+}
+
+fun Modifier.drawLine(): Modifier {
+    return this.drawWithContent {
+        drawContent()
+        drawLine(
+            color = Color.Gray,
+            strokeWidth = 1f,
+            cap = StrokeCap.Square,
+            start = Offset.Zero.copy(y = 0f),
+            end = Offset(x = size.width, y = 0f)
+        )
     }
 }

@@ -3,7 +3,7 @@ package com.mangata.tvshow_data.remote.service
 import com.mangata.tvshow_data.remote.dto.imagesResponse.ImagesDto
 import com.mangata.tvshow_data.remote.dto.tvShowDetailResponse.TvShowDetailDto
 import com.mangata.tvshow_data.remote.dto.tvShowResponse.TvShowResponseDto
-import com.mangata.tvshow_data.remote.dto.videoResponse.TrailerDto
+import com.mangata.tvshow_data.remote.dto.videoResponse.PagedTrailerDto
 import com.mangata.tvshow_data.util.BuildConfigHelper
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -23,7 +23,7 @@ internal class TmdbServiceImpl(private val client: HttpClient) : TmdbService {
         }.body()
     }
 
-    override suspend fun getVideoForTvShow(id: Int): TrailerDto {
+    override suspend fun getVideoForTvShow(id: Int): PagedTrailerDto {
         return client.get(Endpoint.tvShowTrailer(id)) {
             parameter("api_key", BuildConfigHelper.getTmdbApiKey())
         }.body()

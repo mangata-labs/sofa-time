@@ -4,9 +4,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class CreatedByDto(
-    val credit_id: String,
-    val gender: Int,
-    val id: Int,
-    val name: String,
+    val credit_id: String? = null,
+    val gender: Int? = null,
+    val id: Int? = null,
+    val name: String? = null,
     val profile_path: String? = null
 )

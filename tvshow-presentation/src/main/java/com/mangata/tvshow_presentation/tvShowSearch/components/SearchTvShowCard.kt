@@ -21,7 +21,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.tvshow_domain.model.tvShowList.TvShow
-import com.mangata.tvshow_presentation.R
+import com.mangata.core_ui.R as CoreUI
 
 @Composable
 fun SearchTvShowCard(
@@ -44,7 +44,7 @@ fun SearchTvShowCard(
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(tvShow.backdropPath)
-                    .placeholder(R.drawable.image_placeholder)
+                    .placeholder(CoreUI.drawable.image_placeholder)
                     .crossfade(true)
                     .build(),
                 imageLoader = imageLoader,

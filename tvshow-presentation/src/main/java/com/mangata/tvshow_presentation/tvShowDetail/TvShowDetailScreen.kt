@@ -16,12 +16,12 @@ import coil.request.ImageRequest
 import com.mangata.core_ui.components.ErrorMessage
 import com.mangata.core_ui.util.UiEvent
 import com.mangata.core_ui.util.observeWithLifecycle
-import com.mangata.tvshow_presentation.R
 import com.mangata.tvshow_presentation.tvShowDetail.components.headerSection.HeaderSection
 import com.mangata.tvshow_presentation.tvShowDetail.components.networkSection.NetworkSection
 import com.mangata.tvshow_presentation.tvShowDetail.components.similarTvSection.SimilarTvShowSection
 import com.mangata.tvshow_presentation.tvShowDetail.components.storySection.StorySection
 import com.mangata.tvshow_presentation.tvShowDetail.components.videoAndImageSection.VideoAndImageSection
+import com.mangata.core_ui.R as CoreUI
 
 @Composable
 fun TvShowDetailScreen(
@@ -65,7 +65,7 @@ fun TvShowDetailScreen(
                 modifier = Modifier.fillMaxWidth(),
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(tvShowState.backdropPath)
-                    .placeholder(R.drawable.image_placeholder)
+                    .placeholder(CoreUI.drawable.image_placeholder)
                     .crossfade(true)
                     .build(),
                 imageLoader = imageLoader,

@@ -5,11 +5,9 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -30,7 +28,7 @@ fun NetworkSection(
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(networks) { network ->
-            NetworkChip(imageLoader, url = network.logo_path)
+            NetworkChip(imageLoader, url = network.logoPath)
         }
     }
 }

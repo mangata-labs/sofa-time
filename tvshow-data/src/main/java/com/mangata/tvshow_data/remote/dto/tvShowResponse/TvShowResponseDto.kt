@@ -4,21 +4,21 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class TvShowResponseDto(
-    val page: Int,
-    val results: List<TvShowDto>,
-    val total_pages: Int,
-    val total_results: Int
+    val page: Int? = null,
+    val results: List<TvShowDto> = emptyList(),
+    val total_pages: Int? = null,
+    val total_results: Int? = null
 )
 
 @Serializable
 internal data class TvShowDto(
-    val id: Int,
-    val name: String,
-    val genre_ids: List<Int>,
+    val id: Int? = null,
+    val name: String? = null,
+    val genre_ids: List<Int> =  emptyList(),
     val backdrop_path: String? = null,
     val poster_path: String? = null,
     val first_air_date: String? = null,
-    val origin_country: List<String>,
+    val origin_country: List<String> = emptyList(),
     val original_language: String? = null,
     val original_name: String? = null,
     val overview: String? = null,

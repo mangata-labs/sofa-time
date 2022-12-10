@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class ProductionCountryDto(
-    val iso_3166_1: String,
-    val name: String
+    val iso_3166_1: String? = null,
+    val name: String? = null
 )

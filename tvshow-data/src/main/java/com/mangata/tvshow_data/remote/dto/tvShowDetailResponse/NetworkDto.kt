@@ -4,8 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class NetworkDto(
-    val id: Int,
+    val id: Int? = null,
     val logo_path: String? = null,
-    val name: String,
-    val origin_country: String
+    val name: String? = null,
+    val origin_country: String? = null
 )

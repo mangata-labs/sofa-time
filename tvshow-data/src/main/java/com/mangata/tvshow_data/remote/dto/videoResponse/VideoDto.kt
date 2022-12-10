@@ -3,21 +3,21 @@ package com.mangata.tvshow_data.remote.dto.videoResponse
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TrailerDto(
-    val id: Int,
-    val results: List<Result>
+data class PagedTrailerDto(
+    val id: Int? = null,
+    val results: List<TrailerDto> = emptyList()
 )
 
 @Serializable
-data class Result(
-    val id: String,
-    val iso_3166_1: String,
-    val iso_639_1: String,
-    val key: String,
-    val name: String,
-    val official: Boolean,
-    val published_at: String,
-    val site: String,
-    val size: Int,
-    val type: String
+data class TrailerDto(
+    val id: String? = null,
+    val iso_3166_1: String? = null,
+    val iso_639_1: String? = null,
+    val key: String? = null,
+    val name: String? = null,
+    val official: Boolean? = null,
+    val published_at: String? = null,
+    val site: String? = null,
+    val size: Int? = null,
+    val type: String? = null
 )

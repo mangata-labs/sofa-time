@@ -7,8 +7,6 @@ import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.outlined.CheckCircle
-import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -24,11 +22,9 @@ import com.mangata.core_ui.components.TextWithIcon
 import com.mangata.core_ui.theme.componentBackground
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.core_ui.theme.textPrimaryDim
-import com.mangata.tvshow_domain.model.tvShowList.TvShow
-import com.mangata.tvshow_presentation.R
 import com.mangata.tvshow_presentation.tvShowDetail.TvShowDetailEvent
 import com.mangata.tvshow_presentation.tvShowDetail.TvShowDetailViewModel
-import org.koin.androidx.compose.getViewModel
+import com.mangata.core_ui.R as CoreUI
 
 @Composable
 fun HeaderSection(
@@ -65,8 +61,8 @@ fun HeaderSection(
                     else MaterialTheme.colors.textPrimary,
                     painter = painterResource(
                         id =
-                        if (isAdded) R.drawable.ic_circle_filled_add
-                        else R.drawable.ic_circle_outlined_add
+                        if (isAdded) CoreUI.drawable.ic_circle_filled_add
+                        else CoreUI.drawable.ic_circle_outlined_add
                     ),
                     modifier = Modifier.size(40.dp),
                     contentDescription = "Add to WatchList"

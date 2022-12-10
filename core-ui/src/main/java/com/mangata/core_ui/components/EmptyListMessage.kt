@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.common.components
+package com.mangata.core_ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -12,7 +12,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.mangata.core_ui.theme.textPrimary
-import com.mangata.tvshow_presentation.R
+import com.mangata.core_ui.R
 
 @Composable
 fun EmptyListMessage(

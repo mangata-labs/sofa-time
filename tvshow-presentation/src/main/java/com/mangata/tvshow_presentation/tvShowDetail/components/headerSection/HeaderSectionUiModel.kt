@@ -40,7 +40,7 @@ fun TvShowDetails.toDetailHeaderModel(): TvDetailsHeaderModel {
     return TvDetailsHeaderModel(
         title = name,
         genres = genres,
-        runTime = episode_run_time.firstOrNull(),
+        runTime = episodeRunTime.firstOrNull(),
         lastAiredYear = lastAiredDate?.toYear(),
         startYear = firstAirDate?.toYear(),
         numberOfSeasons = number_of_seasons,
