@@ -1,5 +1,5 @@
 object Ktor {
-    private const val ktorVersion = "2.1.3"
+    private const val ktorVersion = "2.2.3"
     const val ktorCore = "io.ktor:ktor-client-core:$ktorVersion"
     const val ktorAndroid = "io.ktor:ktor-client-android:$ktorVersion"
     const val ktorContentNegotiation = "io.ktor:ktor-client-content-negotiation:$ktorVersion"

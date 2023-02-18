@@ -1,11 +1,11 @@
-package com.mangata.tvshow_data.local
+package com.mangata.tvshow_data.local.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.mangata.tvshow_data.local.dao.tvShow.TvShowDao
-import com.mangata.tvshow_data.local.dao.tvShow.TrackedTvShow
+import com.mangata.tvshow_data.local.dao.tvShow.TvShowEntity
 
-@Database(entities = [TrackedTvShow::class], version = 1, exportSchema = false)
+@Database(entities = [TvShowEntity::class], version = 2, exportSchema = false)
 abstract class SofaTimeDatabase : RoomDatabase() {
 
     abstract fun tvShowDao(): TvShowDao

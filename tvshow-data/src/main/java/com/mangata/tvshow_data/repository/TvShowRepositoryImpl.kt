@@ -1,7 +1,7 @@
 package com.mangata.tvshow_data.repository
 
 import com.mangata.tvshow_data.local.dao.tvShow.TvShowDao
-import com.mangata.tvshow_data.local.mappers.toTrackedTvShow
+import com.mangata.tvshow_data.local.mappers.toTvShowEntity
 import com.mangata.tvshow_data.local.mappers.toTvShow
 import com.mangata.tvshow_data.remote.mappers.toImage
 import com.mangata.tvshow_data.remote.mappers.toTvShow
@@ -85,7 +85,7 @@ internal class TvShowRepositoryImpl(
     }
 
     override suspend fun addTvShowToWatchList(tvShow: TvShow) {
-        val trackedTvShow = tvShow.toTrackedTvShow()
+        val trackedTvShow = tvShow.toTvShowEntity()
         localStorage.addToWatchList(trackedTvShow)
     }
 

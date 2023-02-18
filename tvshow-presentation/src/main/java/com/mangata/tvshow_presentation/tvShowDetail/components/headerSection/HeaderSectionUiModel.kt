@@ -43,7 +43,7 @@ fun TvShowDetails.toDetailHeaderModel(): TvDetailsHeaderModel {
         runTime = episodeRunTime.firstOrNull(),
         lastAiredYear = lastAiredDate?.toYear(),
         startYear = firstAirDate?.toYear(),
-        numberOfSeasons = number_of_seasons,
+        numberOfSeasons = numberOfSeasons,
         score = voteAverage,
         inProduction = inProduction
     )

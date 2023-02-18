@@ -1,9 +1,9 @@
 package com.mangata.tvshow_data.local.mappers
 
-import com.mangata.tvshow_data.local.dao.tvShow.TrackedTvShow
+import com.mangata.tvshow_data.local.dao.tvShow.TvShowEntity
 import com.mangata.tvshow_domain.model.tvShowList.TvShow
 
-internal fun TrackedTvShow.toTvShow() : TvShow {
+internal fun TvShowEntity.toTvShow() : TvShow {
     return TvShow(
         id = id,
         name = name,
@@ -14,8 +14,8 @@ internal fun TrackedTvShow.toTvShow() : TvShow {
     )
 }
 
-internal fun TvShow.toTrackedTvShow() : TrackedTvShow {
-    return TrackedTvShow(
+internal fun TvShow.toTvShowEntity() : TvShowEntity {
+    return TvShowEntity(
         id = id,
         name = name,
         description = overview,
