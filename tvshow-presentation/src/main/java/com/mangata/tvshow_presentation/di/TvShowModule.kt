@@ -1,9 +1,9 @@
 package com.mangata.tvshow_presentation.di
 
-import com.mangata.tvshow_presentation.tvShowDetail.TvShowDetailViewModel
-import com.mangata.tvshow_presentation.tvShowSearch.TvShowSearchViewModel
-import com.mangata.tvshow_presentation.tvShowHome.TvShowHomeViewModel
-import com.mangata.tvshow_presentation.tvShowTracked.TvShowTrackedViewModel
+import com.mangata.tvshow_presentation.tvShowDetail.viewModel.TvShowDetailViewModel
+import com.mangata.tvshow_presentation.tvShowSearch.viewModel.TvShowSearchViewModel
+import com.mangata.tvshow_presentation.tvShowHome.viewModel.TvShowHomeViewModel
+import com.mangata.tvshow_presentation.tvShowTracked.viewModel.TvShowTrackedViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

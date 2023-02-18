@@ -1,6 +1,5 @@
 package com.mangata.tvshow_presentation.tvShowTracked
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -13,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -23,6 +21,7 @@ import coil.request.ImageRequest
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.tvshow_domain.model.tvShowList.TvShow
 import com.mangata.core_ui.components.EmptyListMessage
+import com.mangata.tvshow_presentation.tvShowTracked.viewModel.TvShowTrackedViewModel
 import com.mangata.core_ui.R as CoreUI
 
 @Composable

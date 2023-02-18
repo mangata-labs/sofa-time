@@ -35,7 +35,6 @@ fun TrendingSection(
         )
         Spacer(modifier = Modifier.height(15.dp))
         HorizontalPager(
-            contentPadding = PaddingValues(horizontal = 2.dp),
             count = items.size,
             itemSpacing = 12.dp,
             state = pagerState

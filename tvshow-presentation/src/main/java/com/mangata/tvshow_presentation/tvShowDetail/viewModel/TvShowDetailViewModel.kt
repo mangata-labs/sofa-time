@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvShowDetail
+package com.mangata.tvshow_presentation.tvShowDetail.viewModel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -14,6 +14,7 @@ import com.mangata.tvshow_domain.model.video.Video
 import com.mangata.tvshow_domain.repository.TvShowRepository
 import com.mangata.tvshow_presentation.tvShowDetail.components.headerSection.TvDetailsHeaderModel
 import com.mangata.tvshow_presentation.tvShowDetail.components.headerSection.toDetailHeaderModel
+import com.mangata.tvshow_presentation.tvShowDetail.events.TvShowDetailEvent
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow

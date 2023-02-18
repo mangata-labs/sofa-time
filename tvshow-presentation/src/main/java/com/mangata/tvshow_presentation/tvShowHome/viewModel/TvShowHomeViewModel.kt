@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvShowHome
+package com.mangata.tvshow_presentation.tvShowHome.viewModel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

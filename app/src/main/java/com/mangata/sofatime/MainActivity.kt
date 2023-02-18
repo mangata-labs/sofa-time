@@ -27,9 +27,9 @@ import com.mangata.sofatime.navigation.bottomNavigation.BottomBar
 import com.mangata.sofatime.navigation.Screen
 import com.mangata.core_ui.theme.SofaTimeTheme
 import com.mangata.sofatime.util.setLightStatusBars
-import com.mangata.tvshow_presentation.tvShowDetail.TvShowDetailScreen
-import com.mangata.tvshow_presentation.tvShowSearch.TvShowSearchScreen
-import com.mangata.tvshow_presentation.tvShowHome.TvShowHomeScreen
+import com.mangata.tvshow_presentation.tvShowDetail.root.TvShowDetailScreen
+import com.mangata.tvshow_presentation.tvShowSearch.root.TvShowSearchScreen
+import com.mangata.tvshow_presentation.tvShowHome.root.TvShowHomeScreen
 import com.mangata.tvshow_presentation.tvShowTracked.TvShowTrackedScreen
 import org.koin.android.ext.android.inject
 import org.koin.androidx.compose.getViewModel
@@ -97,6 +97,9 @@ class MainActivity : ComponentActivity() {
                                         }
                                         restoreState = true
                                     }
+                                },
+                                onInfoClick = {
+                                    TODO("Show Alert With with WIP Title & Lottie anim")
                                 }
                             )
                         }

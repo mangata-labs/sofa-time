@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvShowSearch
+package com.mangata.tvshow_presentation.tvShowSearch.viewModel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mangata.core_ui.pager.DefaultPager
 import com.mangata.tvshow_domain.repository.TvShowRepository
+import com.mangata.tvshow_presentation.tvShowSearch.events.TvShowSearchEvent
 import com.mangata.tvshow_presentation.tvShowSearch.state.TvShowListState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -53,8 +54,8 @@ class TvShowSearchViewModel(private val tvShowRepository: TvShowRepository) : Vi
 
     fun onEvent(event: TvShowSearchEvent) {
         when (event) {
-            is TvShowSearchEvent.EnteredSearchText -> _searchState.value = event.value
-            is TvShowSearchEvent.FinishedSearch -> searchTvShows()
+            is TvShowSearchEvent.OnSearchTextChanged -> _searchState.value = event.text
+            is TvShowSearchEvent.OnSearchFinished -> searchTvShows()
         }
     }
 

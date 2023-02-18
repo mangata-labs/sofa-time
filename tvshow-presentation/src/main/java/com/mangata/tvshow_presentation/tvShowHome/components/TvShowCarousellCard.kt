@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -28,6 +29,7 @@ import com.mangata.core_ui.theme.*
 import com.mangata.tvshow_domain.model.tvShowList.TvShow
 import com.mangata.core_ui.R as CoreUI
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun TvShowCarouselCard(
     tvShow: TvShow,
@@ -36,10 +38,9 @@ fun TvShowCarouselCard(
 ) {
     Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onTvShowClick(tvShow.id) },
+            .fillMaxWidth(),
         shape = MaterialTheme.shapes.medium,
-        elevation = 2.dp
+        onClick = { onTvShowClick(tvShow.id) },
     ) {
         Box(
             modifier = Modifier.height(220.dp)

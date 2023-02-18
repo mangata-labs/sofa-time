@@ -27,7 +27,7 @@ fun SearchTvShowCard(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .shadow(2.dp, shape = MaterialTheme.shapes.medium)
+            .shadow(1.5.dp, shape = MaterialTheme.shapes.medium)
             .background(MaterialTheme.colors.surface)
             .clickable { onSearchCardClick() }
     ) {

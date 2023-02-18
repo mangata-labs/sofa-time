@@ -22,8 +22,8 @@ import com.mangata.core_ui.components.TextWithIcon
 import com.mangata.core_ui.theme.componentBackground
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.core_ui.theme.textPrimaryDim
-import com.mangata.tvshow_presentation.tvShowDetail.TvShowDetailEvent
-import com.mangata.tvshow_presentation.tvShowDetail.TvShowDetailViewModel
+import com.mangata.tvshow_presentation.tvShowDetail.events.TvShowDetailEvent
+import com.mangata.tvshow_presentation.tvShowDetail.viewModel.TvShowDetailViewModel
 import com.mangata.core_ui.R as CoreUI
 
 @Composable

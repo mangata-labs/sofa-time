@@ -13,4 +13,6 @@ dependencies {
     "implementation" (Compose.materialIconsExtended)
     "implementation" (Compose.pagerCompose)
     "implementation" (Compose.pagerIndicatorCompose)
+
+    "implementation" (Lottie.lottieAndroid)
 }

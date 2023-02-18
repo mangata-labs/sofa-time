@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvShowDetail
+package com.mangata.tvshow_presentation.tvShowDetail.root
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,6 +21,7 @@ import com.mangata.tvshow_presentation.tvShowDetail.components.networkSection.Ne
 import com.mangata.tvshow_presentation.tvShowDetail.components.similarTvSection.SimilarTvShowSection
 import com.mangata.tvshow_presentation.tvShowDetail.components.storySection.StorySection
 import com.mangata.tvshow_presentation.tvShowDetail.components.videoAndImageSection.VideoAndImageSection
+import com.mangata.tvshow_presentation.tvShowDetail.viewModel.TvShowDetailViewModel
 import com.mangata.core_ui.R as CoreUI
 
 @Composable

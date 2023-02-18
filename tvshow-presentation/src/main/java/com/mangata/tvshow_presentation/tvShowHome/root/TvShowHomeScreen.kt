@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvShowHome
+package com.mangata.tvshow_presentation.tvShowHome.root
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
@@ -10,6 +10,8 @@ import coil.ImageLoader
 import com.mangata.core_ui.components.ErrorMessage
 import com.mangata.tvshow_presentation.tvShowHome.components.SearchTvShowCard
 import com.mangata.tvshow_presentation.tvShowHome.components.TrendingSection
+import com.mangata.tvshow_presentation.tvShowHome.components.WorkInProgressCard
+import com.mangata.tvshow_presentation.tvShowHome.viewModel.TvShowHomeViewModel
 
 
 @Composable
@@ -18,6 +20,7 @@ fun TvShowHomeScreen(
     imageLoader: ImageLoader,
     onTvShowClick: (Int) -> Unit,
     onSearchCardClick: () -> Unit,
+    onInfoClick: () -> Unit
 ) {
     val trendingTvShows = viewModel.tvShowsState
     val error = viewModel.errorState
@@ -56,6 +59,8 @@ fun TvShowHomeScreen(
                     modifier = Modifier.fillMaxWidth(),
                     onSearchCardClick = onSearchCardClick
                 )
+                Spacer(Modifier.height(20.dp))
+                WorkInProgressCard(onInfoClick = { onInfoClick() })
             }
         }
     }

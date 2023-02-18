@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvShowSearch
+package com.mangata.tvshow_presentation.tvShowSearch.root
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,6 +14,8 @@ import com.mangata.core_ui.components.DefaultSearchBar
 import com.mangata.core_ui.util.loadMore
 import com.mangata.core_ui.components.EmptyListMessage
 import com.mangata.tvshow_presentation.tvShowSearch.components.SearchTvShowCard
+import com.mangata.tvshow_presentation.tvShowSearch.events.TvShowSearchEvent
+import com.mangata.tvshow_presentation.tvShowSearch.viewModel.TvShowSearchViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
@@ -47,7 +49,7 @@ fun TvShowSearchScreen(
             .debounce(500)
             .distinctUntilChanged()
             .collectLatest {
-                viewModel.onEvent(TvShowSearchEvent.FinishedSearch)
+                viewModel.onEvent(TvShowSearchEvent.OnSearchFinished)
             }
     }
 
@@ -62,7 +64,7 @@ fun TvShowSearchScreen(
             text = searchText,
             placeholderText = "Search tv shows...",
             onTextChange = {
-                viewModel.onEvent(TvShowSearchEvent.EnteredSearchText(it))
+                viewModel.onEvent(TvShowSearchEvent.OnSearchTextChanged(it))
             },
             modifier = Modifier.fillMaxWidth(0.9f)
         )
