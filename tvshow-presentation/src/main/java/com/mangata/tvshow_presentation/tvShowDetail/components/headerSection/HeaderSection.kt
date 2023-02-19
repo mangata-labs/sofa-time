@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mangata.core.extensions.round
 import com.mangata.core_ui.components.TextWithIcon
-import com.mangata.core_ui.theme.componentBackground
+import com.mangata.core_ui.theme.cardBackground
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.core_ui.theme.textPrimaryDim
 import com.mangata.tvshow_presentation.tvShowDetail.events.TvShowDetailEvent
@@ -153,7 +153,7 @@ private fun RatingItem(
     Box(
         modifier = Modifier
             .clip(MaterialTheme.shapes.small)
-            .background(MaterialTheme.colors.componentBackground)
+            .background(MaterialTheme.colors.cardBackground)
             .padding(vertical = 5.dp, horizontal = 10.dp),
         contentAlignment = Alignment.Center
     ) {

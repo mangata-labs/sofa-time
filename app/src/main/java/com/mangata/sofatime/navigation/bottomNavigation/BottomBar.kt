@@ -5,12 +5,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.mangata.core_ui.theme.*
@@ -25,7 +20,7 @@ fun BottomBar(
         modifier = Modifier
             .fillMaxWidth()
             .drawLine(),
-        backgroundColor = MaterialTheme.colors.NavigationBackground
+        backgroundColor = MaterialTheme.colors.tabBarBackground
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination?.route
@@ -48,7 +43,7 @@ private fun RowScope.AddItem(
 ) {
     BottomNavigationItem(
         selectedContentColor = MaterialTheme.colors.primary,
-        unselectedContentColor = MaterialTheme.colors.NavigationForeground,
+        unselectedContentColor = MaterialTheme.colors.tabBarForeground,
         label = {
             Text(text = stringResource(screen.title))
         },

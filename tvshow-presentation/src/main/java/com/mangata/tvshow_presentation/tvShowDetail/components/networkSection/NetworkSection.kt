@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.mangata.core_ui.theme.componentBackground
+import com.mangata.core_ui.theme.cardBackground
 import com.mangata.tvshow_domain.model.tvShowDetail.Network
 
 @Composable
@@ -38,7 +38,7 @@ private fun NetworkChip(imageLoader: ImageLoader, url: String?) {
     Box(
         modifier = Modifier
             .border(
-                border = BorderStroke(1.dp, MaterialTheme.colors.componentBackground),
+                border = BorderStroke(1.dp, MaterialTheme.colors.cardBackground),
                 shape = MaterialTheme.shapes.medium
             )
     ) {

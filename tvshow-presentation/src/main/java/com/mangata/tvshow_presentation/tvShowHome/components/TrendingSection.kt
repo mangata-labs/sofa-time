@@ -12,7 +12,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
-import com.mangata.core_ui.theme.componentBackground
+import com.mangata.core_ui.theme.cardBackground
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.tvshow_domain.model.tvShowList.TvShow
 
@@ -44,7 +44,7 @@ fun TrendingSection(
         HorizontalPagerIndicator(
             pagerState = pagerState,
             activeColor = MaterialTheme.colors.primary,
-            inactiveColor = MaterialTheme.colors.componentBackground,
+            inactiveColor = MaterialTheme.colors.cardBackground,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(20.dp),
