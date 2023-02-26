@@ -11,24 +11,18 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PriorityHigh
 import androidx.compose.material.icons.outlined.Image
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.airbnb.lottie.compose.LottieAnimation
-import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.LottieConstants
-import com.airbnb.lottie.compose.rememberLottieComposition
 import com.mangata.core_ui.theme.textPrimaryDim
 
 @Composable
 fun WorkInProgressCard(
-    onInfoClick: () -> Unit
+     onInfoClick: () -> Unit
 ) {
     Box(
         modifier = Modifier

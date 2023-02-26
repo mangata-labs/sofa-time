@@ -1,4 +1,4 @@
-package com.mangata.tvshow_presentation.tvShowDetail.components.videoAndImageSection
+package com.mangata.tvshow_presentation.tvShowDetail.components.mediaSection
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,7 +25,7 @@ import com.mangata.tvshow_domain.model.video.Video
 import com.mangata.core_ui.R as CoreUI
 
 @Composable
-fun VideoAndImageSection(
+internal fun MediaSection(
     modifier: Modifier = Modifier,
     imageLoader: ImageLoader,
     video: Video?,

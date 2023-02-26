@@ -12,7 +12,6 @@ import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 
 @Composable
@@ -33,7 +32,7 @@ fun TextWithIcon(
         text = buildAnnotatedString {
             append(text)
             append(" ")
-            appendInlineContent(myId, "[myBox]")
+            appendInlineContent(myId, "[star]")
         },
         inlineContent = inlineContent(icon, iconColor, size)
     )

@@ -1,10 +1,10 @@
-package com.mangata.tvshow_presentation.tvShowDetail.components.headerSection
+package com.mangata.tvshow_presentation.tvShowDetail.components.headingSection
 
 import com.mangata.core.extensions.toYear
 import com.mangata.tvshow_domain.model.tvShowDetail.Genre
 import com.mangata.tvshow_domain.model.tvShowDetail.TvShowDetails
 
-data class TvDetailsHeaderModel(
+data class TvDetailsHeadingModel(
     val title: String = "",
     val genres: List<Genre> = emptyList(),
     val runTime: Int? = null,
@@ -17,7 +17,7 @@ data class TvDetailsHeaderModel(
     fun displayDate(): String {
         return if (startYear == null) "Unknown"
         else if (inProduction) "$startYear - Present"
-        else "$startYear - $lastAiredYear"
+        else "$startYear - ${lastAiredYear ?: "Unknown"}"
     }
 
     fun displayGenres() : String {
@@ -34,10 +34,18 @@ data class TvDetailsHeaderModel(
             return displayString
         }
     }
+
+    fun displaySeasons() : String {
+        return if (numberOfSeasons == 1) {
+            "$numberOfSeasons Season"
+        } else if (numberOfSeasons >= 2) {
+            "$numberOfSeasons Seasons"
+        } else { "" }
+    }
 }
 
-fun TvShowDetails.toDetailHeaderModel(): TvDetailsHeaderModel {
-    return TvDetailsHeaderModel(
+fun TvShowDetails.toDetailHeaderModel(): TvDetailsHeadingModel {
+    return TvDetailsHeadingModel(
         title = name,
         genres = genres,
         runTime = episodeRunTime.firstOrNull(),

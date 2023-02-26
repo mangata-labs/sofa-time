@@ -17,7 +17,7 @@ import com.mangata.core_ui.theme.textPrimary
 import com.mangata.core_ui.theme.textPrimaryDim
 
 @Composable
-fun SearchTvShowCard(
+internal fun SearchTvShowCard(
     modifier: Modifier = Modifier,
     onSearchCardClick: () -> Unit,
 ) {

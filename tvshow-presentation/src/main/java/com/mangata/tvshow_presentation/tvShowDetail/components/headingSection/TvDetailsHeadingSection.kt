@@ -1,14 +1,17 @@
-package com.mangata.tvshow_presentation.tvShowDetail.components.headerSection
+package com.mangata.tvshow_presentation.tvShowDetail.components.headingSection
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Timer
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,27 +30,23 @@ import com.mangata.tvshow_presentation.tvShowDetail.viewModel.TvShowDetailViewMo
 import com.mangata.core_ui.R as CoreUI
 
 @Composable
-fun HeaderSection(
+internal fun TvDetailsHeadingSection(
     modifier: Modifier = Modifier,
     viewModel: TvShowDetailViewModel
 ) {
-    val headerModel = viewModel.headerState
+    val model = viewModel.headerState
     val isAdded = viewModel.isAddedToWatchList
 
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Top,
-        ) {
+        HeaderRow(headerModel = model) {
             Text(
                 modifier = Modifier.fillMaxWidth(0.80f),
                 color = MaterialTheme.colors.textPrimary,
                 style = MaterialTheme.typography.h1,
-                text = headerModel.title
+                text = model.title
             )
             IconButton(
                 modifier = Modifier.offset(x = ((-3).dp)),
@@ -69,7 +68,7 @@ fun HeaderSection(
                 )
             }
         }
-        HeaderRow(headerModel = headerModel) {
+        HeaderRow(headerModel = model) {
             Text(
                 text = buildAnnotatedString {
                     withStyle(
@@ -81,14 +80,14 @@ fun HeaderSection(
                         style = SpanStyle(
                             color = MaterialTheme.colors.textPrimaryDim
                         )
-                    ) { append("  ●  ${it.numberOfSeasons} Seasons") }
+                    ) { append("  ●  ${it.displaySeasons()}") }
                 },
                 style = MaterialTheme.typography.body1
             )
             RatingItem(score = it.score.round(1))
         }
-        if (headerModel.genres.isNotEmpty()) {
-            HeaderRow(headerModel = headerModel) {
+        if (model.genres.isNotEmpty()) {
+            HeaderRow(headerModel = model) {
                 Text(
                     color = MaterialTheme.colors.textPrimary,
                     style = MaterialTheme.typography.body1,
@@ -96,7 +95,7 @@ fun HeaderSection(
                 )
             }
         }
-        HeaderRow(headerModel = headerModel) {
+        HeaderRow(headerModel = model) {
             val inlineContent = mapOf(
                 Pair("inlineIcon",
                     InlineTextContent(
@@ -134,8 +133,8 @@ fun HeaderSection(
 @Composable
 private fun HeaderRow(
     modifier: Modifier = Modifier,
-    headerModel: TvDetailsHeaderModel,
-    rowElement: @Composable (TvDetailsHeaderModel) -> Unit
+    headerModel: TvDetailsHeadingModel,
+    rowElement: @Composable (TvDetailsHeadingModel) -> Unit
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),

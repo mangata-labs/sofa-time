@@ -17,7 +17,7 @@ import com.mangata.tvshow_domain.model.tvShowList.TvShow
 import com.mangata.tvshow_presentation.common.components.DefaultTvShowCard
 
 @Composable
-fun SimilarTvShowSection(
+internal fun SimilarTvShowSection(
     modifier: Modifier = Modifier,
     imageLoader: ImageLoader,
     tvShows: List<TvShow>,

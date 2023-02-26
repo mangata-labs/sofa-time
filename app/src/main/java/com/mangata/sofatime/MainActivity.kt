@@ -9,7 +9,9 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -21,15 +23,15 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import coil.ImageLoader
 import com.mangata.core_ui.screens.WebViewScreen
-import com.mangata.sofatime.navigation.Route
-import com.mangata.sofatime.navigation.bottomNavigation.BottomNavItem.Companion.bottomNavItems
-import com.mangata.sofatime.navigation.bottomNavigation.BottomBar
-import com.mangata.sofatime.navigation.Screen
 import com.mangata.core_ui.theme.SofaTimeTheme
+import com.mangata.sofatime.navigation.Route
+import com.mangata.sofatime.navigation.Screen
+import com.mangata.sofatime.navigation.bottomNavigation.BottomBar
+import com.mangata.sofatime.navigation.bottomNavigation.BottomNavItem.Companion.bottomNavItems
 import com.mangata.sofatime.util.setLightStatusBars
 import com.mangata.tvshow_presentation.tvShowDetail.root.TvShowDetailScreen
-import com.mangata.tvshow_presentation.tvShowSearch.root.TvShowSearchScreen
 import com.mangata.tvshow_presentation.tvShowHome.root.TvShowHomeScreen
+import com.mangata.tvshow_presentation.tvShowSearch.root.TvShowSearchScreen
 import com.mangata.tvshow_presentation.tvShowTracked.TvShowTrackedScreen
 import org.koin.android.ext.android.inject
 import org.koin.androidx.compose.getViewModel
@@ -98,9 +100,6 @@ class MainActivity : ComponentActivity() {
                                         restoreState = true
                                     }
                                 },
-                                onInfoClick = {
-                                    TODO("Show Alert With with WIP Title & Lottie anim")
-                                }
                             )
                         }
 

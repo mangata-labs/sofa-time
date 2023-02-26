@@ -8,14 +8,12 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.core_ui.theme.textPrimaryDim
 
 @Composable
-fun StorySection(
+internal fun StorySection(
     modifier: Modifier = Modifier,
     story: String,
 ) {

@@ -49,8 +49,8 @@ fun TvShowTrackedScreen(
             modifier = Modifier
                 .fillMaxWidth(0.9f)
                 .fillMaxHeight()
-                .padding(top = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp),
+                .padding(vertical = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(30.dp),
             horizontalAlignment = (Alignment.CenterHorizontally)
         ) {
             Text(
@@ -78,7 +78,7 @@ fun TvShowTrackedScreen(
 }
 
 @Composable
-fun TvShowCell(
+private fun TvShowCell(
     tvShow: TvShow,
     imageLoader: ImageLoader,
     onTvDetailClick: (Int) -> Unit,

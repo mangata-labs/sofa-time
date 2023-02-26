@@ -5,15 +5,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mangata.core_ui.util.UiEvent
+import com.mangata.core_ui.util.UICoreEvent
 import com.mangata.tvshow_domain.model.image.Poster
 import com.mangata.tvshow_domain.model.tvShowDetail.TvShowDetails
 import com.mangata.tvshow_domain.model.tvShowDetail.toTvShow
 import com.mangata.tvshow_domain.model.tvShowList.TvShow
 import com.mangata.tvshow_domain.model.video.Video
 import com.mangata.tvshow_domain.repository.TvShowRepository
-import com.mangata.tvshow_presentation.tvShowDetail.components.headerSection.TvDetailsHeaderModel
-import com.mangata.tvshow_presentation.tvShowDetail.components.headerSection.toDetailHeaderModel
+import com.mangata.tvshow_presentation.tvShowDetail.components.headingSection.TvDetailsHeadingModel
+import com.mangata.tvshow_presentation.tvShowDetail.components.headingSection.toDetailHeaderModel
 import com.mangata.tvshow_presentation.tvShowDetail.events.TvShowDetailEvent
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
@@ -27,7 +27,7 @@ class TvShowDetailViewModel(
     var tvShowDetailState by mutableStateOf<TvShowDetails?>(null)
         private set
 
-    var headerState by mutableStateOf(TvDetailsHeaderModel())
+    var headerState by mutableStateOf(TvDetailsHeadingModel())
         private set
 
     var videoState by mutableStateOf<Video?>(null)
@@ -48,7 +48,7 @@ class TvShowDetailViewModel(
     var isAddedToWatchList by mutableStateOf(false)
         private set
 
-    private val eventChannel = Channel<UiEvent>(Channel.UNLIMITED)
+    private val eventChannel = Channel<UICoreEvent>(Channel.UNLIMITED)
     val eventsFlow = eventChannel.receiveAsFlow()
 
     init {
@@ -66,7 +66,7 @@ class TvShowDetailViewModel(
         viewModelScope.launch {
             tvShowDetailState?.let {
                 launch(Dispatchers.IO) { repository.addTvShowToWatchList(it.toTvShow()) }
-                eventChannel.send(UiEvent.SnackbarEvent(uiText = "Added to Watchlist"))
+                eventChannel.send(UICoreEvent.SnackbarEvent(uiText = "Added to Watchlist"))
                 isAddedToWatchList = true
             }
         }
@@ -76,7 +76,7 @@ class TvShowDetailViewModel(
         viewModelScope.launch {
             tvShowDetailState?.let {
                 launch(Dispatchers.IO) { repository.removeTvShowFromWatchList(it.id) }
-                eventChannel.send(UiEvent.SnackbarEvent(uiText = "Deleted from Watchlist"))
+                eventChannel.send(UICoreEvent.SnackbarEvent(uiText = "Deleted from Watchlist"))
                 isAddedToWatchList = false
             }
         }

@@ -14,13 +14,13 @@ import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.mangata.core_ui.components.ErrorMessage
-import com.mangata.core_ui.util.UiEvent
+import com.mangata.core_ui.util.UICoreEvent
 import com.mangata.core_ui.util.observeWithLifecycle
-import com.mangata.tvshow_presentation.tvShowDetail.components.headerSection.HeaderSection
+import com.mangata.tvshow_presentation.tvShowDetail.components.headingSection.TvDetailsHeadingSection
 import com.mangata.tvshow_presentation.tvShowDetail.components.networkSection.NetworkSection
 import com.mangata.tvshow_presentation.tvShowDetail.components.similarTvSection.SimilarTvShowSection
 import com.mangata.tvshow_presentation.tvShowDetail.components.storySection.StorySection
-import com.mangata.tvshow_presentation.tvShowDetail.components.videoAndImageSection.VideoAndImageSection
+import com.mangata.tvshow_presentation.tvShowDetail.components.mediaSection.MediaSection
 import com.mangata.tvshow_presentation.tvShowDetail.viewModel.TvShowDetailViewModel
 import com.mangata.core_ui.R as CoreUI
 
@@ -37,7 +37,7 @@ fun TvShowDetailScreen(
 
     viewModel.eventsFlow.observeWithLifecycle {
         when (it) {
-            is UiEvent.SnackbarEvent -> scaffoldState.snackbarHostState.showSnackbar(it.uiText)
+            is UICoreEvent.SnackbarEvent -> scaffoldState.snackbarHostState.showSnackbar(it.uiText)
         }
     }
 
@@ -75,7 +75,7 @@ fun TvShowDetailScreen(
             )
         }
         item {
-            HeaderSection(
+            TvDetailsHeadingSection(
                 modifier = Modifier.padding(horizontal = 20.dp),
                 viewModel = viewModel
             )
@@ -88,7 +88,7 @@ fun TvShowDetailScreen(
             )
         }
         item {
-            VideoAndImageSection(
+            MediaSection(
                 modifier = Modifier.padding(start = 20.dp),
                 imageLoader = imageLoader,
                 video = viewModel.videoState,
@@ -98,21 +98,21 @@ fun TvShowDetailScreen(
                 }
             )
         }
-        if (tvShowState.overview.isNotEmpty()) {
+        item {
+            StorySection(
+                modifier = Modifier.padding(horizontal = 20.dp),
+                story = tvShowState.overview
+            )
+        }
+        if(viewModel.similarTvShowState.isNotEmpty()) {
             item {
-                StorySection(
-                    modifier = Modifier.padding(horizontal = 20.dp),
-                    story = tvShowState.overview
+                SimilarTvShowSection(
+                    modifier = Modifier.padding(start = 20.dp),
+                    imageLoader = imageLoader,
+                    tvShows = viewModel.similarTvShowState,
+                    onTvDetailClick = onTvDetailClick
                 )
             }
-        }
-        item {
-            SimilarTvShowSection(
-                modifier = Modifier.padding(start = 20.dp),
-                imageLoader = imageLoader,
-                tvShows = viewModel.similarTvShowState,
-                onTvDetailClick = onTvDetailClick
-            )
         }
     }
 }
