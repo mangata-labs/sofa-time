@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.WifiOff
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -35,6 +36,7 @@ internal fun TrendingSection(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(220.dp)
+                .shadow(1.5.dp, shape = MaterialTheme.shapes.medium)
                 .background(MaterialTheme.colors.surface, shape = MaterialTheme.shapes.medium)
                 .wrapContentSize(Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -47,7 +49,7 @@ internal fun TrendingSection(
                 contentDescription = "No Internet Connection"
             )
             Text(
-                text = "Unable To Load Tv Shows",
+                text = "Unable to load Tv Shows",
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.textPrimary
             )

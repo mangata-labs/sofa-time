@@ -59,7 +59,7 @@ fun WorkInProgressCard(
                 Icon(
                     modifier = Modifier
                         .size(60.dp, 60.dp),
-                    tint = MaterialTheme.colors.textPrimaryDim.copy(alpha = 0.18f),
+                    tint = MaterialTheme.colors.textPrimaryDim.copy(alpha = 0.2f),
                     imageVector = Icons.Outlined.Image,
                     contentDescription = "Placeholder Image"
                 )
@@ -71,13 +71,13 @@ fun WorkInProgressCard(
                     text = "The Last of Us",
                     style = MaterialTheme.typography.body2,
                     fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colors.textPrimaryDim.copy(alpha = 0.25f)
+                    color = MaterialTheme.colors.textPrimaryDim.copy(alpha = 0.3f)
                 )
                 Spacer(modifier = Modifier.height(5.dp))
                 Text(
                     text = "Season 1 - Episode 4",
                     style = MaterialTheme.typography.body2,
-                    color = MaterialTheme.colors.textPrimaryDim.copy(alpha = 0.25f)
+                    color = MaterialTheme.colors.textPrimaryDim.copy(alpha = 0.3f)
                 )
                 Spacer(modifier = Modifier.height(10.dp))
 
@@ -85,14 +85,14 @@ fun WorkInProgressCard(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(3.dp)
-                        .background(Color.Red.copy(alpha = 0.18f))
+                        .background(Color.Red.copy(alpha = 0.2f))
                         .clip(RoundedCornerShape(percent = 30))
                 ) {
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(0.5f)
                             .height(3.dp)
-                            .background(Color.Red.copy(alpha = 0.18f))
+                            .background(Color.Red.copy(alpha = 0.2f))
                             .clip(RoundedCornerShape(percent = 30))
                     )
                 }

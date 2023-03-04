@@ -1,5 +1,6 @@
 package com.mangata.tvshow_presentation.tvShowDetail.components.headingSection
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.InlineTextContent
@@ -12,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -37,6 +39,11 @@ internal fun TvDetailsHeadingSection(
     val model = viewModel.headerState
     val isAdded = viewModel.isAddedToWatchList
 
+    val iconAddColor by animateColorAsState(
+        targetValue = if (isAdded) MaterialTheme.colors.primary
+                      else MaterialTheme.colors.textPrimary
+    )
+
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(10.dp)
@@ -56,8 +63,7 @@ internal fun TvDetailsHeadingSection(
                 }
             ) {
                 Icon(
-                    tint = if (isAdded) MaterialTheme.colors.primary
-                    else MaterialTheme.colors.textPrimary,
+                    tint = iconAddColor,
                     painter = painterResource(
                         id =
                         if (isAdded) CoreUI.drawable.ic_circle_filled_add
