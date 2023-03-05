@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("org.jetbrains.kotlin.plugin.serialization")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -76,6 +78,10 @@ dependencies {
     // 3rd Party
     implementation(Coil.coilCompose)
     implementation(Koin.koinCompose)
+
+    implementation(platform(Firebase.firebaseBoom))
+    implementation(Firebase.firebaseCrashlytics)
+    implementation(Firebase.fireBaseAnalytics)
 
     // test
     testImplementation(Junit.junit)

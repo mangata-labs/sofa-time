@@ -1,5 +1,5 @@
 apply(from = "$rootDir/android-library-build.gradle")
-apply (plugin = "org.jetbrains.kotlin.plugin.serialization")
+apply(plugin = "org.jetbrains.kotlin.plugin.serialization")
 apply(plugin = "kotlin-kapt")
 
 dependencies {

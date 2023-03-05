@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "289247581783",
+    "project_id": "sofa-time-cd07a",
+    "storage_bucket": "sofa-time-cd07a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289247581783:android:7983f03c73d7b88535b512",
+        "android_client_info": {
+          "package_name": "com.mangata.sofatime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "289247581783-e5v8ge77jlp4mr93n33ah5qva0ambrvn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK_25KavmbJtWVMo_1cJrae9E-bfh3cOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "289247581783-e5v8ge77jlp4mr93n33ah5qva0ambrvn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

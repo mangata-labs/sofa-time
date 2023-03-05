@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
+import com.mangata.core_ui.components.DefaultAlertDialog
 import com.mangata.core_ui.components.ErrorMessage
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.tvshow_presentation.tvShowHome.components.SearchTvShowCard
@@ -27,24 +28,13 @@ fun TvShowHomeScreen(
 ) {
 
     if (viewModel.showAlert) {
-        AlertDialog(
-            modifier = Modifier.clip(MaterialTheme.shapes.small),
-            onDismissRequest = {
-                viewModel.onEvent(TvShowHomeEvents.DismissAlertDialog)
-            },
-            title = {
-                Text(text = "Episodes & Seasons tracking")
-            },
-            text = {
-                Text("Tracking Seasons & Episodes is under heavy construction. It will be available in the next major version of the app!")
-            },
-            confirmButton = {
-                Button(onClick = {
-                    viewModel.onEvent(TvShowHomeEvents.DismissAlertDialog)
-                }) {
-                    Text("Dismiss")
-                }
-            },
+        DefaultAlertDialog(
+            title = "Seasons & Episodes",
+            description = "We are currently working on the Episodes & Seasons tracking feature. It will be available in the next major version of the app!",
+            confirmButtonText = "Dismiss",
+            onDismissRequest = { viewModel.onEvent(TvShowHomeEvents.DismissAlertDialog) },
+            onConfirmButtonClick = { viewModel.onEvent(TvShowHomeEvents.DismissAlertDialog) },
+            modifier = Modifier.clip(MaterialTheme.shapes.small)
         )
     }
 
