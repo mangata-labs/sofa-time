@@ -43,7 +43,7 @@ class TvShowHomeViewModel(private val tvShowRepository: TvShowRepository) : View
         viewModelScope.launch {
             val result = tvShowRepository.getTrendingTvShows()
             result.onSuccess {
-                tvShowsState = emptyList()
+                tvShowsState = it
                 isLoading = false
             }
             result.onFailure {

@@ -46,7 +46,6 @@ fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
     }
 }
 
-
 fun Modifier.drawLine(): Modifier {
     return this.drawWithContent {
         drawContent()

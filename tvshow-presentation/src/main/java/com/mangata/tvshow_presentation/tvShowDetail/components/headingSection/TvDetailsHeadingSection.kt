@@ -1,6 +1,7 @@
 package com.mangata.tvshow_presentation.tvShowDetail.components.headingSection
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.InlineTextContent
@@ -40,8 +41,13 @@ internal fun TvDetailsHeadingSection(
     val isAdded = viewModel.isAddedToWatchList
 
     val iconAddColor by animateColorAsState(
-        targetValue = if (isAdded) MaterialTheme.colors.primary
-                      else MaterialTheme.colors.textPrimary
+        targetValue = if (isAdded) MaterialTheme.colors.primary else MaterialTheme.colors.textPrimary,
+        animationSpec = tween(200, 100)
+    )
+
+    val iconAddSize by animateDpAsState(
+        targetValue = if (isAdded) 45.dp else 40.dp,
+        animationSpec = spring(Spring.DampingRatioMediumBouncy, Spring.StiffnessMediumLow)
     )
 
     Column(
@@ -69,7 +75,7 @@ internal fun TvDetailsHeadingSection(
                         if (isAdded) CoreUI.drawable.ic_circle_filled_add
                         else CoreUI.drawable.ic_circle_outlined_add
                     ),
-                    modifier = Modifier.size(40.dp),
+                    modifier = Modifier.size(iconAddSize),
                     contentDescription = "Add to WatchList"
                 )
             }

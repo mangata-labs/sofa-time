@@ -1,8 +1,6 @@
 package com.mangata.tvshow_presentation.tvShowDetail.components.similarTvSection
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
@@ -44,6 +42,9 @@ internal fun SimilarTvShowSection(
                     imageWidth = 125.dp,
                     onTvDetailClick = onTvDetailClick
                 )
+            }
+            item {
+                Spacer(modifier = Modifier.width(20.dp))
             }
         }
     }

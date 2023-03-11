@@ -31,9 +31,9 @@ internal fun SearchTvShowCard(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(14.dp),
+                .padding(all = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(10.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Icon(
                 modifier = Modifier.size(50.dp),
@@ -47,12 +47,12 @@ internal fun SearchTvShowCard(
                 Text(
                     text = "Search Tv Shows",
                     color = MaterialTheme.colors.textPrimary,
-                    style = MaterialTheme.typography.h2
+                    style = MaterialTheme.typography.h3
                 )
                 Text(
-                    text = "Search your favorite TvShows and add them to your WatchList",
+                    text = "Search your favorite Tv Shows and add them to your watchlist",
                     color = MaterialTheme.colors.textPrimaryDim,
-                    style = MaterialTheme.typography.body1
+                    style = MaterialTheme.typography.body2
                 )
             }
         }

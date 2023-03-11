@@ -47,6 +47,9 @@ internal fun MediaSection(
                 poster = poster,
             )
         }
+        item {
+            Spacer(modifier = Modifier.width(20.dp))
+        }
     }
 }
 

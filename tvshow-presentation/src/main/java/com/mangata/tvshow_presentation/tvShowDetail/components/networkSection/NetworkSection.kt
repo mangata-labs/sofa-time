@@ -33,6 +33,9 @@ internal fun NetworkSection(
         items(networks) { network ->
             NetworkChip(imageLoader, url = network.logoPath)
         }
+        item {
+            Spacer(modifier = Modifier.width(20.dp))
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 package com.mangata.tvshow_presentation.tvShowHome.components
 
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
@@ -20,6 +21,7 @@ import com.google.accompanist.pager.rememberPagerState
 import com.mangata.core_ui.theme.cardBackground
 import com.mangata.core_ui.theme.textPrimary
 import com.mangata.core_ui.theme.textPrimaryDim
+import com.mangata.core_ui.util.shake
 import com.mangata.tvshow_domain.model.tvShowList.TvShow
 
 @OptIn(ExperimentalPagerApi::class)
@@ -43,7 +45,9 @@ internal fun TrendingSection(
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             Icon(
-                modifier = Modifier.size(40.dp, 40.dp),
+                modifier = Modifier
+                    .size(40.dp, 40.dp)
+                    .shake(),
                 imageVector = Icons.Filled.WifiOff,
                 tint = MaterialTheme.colors.primary,
                 contentDescription = "No Internet Connection"
