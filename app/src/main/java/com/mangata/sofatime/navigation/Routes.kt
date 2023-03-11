@@ -8,7 +8,8 @@ object Route {
     const val HOME = "home"
     const val TV_ABOUT = "tv_about"
     const val TV_SEARCH = "tv_search"
-    const val USER_PROFILE = "user_profile"
+    const val TV_TRACKED = "tv_tracked"
+    const val SETTINGS = "settings"
     const val WEB_VIEW = "web_view"
 }
 
@@ -31,8 +32,13 @@ sealed class Screen(val route: String, val args: List<NamedNavArgument>) {
         args = emptyList()
     )
 
-    object Profile : Screen(
-        route = Route.USER_PROFILE,
+    object TVTracked : Screen(
+        route = Route.TV_TRACKED,
+        args = emptyList()
+    )
+
+    object Settings : Screen(
+        route = Route.SETTINGS,
         args = emptyList()
     )
 

@@ -1,13 +1,13 @@
-package com.mangata.tvshow_presentation.tvShowTracked
+package com.mangata.tvshow_presentation.tvShowTracked.root
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -29,6 +29,7 @@ fun TvShowTrackedScreen(
     imageLoader: ImageLoader,
     viewModel: TvShowTrackedViewModel,
     onTvDetailClick: (Int) -> Unit,
+    onSettingsClick: () -> Unit
 ) {
     val trackedTvShows = viewModel.trackedTvShowsState
     val isLoading = viewModel.isLoadingState
@@ -53,12 +54,9 @@ fun TvShowTrackedScreen(
             verticalArrangement = Arrangement.spacedBy(30.dp),
             horizontalAlignment = (Alignment.CenterHorizontally)
         ) {
-            Text(
-                modifier = Modifier.align(Alignment.Start),
-                text = "Your Watchlist",
-                style = MaterialTheme.typography.h1,
-                color = MaterialTheme.colors.textPrimary,
-            )
+            Heading(
+                modifier = Modifier.fillMaxWidth()
+            ) { onSettingsClick() }
             LazyVerticalGrid(
                 modifier = Modifier.fillMaxSize(),
                 columns = GridCells.Fixed(count = 2),
@@ -73,6 +71,33 @@ fun TvShowTrackedScreen(
                     )
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun Heading(
+    modifier: Modifier = Modifier,
+    onSettingsClick: () -> Unit
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            text = "Your Watchlist",
+            style = MaterialTheme.typography.h1,
+            color = MaterialTheme.colors.textPrimary,
+        )
+        IconButton(
+            onClick = { onSettingsClick() }
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Settings,
+                contentDescription = null,
+                tint = MaterialTheme.colors.textPrimary
+            )
         }
     }
 }

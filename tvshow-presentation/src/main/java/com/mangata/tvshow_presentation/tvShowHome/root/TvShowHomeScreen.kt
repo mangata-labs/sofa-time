@@ -30,7 +30,7 @@ fun TvShowHomeScreen(
     if (viewModel.showAlert) {
         DefaultAlertDialog(
             title = "Seasons & Episodes",
-            description = "We are currently working on the Episodes & Seasons tracking feature. It will be available in the next major version of the app!",
+            description = "We are working on the Episodes & Seasons tracking feature. It will be available in the next major version of the app!",
             confirmButtonText = "Dismiss",
             onDismissRequest = { viewModel.onEvent(TvShowHomeEvents.DismissAlertDialog) },
             onConfirmButtonClick = { viewModel.onEvent(TvShowHomeEvents.DismissAlertDialog) },
