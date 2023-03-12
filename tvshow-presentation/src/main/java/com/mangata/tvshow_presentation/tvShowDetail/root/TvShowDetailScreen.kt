@@ -17,10 +17,10 @@ import com.mangata.core_ui.components.ErrorMessage
 import com.mangata.core_ui.util.UICoreEvent
 import com.mangata.core_ui.util.observeWithLifecycle
 import com.mangata.tvshow_presentation.tvShowDetail.components.headingSection.TvDetailsHeadingSection
+import com.mangata.tvshow_presentation.tvShowDetail.components.mediaSection.MediaSection
 import com.mangata.tvshow_presentation.tvShowDetail.components.networkSection.NetworkSection
 import com.mangata.tvshow_presentation.tvShowDetail.components.similarTvSection.SimilarTvShowSection
 import com.mangata.tvshow_presentation.tvShowDetail.components.storySection.StorySection
-import com.mangata.tvshow_presentation.tvShowDetail.components.mediaSection.MediaSection
 import com.mangata.tvshow_presentation.tvShowDetail.viewModel.TvShowDetailViewModel
 import com.mangata.core_ui.R as CoreUI
 

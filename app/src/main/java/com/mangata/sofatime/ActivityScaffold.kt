@@ -31,10 +31,10 @@ fun ActivityScaffold(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     when (navBackStackEntry?.destination?.route) {
-        Screen.TvAbout.route, Screen.WebView.route -> {
-            bottomBarState.value = false
+        Screen.Home.route, Screen.TvSearch.route, Screen.TvTracked.route -> {
+            bottomBarState.value = true
         }
-        else -> bottomBarState.value = true
+        else -> bottomBarState.value = false
     }
 
     Scaffold(
@@ -77,6 +77,7 @@ fun ActivityScaffold(
                 imageLoader = imageLoader,
                 navController = navController
             )
+            addSettingsRoute()
             addWebViewRoute()
         }
     }

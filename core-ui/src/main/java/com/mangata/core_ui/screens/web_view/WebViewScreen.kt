@@ -1,4 +1,4 @@
-package com.mangata.core_ui.screens
+package com.mangata.core_ui.screens.web_view
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable

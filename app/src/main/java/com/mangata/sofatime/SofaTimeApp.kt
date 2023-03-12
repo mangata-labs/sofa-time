@@ -1,6 +1,7 @@
 package com.mangata.sofatime
 
 import android.app.Application
+import com.mangata.core_ui.di.coreUIModule
 import com.mangata.sofatime.di.appModule
 import com.mangata.tvshow_data.di.remoteModule
 import com.mangata.tvshow_presentation.di.tvShowModule
@@ -18,6 +19,7 @@ class SofaTimeApp : Application() {
             modules(appModule)
             modules(remoteModule)
             modules(tvShowModule)
+            modules(coreUIModule)
         }
     }
 }

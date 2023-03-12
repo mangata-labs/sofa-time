@@ -5,7 +5,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import coil.ImageLoader
-import com.mangata.core_ui.screens.WebViewScreen
+import com.mangata.core_ui.screens.settings.SettingsScreen
+import com.mangata.core_ui.screens.web_view.WebViewScreen
 import com.mangata.sofatime.navigation.Route
 import com.mangata.sofatime.navigation.Screen
 import com.mangata.tvshow_presentation.tvShowDetail.root.TvShowDetailScreen
@@ -73,8 +74,8 @@ fun NavGraphBuilder.addSearchRoute(
     navController: NavController,
 ) {
     composable(
-        route = Screen.TVSearch.route,
-        arguments = Screen.TVSearch.args
+        route = Screen.TvSearch.route,
+        arguments = Screen.TvSearch.args
     ) {
         TvShowSearchScreen(
             imageLoader = imageLoader,
@@ -91,8 +92,8 @@ fun NavGraphBuilder.addTvTrackedRoute(
     navController: NavController,
 ) {
     composable(
-        route = Screen.TVTracked.route,
-        arguments = Screen.TVTracked.args
+        route = Screen.TvTracked.route,
+        arguments = Screen.TvTracked.args
     ) {
         TvShowTrackedScreen(
             imageLoader = imageLoader,
@@ -101,15 +102,13 @@ fun NavGraphBuilder.addTvTrackedRoute(
                 navController.navigate("${Route.TV_ABOUT}/$tvShowID")
             },
             onSettingsClick = {
-                TODO("Add settings Screen")
+                navController.navigate(Route.SETTINGS)
             }
         )
     }
 }
 
-fun NavGraphBuilder.addWebViewRoute(
-
-) {
+fun NavGraphBuilder.addWebViewRoute() {
     composable(
         route = Screen.WebView.route,
         arguments = Screen.WebView.args
@@ -117,6 +116,19 @@ fun NavGraphBuilder.addWebViewRoute(
         val webUrl = it.arguments?.getString("webUrl")!!
         WebViewScreen(
             webUrl = webUrl
+        )
+    }
+}
+
+fun NavGraphBuilder.addSettingsRoute() {
+    composable(
+        route = Screen.Settings.route,
+        arguments = Screen.Settings.args
+    ) {
+        SettingsScreen(
+            viewModel = getViewModel(),
+            onBuyMeACoffeeClick = { TODO("Handle buy-me-a-coffee click") },
+            onBackCLick = { TODO("Handle back click") }
         )
     }
 }

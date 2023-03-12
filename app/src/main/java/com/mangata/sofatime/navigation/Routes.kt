@@ -27,12 +27,12 @@ sealed class Screen(val route: String, val args: List<NamedNavArgument>) {
         })
     )
 
-    object TVSearch : Screen(
+    object TvSearch : Screen(
         route = Route.TV_SEARCH,
         args = emptyList()
     )
 
-    object TVTracked : Screen(
+    object TvTracked : Screen(
         route = Route.TV_TRACKED,
         args = emptyList()
     )
