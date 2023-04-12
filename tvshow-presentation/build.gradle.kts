@@ -11,6 +11,5 @@ dependencies {
     "implementation" (Koin.koinCompose)
 
     "implementation" (Compose.materialIconsExtended)
-    "implementation" (Compose.pagerCompose)
-    "implementation" (Compose.pagerIndicatorCompose)
+    "implementation" (Compose.placeholderMaterial3)
 }

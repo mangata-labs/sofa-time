@@ -49,19 +49,20 @@ fun TvShowTrackedScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth(0.9f)
-                .fillMaxHeight()
-                .padding(vertical = 20.dp),
+                .fillMaxHeight(),
             verticalArrangement = Arrangement.spacedBy(30.dp),
             horizontalAlignment = (Alignment.CenterHorizontally)
         ) {
             Heading(
-                modifier = Modifier.fillMaxWidth()
-            ) { onSettingsClick() }
+                modifier = Modifier.fillMaxWidth(),
+                onSettingsClick = onSettingsClick
+            )
             LazyVerticalGrid(
                 modifier = Modifier.fillMaxSize(),
                 columns = GridCells.Fixed(count = 2),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = PaddingValues(bottom = 20.dp)
             ) {
                 items(trackedTvShows) { tvShow ->
                     TvShowCell(

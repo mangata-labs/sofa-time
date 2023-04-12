@@ -1,7 +1,6 @@
 package com.mangata.tvshow_presentation.tvShowHome.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
@@ -35,9 +34,10 @@ fun TvShowCarouselCard(
     tvShow: TvShow,
     imageLoader: ImageLoader,
     onTvShowClick: (Int) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         shape = MaterialTheme.shapes.medium,
         onClick = { onTvShowClick(tvShow.id) },

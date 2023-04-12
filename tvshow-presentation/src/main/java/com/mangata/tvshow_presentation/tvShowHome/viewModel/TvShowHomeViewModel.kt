@@ -32,6 +32,7 @@ class TvShowHomeViewModel(private val tvShowRepository: TvShowRepository) : View
         when (event) {
             TvShowHomeEvents.ShowAlertDialog -> toggleAlertDialog(true)
             TvShowHomeEvents.DismissAlertDialog -> toggleAlertDialog(false)
+            TvShowHomeEvents.Refresh -> loadTrendingTvShows()
         }
     }
     private fun toggleAlertDialog(show: Boolean)  {

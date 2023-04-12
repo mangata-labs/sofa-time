@@ -1,5 +1,12 @@
 package com.mangata.core_ui.util
 
+import android.content.ComponentName
+import android.content.Context
+import android.net.Uri
+import androidx.browser.customtabs.CustomTabsClient
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.browser.customtabs.CustomTabsServiceConnection
+import androidx.browser.customtabs.CustomTabsSession
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.lazy.LazyListState
@@ -57,4 +64,31 @@ fun Modifier.drawLine(): Modifier {
             end = Offset(x = size.width, y = 0f)
         )
     }
+}
+
+// function to open custom chrome tabs.
+fun linkToWebPage(context: Context, uriString: String) {
+
+    val mCustomTabsServiceConnection: CustomTabsServiceConnection?
+    var mClient: CustomTabsClient?
+    var mCustomTabsSession: CustomTabsSession? = null
+
+    mCustomTabsServiceConnection = object : CustomTabsServiceConnection() {
+        override fun onCustomTabsServiceConnected(componentName: ComponentName, customTabsClient: CustomTabsClient) {
+            //Pre-warming
+            mClient = customTabsClient
+            mClient?.warmup(0L)
+            mCustomTabsSession = mClient?.newSession(null)
+        }
+        override fun onServiceDisconnected(name: ComponentName) {
+            mClient = null
+        }
+    }
+    CustomTabsClient.bindCustomTabsService(context, "com.android.chrome", mCustomTabsServiceConnection)
+    val customTabsIntent = CustomTabsIntent.Builder(mCustomTabsSession)
+        .setShowTitle(true)
+        .setInstantAppsEnabled(true)
+        .build()
+
+    customTabsIntent.launchUrl(context, Uri.parse(uriString))
 }

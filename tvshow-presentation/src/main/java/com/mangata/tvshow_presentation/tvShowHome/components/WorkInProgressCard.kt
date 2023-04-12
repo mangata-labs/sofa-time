@@ -22,10 +22,11 @@ import com.mangata.core_ui.theme.textPrimaryDim
 
 @Composable
 fun WorkInProgressCard(
-     onInfoClick: () -> Unit
+    modifier: Modifier = Modifier,
+    onInfoClick: () -> Unit
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .clip(MaterialTheme.shapes.medium)
             .background(MaterialTheme.colors.surface.copy(alpha = 0.5f))

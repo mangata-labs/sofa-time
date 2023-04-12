@@ -42,11 +42,12 @@ dependencies {
     implementation Compose.material
     implementation Compose.runtime
     implementation Compose.navigation
-    implementation Compose.viewModelCompose
     implementation Compose.activityCompose
+    implementation Compose.uiUtil
 
     implementation AndroidX.coreKtx
-    implementation AndroidX.lifecycleKtx
+    implementation AndroidX.lifecycleViewModel
+    implementation AndroidX.lifecycleRuntime
 
     // test
     testImplementation Junit.junit

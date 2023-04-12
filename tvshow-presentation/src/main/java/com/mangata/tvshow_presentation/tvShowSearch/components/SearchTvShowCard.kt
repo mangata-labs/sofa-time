@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -29,10 +27,11 @@ import com.mangata.core_ui.R as CoreUI
 fun SearchTvShowCard(
     tvShow: TvShow,
     onTvDetailClick: (Int) -> Unit,
-    imageLoader: ImageLoader
+    imageLoader: ImageLoader,
+    modifier: Modifier = Modifier
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .shadow(1.5.dp, shape = MaterialTheme.shapes.medium)
             .background(MaterialTheme.colors.surface)

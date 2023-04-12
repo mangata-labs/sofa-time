@@ -8,8 +8,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -28,13 +28,11 @@ internal fun NetworkSection(
 ) {
     LazyRow(
         modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(start = 20.dp, end = 20.dp)
     ) {
         items(networks) { network ->
             NetworkChip(imageLoader, url = network.logoPath)
-        }
-        item {
-            Spacer(modifier = Modifier.width(20.dp))
         }
     }
 }
@@ -43,17 +41,17 @@ internal fun NetworkSection(
 private fun NetworkChip(imageLoader: ImageLoader, url: String?) {
     Box(
         modifier = Modifier
-            .clip(MaterialTheme.shapes.medium)
+            .background(color = SnowWhite, shape = MaterialTheme.shapes.medium)
             .border(
                 border = BorderStroke(1.dp, MaterialTheme.colors.cardBackground),
                 shape = MaterialTheme.shapes.medium
             )
-            .background(color = SnowWhite, shape = MaterialTheme.shapes.medium)
     ) {
         AsyncImage(
             modifier = Modifier
                 .size(width = 90.dp, height = 45.dp)
-                .padding(vertical = 8.dp, horizontal = 16.dp),
+                .padding(vertical = 8.dp, horizontal = 16.dp)
+                .align(Alignment.Center),
             model = ImageRequest.Builder(LocalContext.current)
                 .data(url)
                 .build(),

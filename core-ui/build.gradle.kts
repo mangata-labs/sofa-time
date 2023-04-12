@@ -6,6 +6,7 @@ dependencies {
     "implementation" (Koin.koinAndroid)
     "implementation" (Koin.koinCompose)
 
-    "implementation" (Compose.webViewCompose)
     "implementation" (Compose.materialIconsExtended)
+
+    "implementation" (AndroidX.browser)
 }

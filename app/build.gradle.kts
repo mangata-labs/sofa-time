@@ -61,19 +61,20 @@ dependencies {
     implementation(project(Modules.tvShowDomain))
     implementation(project(Modules.tvShowPresentation))
 
-    implementation(AndroidX.coreKtx)
-    implementation(AndroidX.lifecycleKtx)
-
     implementation(Compose.ui)
     implementation(Compose.material)
     implementation(Compose.materialIconsExtended)
     implementation(Compose.uiTooling)
     implementation(Compose.uiToolingPreview)
-    implementation(Compose.viewModelCompose)
     implementation(Compose.navigation)
     implementation(Compose.activityCompose)
     implementation(Compose.runtime)
     implementation(Compose.compiler)
+
+    implementation(AndroidX.coreKtx)
+    implementation(AndroidX.lifecycleViewModel)
+    implementation(AndroidX.lifecycleRuntime)
+    implementation(AndroidX.splashScreen)
 
     // 3rd Party
     implementation(Coil.coilCompose)
@@ -82,6 +83,9 @@ dependencies {
     implementation(platform(Firebase.firebaseBoom))
     implementation(Firebase.firebaseCrashlytics)
     implementation(Firebase.fireBaseAnalytics)
+    implementation("androidx.appcompat:appcompat:1.4.1")
+    implementation("com.google.android.material:material:1.4.+")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
 
     // test
     testImplementation(Junit.junit)

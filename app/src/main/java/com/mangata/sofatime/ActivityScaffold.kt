@@ -77,8 +77,9 @@ fun ActivityScaffold(
                 imageLoader = imageLoader,
                 navController = navController
             )
-            addSettingsRoute()
-            addWebViewRoute()
+            addSettingsRoute(
+                navController = navController
+            )
         }
     }
 }

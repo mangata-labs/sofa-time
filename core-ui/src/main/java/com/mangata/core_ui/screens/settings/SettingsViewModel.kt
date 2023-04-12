@@ -8,4 +8,7 @@ class SettingsViewModel(
 ): ViewModel() {
 
     fun getAppVersion() = appConfiguration.VERSION_NAME
+    fun getBuyMeACoffeeUrlPath() = "https://www.buymeacoffee.com/tomy1604"
+
+    fun getTmdbUrl() = "https://www.themoviedb.org/"
 }

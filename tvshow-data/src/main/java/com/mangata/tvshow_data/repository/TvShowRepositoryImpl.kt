@@ -26,7 +26,6 @@ internal class TvShowRepositoryImpl(
             val result = response.results
             Result.success(result.mapNotNull { it.toTvShow() })
         } catch (e: Exception) {
-            println("here error: ${e.message}")
             return Result.failure(e)
         }
     }
@@ -36,7 +35,6 @@ internal class TvShowRepositoryImpl(
             val response = tmdbService.getTvShowDetails(id)
             Result.success(response.toTvShowDetails())
         } catch (e: Exception) {
-            println("here error: ${e.message}")
             return Result.failure(e)
         }
     }
@@ -48,7 +46,6 @@ internal class TvShowRepositoryImpl(
                 (it.sourceSite is SourceSite.YouTube) && (it.videoType is VideoType.Trailer || it.videoType is VideoType.Teaser)
             })
         } catch (e: Exception) {
-            println("here error: ${e.message}")
             return Result.failure(e)
         }
     }
@@ -59,7 +56,6 @@ internal class TvShowRepositoryImpl(
             val numberOfImages: Int = if (result.posters.size >= 10) 10 else result.posters.size
             Result.success(result.toImage().take(numberOfImages))
         } catch (e: Exception) {
-            println("here error: ${e.message}")
             return Result.failure(e)
         }
     }
@@ -69,7 +65,6 @@ internal class TvShowRepositoryImpl(
             val result = tmdbService.searchTvShows(query, pageNumber).results
             Result.success(result.mapNotNull { it.toTvShow() })
         } catch (e: Exception) {
-            println("here error: ${e.message}")
             return Result.failure(e)
         }
     }
@@ -79,7 +74,6 @@ internal class TvShowRepositoryImpl(
             val result = tmdbService.getTrendingTvShows().results
             Result.success(result.mapNotNull { it.toTvShow() }.take(10))
         } catch (e: Exception) {
-            println("here error: ${e.message}")
             return Result.failure(e)
         }
     }
@@ -98,7 +92,6 @@ internal class TvShowRepositoryImpl(
             val result = tmdbService.getSimilarTvShows(id).results
             Result.success(result.mapNotNull { it.toTvShow() })
         } catch (e: Exception) {
-            println("here error: ${e.message}")
             return Result.failure(e)
         }
     }

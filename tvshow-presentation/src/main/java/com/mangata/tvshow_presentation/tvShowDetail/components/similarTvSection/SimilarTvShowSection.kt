@@ -32,7 +32,8 @@ internal fun SimilarTvShowSection(
         )
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            contentPadding = PaddingValues(start = 20.dp, end = 20.dp)
         ) {
             items(tvShows) { tvShow ->
                 DefaultTvShowCard(
@@ -42,9 +43,6 @@ internal fun SimilarTvShowSection(
                     imageWidth = 125.dp,
                     onTvDetailClick = onTvDetailClick
                 )
-            }
-            item {
-                Spacer(modifier = Modifier.width(20.dp))
             }
         }
     }

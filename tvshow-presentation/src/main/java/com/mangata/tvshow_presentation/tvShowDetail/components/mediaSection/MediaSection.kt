@@ -34,7 +34,8 @@ internal fun MediaSection(
 ) {
     LazyRow(
         modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        contentPadding = PaddingValues(start = 20.dp, end = 20.dp)
     ) {
         video?.let { video ->
             item {
@@ -46,9 +47,6 @@ internal fun MediaSection(
                 imageLoader = imageLoader,
                 poster = poster,
             )
-        }
-        item {
-            Spacer(modifier = Modifier.width(20.dp))
         }
     }
 }
