@@ -19,5 +19,5 @@ object Compose {
 
     //Google Accompanist
     private const val accompanistVersion = "0.30.0"
-    const val placeholderMaterial3 = "com.google.accompanist:accompanist-placeholder-material:$accompanistVersion"
+    const val placeholderMaterial = "com.google.accompanist:accompanist-placeholder-material:$accompanistVersion"
 }
