@@ -28,7 +28,8 @@ internal fun SimilarTvShowSection(
         Text(
             text ="Similar Tv Shows",
             style = MaterialTheme.typography.h2,
-            color = MaterialTheme.colors.textPrimary
+            color = MaterialTheme.colors.textPrimary,
+            modifier = Modifier.padding(start = 20.dp)
         )
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
