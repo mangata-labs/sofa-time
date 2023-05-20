@@ -65,8 +65,8 @@ private fun SupportMeContent(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Want to support my work?",
-                style = MaterialTheme.typography.h3,
+                text = "Want to support app development?",
+                style = MaterialTheme.typography.body2,
                 color = MaterialTheme.colors.textPrimary,
             )
             Image(
