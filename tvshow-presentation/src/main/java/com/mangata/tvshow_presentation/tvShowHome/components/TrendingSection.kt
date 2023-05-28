@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import com.mangata.core_ui.theme.cardBackground
@@ -44,6 +45,13 @@ internal fun TrendingSection(
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Text(
+                modifier = modifier.fillMaxWidth(),
+                text = "Trending Now",
+                textAlign = TextAlign.Start,
+                style = MaterialTheme.typography.h1,
+                color = MaterialTheme.colors.textPrimary
+            )
             HorizontalPager(
                 pageCount = items.size,
                 pageSpacing = 12.dp,
@@ -113,7 +121,7 @@ fun ErrorPlaceholder(
             contentDescription = "No Internet Connection"
         )
         Text(
-            text = "Unable to load Tv Shows",
+            text = "Unable to load Content",
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.textPrimary
         )

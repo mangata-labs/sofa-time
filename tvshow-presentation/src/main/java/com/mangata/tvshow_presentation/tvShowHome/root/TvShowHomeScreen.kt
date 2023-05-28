@@ -62,14 +62,6 @@ fun TvShowHomeScreen(
             verticalArrangement = Arrangement.spacedBy(30.dp)
         ) {
             item {
-                Text(
-                    modifier = Modifier.align(Alignment.CenterStart),
-                    text = "Trending Now",
-                    style = MaterialTheme.typography.h1,
-                    color = MaterialTheme.colors.textPrimary
-                )
-            }
-            item {
                 TrendingSection(
                     items = viewModel.tvShowsState,
                     imageLoader = imageLoader,
@@ -106,7 +98,10 @@ fun TvShowHomeScreen(
                     onInfoClick = { viewModel.onEvent(TvShowHomeEvents.ShowAlertDialog) })
             }
         }
-        PullRefreshIndicator(isLoading, pullRefreshState, Modifier.align(Alignment.TopCenter))
+        PullRefreshIndicator(
+            modifier = Modifier.align(Alignment.TopCenter),
+            refreshing = isLoading,
+            state = pullRefreshState,
+        )
     }
-
 }

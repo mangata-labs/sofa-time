@@ -11,50 +11,50 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.mangata.core_ui.theme.textPrimary
+import com.mangata.core_ui.theme.cardBackgroundColored
+import com.mangata.core_ui.theme.textPrimaryColored
 import com.mangata.core_ui.theme.textPrimaryDim
+import com.mangata.core_ui.theme.textPrimaryDimColored
 
 @Composable
 internal fun SearchTvShowCard(
     modifier: Modifier = Modifier,
     onSearchCardClick: () -> Unit,
 ) {
-    Box(
+    Row(
         modifier = modifier
             .fillMaxWidth()
-            .shadow(1.5.dp, shape = MaterialTheme.shapes.medium)
-            .background(MaterialTheme.colors.surface)
-            .clickable { onSearchCardClick() }
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            Icon(
-                modifier = Modifier.size(50.dp),
-                imageVector = Icons.Default.Search,
-                tint = MaterialTheme.colors.primary,
-                contentDescription = "Search"
+            .clip(shape = MaterialTheme.shapes.medium)
+            .background(
+                color = MaterialTheme.colors.cardBackgroundColored,
+                shape = MaterialTheme.shapes.medium
             )
-            Column(
-                verticalArrangement = Arrangement.spacedBy(5.dp)
-            ) {
-                Text(
-                    text = "Search Tv Shows",
-                    color = MaterialTheme.colors.textPrimary,
-                    style = MaterialTheme.typography.h3
-                )
-                Text(
-                    text = "Search your favorite Tv Shows and add them to your watchlist",
-                    color = MaterialTheme.colors.textPrimaryDim,
-                    style = MaterialTheme.typography.body2
-                )
-            }
+            .clickable { onSearchCardClick() }
+            .padding(all = 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        Icon(
+            modifier = Modifier.size(50.dp),
+            imageVector = Icons.Default.Search,
+            tint = MaterialTheme.colors.primary,
+            contentDescription = "Search"
+        )
+        Column(
+            verticalArrangement = Arrangement.spacedBy(5.dp)
+        ) {
+            Text(
+                text = "Search Tv Shows",
+                color = MaterialTheme.colors.textPrimaryColored,
+                style = MaterialTheme.typography.h3
+            )
+            Text(
+                text = "Search your favorite Tv Shows and add them to your watchlist",
+                color = MaterialTheme.colors.textPrimaryDimColored,
+                style = MaterialTheme.typography.body2
+            )
         }
     }
 }

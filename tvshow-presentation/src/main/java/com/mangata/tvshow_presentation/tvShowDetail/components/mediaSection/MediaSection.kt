@@ -42,7 +42,7 @@ internal fun MediaSection(
                 VideoItem(video, onPlayVideoClick)
             }
         }
-        itemsIndexed(posters) { index, poster ->
+        itemsIndexed(posters) { _, poster ->
             PosterItem(
                 imageLoader = imageLoader,
                 poster = poster,

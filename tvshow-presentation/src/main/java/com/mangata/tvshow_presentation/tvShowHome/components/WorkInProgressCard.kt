@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.mangata.core_ui.theme.MediumBlue
 import com.mangata.core_ui.theme.textPrimaryDim
 
 @Composable
@@ -86,14 +87,14 @@ fun WorkInProgressCard(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(3.dp)
-                        .background(Color.Red.copy(alpha = 0.2f))
+                        .background(MediumBlue.copy(alpha = 0.2f))
                         .clip(RoundedCornerShape(percent = 30))
                 ) {
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(0.5f)
                             .height(3.dp)
-                            .background(Color.Red.copy(alpha = 0.2f))
+                            .background(MediumBlue.copy(alpha = 0.2f))
                             .clip(RoundedCornerShape(percent = 30))
                     )
                 }

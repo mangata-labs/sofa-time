@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.ImageLoader
@@ -81,9 +82,11 @@ fun TvShowCarouselCard(
                     verticalAlignment = Alignment.Bottom
                 ) {
                     Text(
-                        modifier = Modifier.fillMaxWidth(0.75f),
+                        modifier = Modifier.fillMaxWidth(0.78f),
                         text = tvShow.name,
-                        style = MaterialTheme.typography.h4,
+                        overflow = TextOverflow.Ellipsis,
+                        maxLines = 2,
+                        style = MaterialTheme.typography.h1,
                         color = Color.White
                     )
                     TextWithIcon(
